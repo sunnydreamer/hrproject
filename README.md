@@ -4,7 +4,7 @@ Welcome to the HR System!
 
 ## Features
 
-- **TODO** : Add detailed feature descriptions here.
+- **TODO** : Add detailed feature descriptions here
 
 ## Getting Started
 
@@ -54,7 +54,7 @@ In Powershell:
 
 To make changes to your project and contribute to its development, follow these steps:
 
-1. Create your Feature Branch ( `git checkout -b yourname/feature-name` )
+1. Create your Feature Branch ( `git checkout -b yourname-epicname-featurename` )
 2. Commit your Changes ( `git commit -m 'Add some AmazingFeature'` )
-3. Push to the Branch ( `git push origin yourname/feature-name` )
+3. Push to the Branch ( `git push origin branchName` )
 4. Open a Pull Request
