@@ -13,10 +13,10 @@ Welcome to the HR System!
 1. Clone the repo
 
 ```
-git clone https://github.com/your_username_/Project-Name.git
+git clone https://github.com/sunnydreamer/hrproject.git
 ```
 
-2. Install NPM packages in 2 frontend folder and 1 backend folder
+2. Install NPM packages in 2 frontend folders and 1 backend folder
 
 ```
 npm install
