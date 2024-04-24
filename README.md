@@ -4,7 +4,7 @@ Welcome to the HR System!
 
 ## Features
 
-- **TODO** : Add detailed feature descriptions here.
+- **TODO** : Add detailed feature descriptions here
 
 ## Getting Started
 
