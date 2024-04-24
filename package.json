@@ -1,0 +1,18 @@
+{
+  "name": "hrproject",
+  "version": "1.0.0",
+  "description": "A minimal package.json file for running scripts concurrently",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "scripts": {
+    "react": "cd frontend/react-app && npm run dev",
+    "angular": "cd frontend/angular-app && ng serve",
+    "backend": "cd backend && npm run dev",
+    "frontend": "concurrently \"npm run react\" \"npm run angular\"",
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\""
+  },
+  "dependencies": {
+    "@angular/core": "14.3.0"
+  }
+}
