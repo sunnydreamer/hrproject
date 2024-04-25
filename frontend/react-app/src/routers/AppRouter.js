@@ -12,7 +12,7 @@ const AppRouter = () => (
       <div className="flex-col full-parent-width">
         <Header />
         <Routes>
-          <Route path="/users" element={<UsersPage />} />
+          <Route path="/user" element={<UsersPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
