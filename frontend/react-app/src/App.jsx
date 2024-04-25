@@ -1,10 +1,10 @@
+import React from 'react';
+import AppRouter from './routers/AppRouter'
 import './App.css'
 
 function App() {
   return (
-    <>
-      <div>React App start here</div>
-    </>
+    <AppRouter />
   )
 }
 
