@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import UsersPage from "../pages/UsersPage/UsersPage";
-import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
+import UsersPage from "../pages/UsersPage";
+import NotFoundPage from "../pages/NotFoundPage";
 import Header from "../components/Header/Header";
 import NavBar from "../components/NavBar/NavBar";
 

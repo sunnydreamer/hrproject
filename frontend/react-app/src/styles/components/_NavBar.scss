@@ -1,11 +1,11 @@
 .nav-bar {
   padding: 10px;
   height: 100%;
-  background-color: #030915;
+  background-color: $theme-black;
 }
 
 .nav-link {
-  color: white;
+  color: $off-white;
   text-decoration: none;
   margin: 5px;
 }

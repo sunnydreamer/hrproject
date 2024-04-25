@@ -1,10 +1,9 @@
 import React from 'react';
-import './UsersPage.css';
 
 const UsersPage = () => {
   console.log("UsersPage");
   return (
-  <div className='full-parent-height outline'>
+  <div className='full-parent-height'>
     <p>UsersPage</p>
   </div>
 )};

@@ -1,7 +1,12 @@
-/* *,
+*,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  background: $dark-grey;
 }
 
 body {
@@ -32,4 +37,4 @@ body {
 
 .full-parent-height {
   height: 100%;
-} */
+}

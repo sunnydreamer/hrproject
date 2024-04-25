@@ -1,10 +1,9 @@
 import React from "react";
-import "./NotFoundPage.css";
 
 const NotFoundPage = () => {
   console.log("UsersPage");
   return (
-    <div className="full-parent-height outline">
+    <div className="full-parent-height">
       <p>404 Not Found</p>
     </div>
   );
