@@ -1,10 +1,10 @@
-import './App.css'
+import React from 'react';
+import AppRouter from './routers/AppRouter'
+import './styles/styles.scss'
 
 function App() {
   return (
-    <>
-      <div>React App start here</div>
-    </>
+    <AppRouter />
   )
 }
 
