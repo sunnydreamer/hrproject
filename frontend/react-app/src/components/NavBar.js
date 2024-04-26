@@ -20,7 +20,7 @@ const NavBar = (props) => {
         ))
       ) : (
         <>
-          <NavLink to="/user/personal-info" className="nav-link">
+          <NavLink to="/user" className="nav-link">
             Personal Information
           </NavLink>
           <NavLink to="/user/summary" className="nav-link">

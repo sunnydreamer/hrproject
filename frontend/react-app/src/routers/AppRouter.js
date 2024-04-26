@@ -2,8 +2,6 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Page from "../pages/Page";
 
-import UserPage from "../pages/UserPage";
-
 import NotFoundPage from "../pages/NotFoundPage";
 
 import LoginPage from "../pages/LoginPage";
@@ -19,7 +17,7 @@ const AppRouter = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/user">
-        <Route path="" element={<UserPage />} />
+        <Route path="" element={<Page title="Personal Information"><PersonalInfoPage /></Page>} />
 
         <Route
           path="login"
@@ -37,7 +35,6 @@ const AppRouter = () => (
         <Route path="summary" element={<Page title="Summary"><SummaryPage /></Page>} />
         <Route path="visa-status" element={<Page title="Visa Status"><VisaPage /></Page>} />
         <Route path="housing" element={<Page title="Housing"><HousingPage /></Page>} />
-        <Route path="personal-info" element={<Page title="Personal Information"><PersonalInfoPage /></Page>} />
       </Route>
 
       <Route
