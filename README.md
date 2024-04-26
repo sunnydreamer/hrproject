@@ -54,7 +54,8 @@ In Powershell:
 
 To make changes to your project and contribute to its development, follow these steps:
 
-1. Create your Feature Branch ( `git checkout -b yourname-epicname-featurename` )
-2. Commit your Changes ( `git commit -m 'Add some AmazingFeature'` )
-3. Push to the Branch ( `git push origin branchName` )
-4. Open a Pull Request: the PR title MUST include your Jira ticket number eg. HRPROJ-1
+1. Update the latest main ( `git checkout main` & `git pull origin main` ) then start making changes to your codes
+2. Create your Feature Branch ( `git checkout -b yourname-epicname-featurename` )
+3. Commit your Changes ( `git commit -m 'Add some AmazingFeature'` )
+4. Push to the Branch ( `git push origin branchName` )
+5. Open a Pull Request: the PR title MUST include your Jira ticket number eg. HRPROJ-1
