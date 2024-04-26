@@ -4,7 +4,7 @@ const User = require(`../models/userModel`);
 const Comment = require(`../models/commentModel`);
 const EmergencyContact = require(`../models/emergencyContactModel`);
 const Housing = require(`../models/housingModel`);
-require(`dotenv`).config({path: __dirname+`/./../.env`});
+require(`dotenv`).config({path: __dirname+`/./../.envBackend`});
 
 
 const seed = async () => {
