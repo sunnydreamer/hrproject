@@ -1,22 +1,29 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import UsersPage from "../pages/UsersPage";
+import Page from "../pages/Page";
 import NotFoundPage from "../pages/NotFoundPage";
-import Header from "../components/Header/Header";
-import NavBar from "../components/NavBar/NavBar";
+import UserPage from "../pages/UserPage";
 
 const AppRouter = () => (
   <BrowserRouter>
-    <div className="flex-row full-view-height">
-      <NavBar />
-      <div className="flex-col full-parent-width">
-        <Header />
-        <Routes>
-          <Route path="/user" element={<UsersPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </div>
-    </div>
+    <Routes>
+      <Route
+        path="/user"
+        element={
+          <Page >
+            <UserPage />
+          </Page>
+        }
+      />
+      <Route
+        path="*"
+        element={
+          <Page title="Not Found Page">
+            <NotFoundPage />
+          </Page>
+        }
+      />
+    </Routes>
   </BrowserRouter>
 );
 
