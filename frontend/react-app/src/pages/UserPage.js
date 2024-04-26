@@ -1,9 +1,10 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 
 const UserPage = () => {
   return (
-    <div>
-      
+    <div className="full-parent-height">
+      <Outlet />
     </div>
   );
 }
