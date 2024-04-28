@@ -5,7 +5,7 @@ const housingSchema = new Schema({
   house: {
     address: {
       street: { type: String, required: true },
-      streetLine2: { type: String, default: "" },
+      streetLine2: { type: String },
       city: { type: String, required: true },
       state: { type: String, required: true },
       zip: { type: String, required: true },
