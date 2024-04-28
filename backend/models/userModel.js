@@ -36,7 +36,7 @@ const userSchema = new Schema({
   hasDriversLicense: { type: Boolean, default: false },
   driversLicense: {
     licenseNumber: { type: String },
-    expirationDate: { type: Date, default: null },
+    expirationDate: { type: Date },
     licenseImage: { type: String },
   },
   workAuthorization: {

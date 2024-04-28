@@ -68,7 +68,7 @@ const documents = async () => {
     ],
     username: `mauricechiu`,
     password: await bcrypt.hash(`mauricePW`, Number(process.env.SALT)),
-    isHR: true,
+    isHR: false,
     workAuthorization: `green card`,
     roommates: [
       {
@@ -77,7 +77,8 @@ const documents = async () => {
     ],
   });
   e1.visa = { visaTitle: `haha` };
-  await e1.save()
+  e1.something = { huh: `lelelel` }; // doesn't work because something isn't part of the model
+  await e1.save();
 
   const e2 = await User.create({
     firstName: `Yineng`,
@@ -108,7 +109,7 @@ const documents = async () => {
     ],
     username: `yinengzhang`,
     password: await bcrypt.hash(`yinengPW`, Number(process.env.SALT)),
-    isHR: true,
+    isHR: false,
     workAuthorization: `other`,
     visa: {
       visaTitle: `J-1 Scholars`,
@@ -131,6 +132,7 @@ const documents = async () => {
     gender: `male`,
     address: {
       street: `444 Taeyang Blvd`,
+      streetLine2: `Apt 3R`,
       city: `Soul`,
       state: `New York`,
       zip: `11344`,
@@ -151,13 +153,44 @@ const documents = async () => {
     ],
     username: `loulianliu`,
     password: await bcrypt.hash(`loulianPW`, Number(process.env.SALT)),
-    isHR: true,
+    isHR: false,
     workAuthorization: `F1`,
     opt: {
-      receipt: ``,
-      ead: ``,
-      i983: ``,
+      receipt: `some receipt`,
+      ead: `some ead`,
+      i983: `some i983`,
     },
+  });
+
+  const h1 = await Housing.create({
+    address: {
+      street: `123 Shinchan Ave`,
+      city: `Oklahoma City`,
+      state: `Oklahoma`,
+      zip: `12345`,
+    },
+    roommates: [hr1],
+  });
+
+  const h2 = await Housing.create({
+    address: {
+      street: `44 Bumblebee St`,
+      city: `New York`,
+      state: `New York`,
+      zip: `11344`,
+    },
+    roommates: [e1, e2],
+  });
+
+  const h3 = await Housing.create({
+    address: {
+      street: `444 Taeyang Blvd`,
+      streetLine2: `Apt 3R`,
+      city: `Soul`,
+      state: `New York`,
+      zip: `11344`,
+    },
+    roommates: [e3],
   });
 };
 
