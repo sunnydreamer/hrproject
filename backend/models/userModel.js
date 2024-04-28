@@ -46,13 +46,14 @@ const userSchema = new Schema({
   },
   workAuthorization: {
     type: String,
-    enum: ["citizen", "H1B", "F1"],
+    enum: ["Citizen", "Green Card", "H1B", "L2", "F1(CPT)", "F1(OPT)", "Other"],
     required: true,
   },
   opt: {
-    receipt: { type: String, default: "" },
-    ead: { type: String, default: "" },
-    i983: { type: String, default: "" },
+    receipt: { type: mongoose.Schema.Types.ObjectId, ref: "Document" },
+    ead: { type: mongoose.Schema.Types.ObjectId, ref: "Document" },
+    i983: { type: mongoose.Schema.Types.ObjectId, ref: "Document" },
+    i20: { type: mongoose.Schema.Types.ObjectId, ref: "Document" },
   },
   reference: {
     firstName: { type: String, default: "" },
