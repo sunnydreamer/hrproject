@@ -2,6 +2,8 @@ const mongoose = require(`mongoose`);
 const { Schema, model } = mongoose;
 
 const userSchema = new Schema({
+  regToken: { type: String, default: null },
+  regLinkToken: { type: String, default: null },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   middleName: { type: String },

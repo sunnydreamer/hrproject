@@ -18,13 +18,21 @@ git clone https://github.com/sunnydreamer/hrproject.git
 
 2. Install NPM packages in 2 frontend folders and 1 backend folder
 
+To install all of them at once, at the root directory, use
+
 ```
-npm install
+npm run installDep
 ```
 
 ### Run the project
 
 In the root folder, we've included a simple package.json file with predefined scripts for running the frontend and backend concurrently.
+
+To run all of them, in the root directory, use
+
+```
+npm run dev
+```
 
 - Angular Server: http://localhost:4200/
 - React Server: http://localhost:5173/
