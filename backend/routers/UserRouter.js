@@ -22,7 +22,7 @@ router
     // user signup
     .get('/signup', (req, res) => { res.send("sign up page render here") })
     // TODO: THIS IS NOT OFFICIAL SIGNUP CONTROLLER
-    .post("/signup", UserController.createUser)
+    .post("/signup", (req, res) => { res.send("Sign up successfully") })
     // user login
     .get('/login', (req, res) => { res.send('login page render here') })
     .post("/login", (req, res) => { res.send("Login successfully") })
