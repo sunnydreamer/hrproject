@@ -2,35 +2,37 @@ const mongoose = require(`mongoose`);
 const { Schema, model } = mongoose;
 
 const userSchema = new Schema({
+  regToken: { type: String, default: null },
+  regLinkToken: { type: String, default: null },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  middleName: { type: String, default: "" },
-  preferredName: { type: String, default: "" },
-  profilePicture: { type: String, default: "" },
+  middleName: { type: String },
+  preferredName: { type: String },
+  onboardingStatus: {
+    type: String,
+    enum: ["Not Started", "Pending", "Approved", "Rejected"],
+    default: "Not Started",
+  },
+  profilePicture: { type: String },
   email: { type: String, required: true, unique: true, immutable: true },
   ssn: { type: String, required: true },
   dob: { type: Date, required: true },
   gender: { type: String, enum: ["male", "female", "n/a"], required: true },
   address: {
     street: { type: String, required: true },
-    streetLine2: { type: String, default: "" },
+    streetLine2: { type: String },
     city: { type: String, required: true },
     state: { type: String, required: true },
     zip: { type: String, required: true },
   },
   phone: {
     cell: { type: String, required: true },
-    work: { type: String, default: "" },
+    work: { type: String },
   },
   carInfo: {
-    make: { type: String, default: "" },
-    model: { type: String, default: "" },
-    color: { type: String, default: "" },
-  },
-  visa: {
-    visaTitle: { type: String },
-    startDate: { type: Date },
-    endDate: { type: Date },
+    make: { type: String },
+    model: { type: String },
+    color: { type: String },
   },
   emergencyContact: [
     { type: mongoose.Schema.Types.ObjectId, ref: "EmergencyContact" },
@@ -40,13 +42,19 @@ const userSchema = new Schema({
   isHR: { type: Boolean, required: true },
   hasDriversLicense: { type: Boolean, default: false },
   driversLicense: {
-    licenseNumber: { type: String, default: "" },
-    expirationDate: { type: Date, default: null },
-    licenseImage: { type: String, default: "" },
+    licenseNumber: { type: String },
+    expirationDate: { type: Date },
+    licenseImage: { type: String },
   },
   workAuthorization: {
     type: String,
     enum: ["citizen", "green card", "H1B", "F1", "H4", "other"],
+  },
+  workAuthorizationStart: {
+    type: Date, default: null
+  },
+  workAuthorizationEnd: {
+    type: Date, default: null
   },
   opt: {
     receipt: { type: mongoose.Schema.Types.ObjectId, ref: "Document" },
@@ -54,42 +62,50 @@ const userSchema = new Schema({
     i983: { type: mongoose.Schema.Types.ObjectId, ref: "Document" },
     i20: { type: mongoose.Schema.Types.ObjectId, ref: "Document" },
   },
-  reference: {
-    firstName: { type: String, default: "" },
-    middleName: { type: String, default: "" },
-    lastName: { type: String, default: "" },
-    preferredName: { type: String, default: "" },
-    phone: { type: String, default: "" },
-    email: { type: String, default: "" },
-    relationship: { type: String, default: "" },
+  visa: {
+    visaTitle: { type: String },
+    startDate: { type: Date },
+    endDate: { type: Date },
   },
-  housingReport: {
-    title: { type: String, default: "" },
-    description: { type: String, default: "" },
+  reference: {
+    firstName: { type: String },
+    middleName: { type: String },
+    lastName: { type: String },
+    preferredName: { type: String },
+    phone: { type: String },
+    email: { type: String },
+    relationship: { type: String },
+  },
+  housingReport: [{
+    title: { type: String },
+    description: { type: String },
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    housingComments: [{ type: String }],
     status: {
       type: String,
       enum: ["Open", "In Progress", "Closed"],
       default: "Open",
     },
     address: {
-      street: { type: String, default: "" },
-      streetLine2: { type: String, default: "" },
-      city: { type: String, default: "" },
-      state: { type: String, default: "" },
-      zip: { type: String, default: "" },
+      street: { type: String },
+      streetLine2: { type: String },
+      city: { type: String },
+      state: { type: String },
+      zip: { type: String },
     },
-  },
+  }],
   timestamp: { type: Date, default: Date.now },
-  housingComments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
   roommates: [
     {
-      name: { type: String, default: "" },
-      phone: { type: String, default: "" },
+      name: { type: String },
+      phone: { type: String },
     },
   ],
+  house: [{ type: mongoose.Schema.Types.ObjectId, ref: "Housing" }]
 });
 
 const User = model(`User`, userSchema);
 
 module.exports = User;
+
+

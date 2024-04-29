@@ -1,0 +1,67 @@
+
+
+.Housing{
+    color: black;
+    padding: 20px;
+}
+
+
+.Housing-Div{
+    background-color: grey;
+    margin: 3em;
+    border-radius: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.Housing-Div-Detail{
+    display: flex;
+    flex-direction: column ;
+    justify-content: space-evenly;
+}
+
+ul{
+    padding: 0 0 0 10px;
+}
+
+
+.Housing-Report{
+    background-color: grey;
+    margin: 3em;
+    border-radius: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: stretch;
+    flex-wrap: wrap;
+
+}
+
+table{
+    width: 80vw;
+    border-collapse: collapse;
+}
+
+th{
+    font-size: 1.5em;
+}
+
+td, tr, table, th{
+    border:  1px black solid;
+    text-align: center;
+}
+
+
+.comment{
+
+    margin: 3em;
+    border-radius: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: stretch;
+    flex-wrap: wrap;
+}

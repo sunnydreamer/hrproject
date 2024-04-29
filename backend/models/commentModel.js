@@ -6,7 +6,6 @@ const commentSchema = new Schema({
   reply: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Comment",
-    default: null,
   },
 });
 
