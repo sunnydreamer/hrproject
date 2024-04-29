@@ -44,9 +44,10 @@ const userSchema = new Schema({
     enum: ["citizen", "green card", "H1B", "F1", "H4", "other"],
   },
   opt: {
-    receipt: { type: String },
-    ead: { type: String },
-    i983: { type: String },
+    receipt: { type: mongoose.Schema.Types.ObjectId, ref: "Document" },
+    ead: { type: mongoose.Schema.Types.ObjectId, ref: "Document" },
+    i983: { type: mongoose.Schema.Types.ObjectId, ref: "Document" },
+    i20: { type: mongoose.Schema.Types.ObjectId, ref: "Document" },
   },
   visa: {
     visaTitle: { type: String },

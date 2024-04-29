@@ -4,6 +4,7 @@ const User = require(`../../models/userModel`);
 const Comment = require(`../../models/commentModel`);
 const EmergencyContact = require(`../../models/emergencyContactModel`);
 const Housing = require(`../../models/housingModel`);
+const Document = require(`../../models/documentModel`);
 
 const documents = async () => {
   const hr1 = await User.create({
@@ -155,12 +156,28 @@ const documents = async () => {
     password: await bcrypt.hash(`loulianPW`, Number(process.env.SALT)),
     isHR: false,
     workAuthorization: `F1`,
-    opt: {
-      receipt: `some receipt`,
-      ead: `some ead`,
-      i983: `some i983`,
-    },
   });
+  e3.opt.receipt = await Document.create({
+    userId: e3,
+    documentType: `Receipt`,
+    status: `Pending`,
+  });
+  e3.opt.ead = await Document.create({
+    userId: e3,
+    documentType: `Ead`,
+    status: `Pending`,
+  });
+  e3.opt.i983 = await Document.create({
+    userId: e3,
+    documentType: `I983`,
+    status: `Pending`,
+  });
+  e3.opt.i20 = await Document.create({
+    userId: e3,
+    documentType: `I20`,
+    status: `Pending`,
+  });
+  await e3.save();
 
   const h1 = await Housing.create({
     address: {
