@@ -28,9 +28,9 @@ const userSchema = new Schema({
     color: { type: String, default: "" },
   },
   visa: {
-    visaTitle: { type: String, required: true },
-    startDate: { type: Date, required: true },
-    endDate: { type: Date, required: true },
+    visaTitle: { type: String },
+    startDate: { type: Date },
+    endDate: { type: Date },
   },
   emergencyContact: [
     { type: mongoose.Schema.Types.ObjectId, ref: "EmergencyContact" },
@@ -46,8 +46,7 @@ const userSchema = new Schema({
   },
   workAuthorization: {
     type: String,
-    enum: ["Citizen", "Green Card", "H1B", "L2", "F1(CPT)", "F1(OPT)", "Other"],
-    required: true,
+    enum: ["citizen", "green card", "H1B", "F1", "H4", "other"],
   },
   opt: {
     receipt: { type: mongoose.Schema.Types.ObjectId, ref: "Document" },

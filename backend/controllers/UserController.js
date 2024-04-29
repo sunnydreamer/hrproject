@@ -7,39 +7,44 @@ const fs = require("fs")
 const { s3, bucketName } = require("../config/aws")
 
 
-
-const getUserById = async (req, res) => {
+const getDocuments = async (req, res) => {
     try {
         const userId = req.params.userId;
-
-        // Check if userId is a valid mongo ObjectId
-        if (!mongoose.Types.ObjectId.isValid(userId)) {
-            return res.status(400).json({ message: "Invalid mongo ID" });
-        }
-
-        //TODO: check if user id is the same stored in token or user is a hr, only user themselves or hr can get the info
-
         const user = await User.findById(userId);
-
         if (!user) {
-            return res.status(404).json({ message: "User not found" });
+            return res.status(404).json({ error: 'User not found' });
         }
-        res.json(user);
-    } catch (error) {
-        console.error("Error getting user:", error);
-        res.status(500).json({ message: "Internal server error" });
-    }
-}
 
-const createUser = async (req, res) => {
-    try {
-        const newUser = await User.create(req.body);
-        res.status(201).json(newUser);
+        // return if they are not F1
+        if (user.workAuthorization !== 'F1') {
+            return res.status(200).json({ message: 'User does not have F1(dOPT) work authorization', data: null });
+        }
+
+        // checking their required documents and get data from Document Collection
+        const expectedFields = ['receipt', 'ead', 'i983', 'i20'];
+        const documentInfo = {};
+
+        for (const field of expectedFields) {
+            if (user.opt && user.opt[field] && mongoose.Types.ObjectId.isValid(user.opt[field])) {
+                const document = await Document.findById(user.opt[field]);
+                if (document) {
+                    documentInfo[field] = {
+                        documentType: document.documentType,
+                        status: document.status,
+                        comment: document.comment
+                    };
+                    continue;
+                }
+            }
+            documentInfo[field] = null;
+        }
+
+        res.status(200).json({ message: 'Retrieve OPT documents successfully', data: documentInfo });
     } catch (error) {
-        console.error("Error creating user:", error);
-        res.status(500).json({ message: "Internal server error" });
+        console.error('Error fetching documents:', error);
+        res.status(500).json({ error: 'Internal server error' });
     }
-}
+};
 
 const awsS3Upload = async (filePath, newFileNameKey) => {
     // send file to AWS S3
@@ -64,33 +69,33 @@ const awsS3Upload = async (filePath, newFileNameKey) => {
 }
 
 const uploadDocuments = async (req, res) => {
-    // check if user exists
     const { userId } = req.params;
+    const { documentType } = req.body;
+
+    // check if user exists
     const user = await User.findById(userId);
     if (!user) {
         return res.status(404).json({ error: 'User not found' });
     }
 
-    //get file path and key from req.body 
+    //get file from req.file 
     const uploadedFile = req.file;
     try {
-        // get the aws file location
+        // send to aws and get the aws file location
         const s3Location = await awsS3Upload(uploadedFile.path, uploadedFile.filename);
 
         // create a document in the document collection
         const newDocument = new Document({
             userId: user._id,
-            documentType: 'Receipt',
+            documentType: documentType,
             document: s3Location,
-            status: 'Pending', //default pending
+            status: 'Pending', //default is pending
             comment: ''
         });
-
         await newDocument.save();
 
-        // Add the reference ID to the user opt
-        // TODO: need to update the steps
-        user.opt.receipt = newDocument._id;
+        // add the reference ID to the user opt
+        user.opt[documentType] = newDocument._id;
         await user.save();
 
         res.json({ success: true, message: "successfully update the document" });
@@ -101,4 +106,4 @@ const uploadDocuments = async (req, res) => {
 }
 
 
-module.exports = { getUserById, createUser, uploadDocuments }
+module.exports = { getUserById, createUser, uploadDocuments, getDocuments }

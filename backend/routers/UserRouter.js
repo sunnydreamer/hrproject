@@ -16,9 +16,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router
-    //get one user
-    .get('/getuser/:userId', UserController.getUserById)
-    .put('/uploadFiles/:userId', upload.single('file'), UserController.uploadDocuments)
+    // retrieve and send documents
+    .get('/documents/:userId', UserController.getDocuments)
+    .put('/documents/:userId', upload.single('file'), UserController.uploadDocuments)
     // user signup
     .get('/signup', (req, res) => { res.send("sign up page render here") })
     // TODO: THIS IS NOT OFFICIAL SIGNUP CONTROLLER
