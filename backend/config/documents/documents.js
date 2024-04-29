@@ -6,8 +6,11 @@ const EmergencyContact = require(`../../models/emergencyContactModel`);
 const Housing = require(`../../models/housingModel`);
 const Document = require(`../../models/documentModel`);
 
-const documents = async () => {
+
+
+const documents = async (housingId,) => {
   const hr1 = await User.create({
+    house: housingId,
     firstName: `Sunny`,
     lastName: `Li`,
     email: `sunnyli@gmail.com`,
@@ -38,6 +41,20 @@ const documents = async () => {
     password: await bcrypt.hash(`sunnyPW`, Number(process.env.SALT)),
     isHR: true,
     workAuthorization: `citizen`,
+    workAuthorizationStart: new Date(`2000-01-01`),
+    workAuthorizationEnd: new Date(`2000-01-01`),
+    housingReport:[ {
+      title: "test",
+      description: "some compliant",
+      housingComments: [],
+      status: "In Progress",
+      address: {
+        street: "123 Main St",
+        city: "Anytown",
+        state: "AnyState",
+        zip: "12345",
+      },
+    } ],
   });
 
   const e1 = await User.create({

@@ -1,6 +1,13 @@
 const router = require("express").Router();
 // const UserController = require("../controllers/UserController");
 
+const GetUserInfo = require("../controllers/GetUserInfo")
+const PostUserInfo = require("../controllers/PostUserInfo")
+const PostUserContact = require("../controllers/PostUserContact")
+
+const GetHousingInfo = require("../controllers/GetHousingInfo")
+
+
 router
     // user signup
     .get('/signup', (req, res) => { res.send("sign up page render here") })
@@ -12,13 +19,15 @@ router
     .get('/onboarding', (req, res) => { res.send('onboarding page render here') })
     .post("/onboarding", (req, res) => { res.send("Welcome onboard") })
     // user info page
-    .get('/info', (req, res) => { res.send('user info page render here') })
-    .put("/info", (req, res) => { res.send("User info is modified successfully") })
+    .get('/info', GetUserInfo)
+    .post("/info", PostUserInfo)
+    .post("/info/contact", PostUserContact)
+
     // user visa page
     .get('/visa', (req, res) => { res.send('visa status page render here') })
     .put("/visa/:userid", (req, res) => { res.send('visa status changed successfully') })
     // user housing page
-    .get('/housing', (req, res) => { res.send('housing page render here') })
+    .get('/housing', GetHousingInfo)
     .post('/housing/report', (req, res) => { res.send('Facility report created') })
     .put('/housing/report/:reportid', (req, res) => { res.send('Replied facility report successfully') })
 
