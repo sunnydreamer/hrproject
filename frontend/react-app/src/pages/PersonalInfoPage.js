@@ -1,11 +1,11 @@
 import React from 'react';
 
-const RegistrationPage = () => {
+const PersonalInfoPage = () => {
   return (
     <div className="full-parent-height">
-      RegistrationPage
+      PersonalInfoPage
     </div>
   );
 }
 
-export default RegistrationPage;
+export default PersonalInfoPage;

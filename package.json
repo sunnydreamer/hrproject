@@ -10,14 +10,6 @@
     "angular": "cd frontend/angular-app && ng serve",
     "backend": "cd backend && npm run dev",
     "frontend": "concurrently \"npm run react\" \"npm run angular\"",
-    "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
-    "seed": "node ./backend/config/seed.js",
-    "reactNpmI": "cd ./frontend/react-app && npm i",
-    "angularNpmI": "cd ./frontend/angular-app && npm i",
-    "backendNpmI": "cd ./backend && npm i",
-    "installAll": "npm i && npm run reactNpmI && npm run angularNpmI && npm run backendNpmI"
-  },
-  "dependencies": {
-    "@angular/core": "14.3.0"
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\""
   }
 }
