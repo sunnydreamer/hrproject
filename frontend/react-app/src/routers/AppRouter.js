@@ -4,8 +4,9 @@ import Page from "../pages/Page";
 
 import NotFoundPage from "../pages/NotFoundPage";
 
-import LoginPage from "../pages/LoginPage";
+import RegisterWithTokenPage from "../pages/RegisterWithTokenPage";
 import RegistrationPage from "../pages/RegistrationPage";
+import LoginPage from "../pages/LoginPage";
 import OnboardingPage from "../pages/OnboardingPage";
 
 import SummaryPage from "../pages/SummaryPage";
@@ -15,6 +16,8 @@ import PersonalInfoPage from "../pages/PersonalInfo/PersonalInfoPage";
 
 
 
+import HREmailPage from "../pages/HREmailPage";
+
 const AppRouter = () => (
   <BrowserRouter>
     <Routes>
@@ -22,12 +25,16 @@ const AppRouter = () => (
         <Route path="" element={<Page title="Personal Information"><PersonalInfoPage /></Page>} />
 
         <Route
-          path="login"
-          element={<Page title="Login" navLinks={[]}><LoginPage /></Page>}
+          path="registration-with-token/:regLinkToken"
+          element={<Page title="Registration" navLinks={[]}><RegisterWithTokenPage /></Page>}
         />
         <Route
           path="registration" 
           element={<Page title="Registration" navLinks={[]}><RegistrationPage /></Page>}
+        />
+        <Route
+          path="login"
+          element={<Page title="Login" navLinks={[]}><LoginPage /></Page>}
         />
         <Route 
           path="onboarding-application" 
@@ -37,16 +44,10 @@ const AppRouter = () => (
         <Route path="summary" element={<Page title="Summary"><SummaryPage /></Page>} />
         <Route path="visa-status" element={<Page title="Visa Status"><VisaPage /></Page>} />
         <Route path="housing" element={<Page title="Housing"><HousingPage /></Page>} />
+        <Route path="send-email" element={<Page title="Send Email" navLinks={[]}><HREmailPage /></Page>} />
       </Route>
-
-      <Route
-        path="*"
-        element={
-          <Page title="Not Found Page">
-            <NotFoundPage />
-          </Page>
-        }
-      />
+      
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   </BrowserRouter>
 );

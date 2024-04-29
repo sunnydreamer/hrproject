@@ -11,7 +11,7 @@ import Header from "../components/Header";
  */
 
 const Page = (props) => {
-  console.log(props);
+  // console.log(props.navLinks);
   if (props.navLinks && props.navLinks.length === 0) {
     return (
       <div className="flex-row full-view-height">

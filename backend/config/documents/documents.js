@@ -11,6 +11,8 @@ const Document = require(`../../models/documentModel`);
 const documents = async (housingId,) => {
   const hr1 = await User.create({
     house: housingId,
+    registrationLinkToken: `abc123`,
+    registrationToken: `abc456`,
     firstName: `Sunny`,
     lastName: `Li`,
     email: `sunnyli@gmail.com`,

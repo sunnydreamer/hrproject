@@ -2,10 +2,17 @@ const mongoose = require(`mongoose`);
 const { Schema, model } = mongoose;
 
 const userSchema = new Schema({
+  regToken: { type: String, default: null },
+  regLinkToken: { type: String, default: null },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   middleName: { type: String },
   preferredName: { type: String },
+  onboardingStatus: {
+    type: String,
+    enum: ["Not Started", "Pending", "Approved", "Rejected"],
+    default: "Not Started",
+  },
   profilePicture: { type: String },
   email: { type: String, required: true, unique: true, immutable: true },
   ssn: { type: String, required: true },
@@ -69,7 +76,7 @@ const userSchema = new Schema({
     email: { type: String },
     relationship: { type: String },
   },
-  housingReport: {
+  housingReport: [{
     title: { type: String },
     description: { type: String },
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
