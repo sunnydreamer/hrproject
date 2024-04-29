@@ -42,7 +42,7 @@ const VisaPage = () => {
       const formData = new FormData();
       formData.append('file', file);
       formData.append('documentType', docType)
-      const response = await axios.put(`/documents/662ed2566acf4dcef39c1c1c`, formData, {
+      const response = await axios.put(`/documents/662fe6ad0c28afb3008ef2fc`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -62,7 +62,7 @@ const VisaPage = () => {
     const fetchData = async () => {
       try {
         // Fetch user information
-        const documentsData = await axios.get('/documents/662ed2566acf4dcef39c1c1c');
+        const documentsData = await axios.get('/documents/662fe6ad0c28afb3008ef2fc');
         setUserDocuments(documentsData.data)
 
         // Find the first document with a status other than "Approved"

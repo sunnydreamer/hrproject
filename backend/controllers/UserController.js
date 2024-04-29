@@ -106,4 +106,4 @@ const uploadDocuments = async (req, res) => {
 }
 
 
-module.exports = { getUserById, createUser, uploadDocuments, getDocuments }
+module.exports = { uploadDocuments, getDocuments }
