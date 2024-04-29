@@ -4,8 +4,8 @@ const User = require(`../models/userModel`);
 const Comment = require(`../models/commentModel`);
 const EmergencyContact = require(`../models/emergencyContactModel`);
 const Housing = require(`../models/housingModel`);
-require(`dotenv`).config({path: __dirname+`/./../.envBackend`});
-
+const Document = require("../models/documentModel");
+require(`dotenv`).config({ path: __dirname + `/./../.envBackend` });
 
 const seed = async () => {
   try {
@@ -16,6 +16,7 @@ const seed = async () => {
     await Comment.deleteMany({});
     await EmergencyContact.deleteMany({});
     await Housing.deleteMany({});
+    await Document.deleteMany({});
     console.log(`old data cleared`);
 
     console.log(`seeding database`);
