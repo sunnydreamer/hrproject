@@ -49,6 +49,12 @@ const userSchema = new Schema({
     enum: ["citizen", "H1B", "F1"],
     required: true,
   },
+  workAuthorizationStart:{
+    type: Date, default: null
+  },
+  workAuthorizationEnd:{
+    type: Date, default: null
+  },
   opt: {
     receipt: { type: String, default: "" },
     ead: { type: String, default: "" },
@@ -63,10 +69,11 @@ const userSchema = new Schema({
     email: { type: String, default: "" },
     relationship: { type: String, default: "" },
   },
-  housingReport: {
+  housingReport:[ {
     title: { type: String, default: "" },
     description: { type: String, default: "" },
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    housingComments: [{type: String}],
     status: {
       type: String,
       enum: ["Open", "In Progress", "Closed"],
@@ -79,17 +86,19 @@ const userSchema = new Schema({
       state: { type: String, default: "" },
       zip: { type: String, default: "" },
     },
-  },
+  } ],
   timestamp: { type: Date, default: Date.now },
-  housingComments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
   roommates: [
     {
       name: { type: String, default: "" },
       phone: { type: String, default: "" },
     },
   ],
+  house : [{ type: mongoose.Schema.Types.ObjectId, ref: "Housing" }]
 });
 
 const User = model(`User`, userSchema);
 
 module.exports = User;
+
+

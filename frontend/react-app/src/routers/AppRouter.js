@@ -10,8 +10,10 @@ import OnboardingPage from "../pages/OnboardingPage";
 
 import SummaryPage from "../pages/SummaryPage";
 import VisaPage from "../pages/VisaPage";
-import HousingPage from "../pages/HousingPage";
-import PersonalInfoPage from "../pages/PersonalInfoPage";
+import HousingPage from "../pages/Housing/HousingPage";
+import PersonalInfoPage from "../pages/PersonalInfo/PersonalInfoPage";
+
+
 
 const AppRouter = () => (
   <BrowserRouter>
