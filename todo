@@ -1,10 +1,11 @@
 Todo:
 Personal Info
-    make sure fields are eitable DONE
+    make sure fields are editable DONE
     fix the sizing  DONE
-    fileupload  30 min
+    fileupload for profiles DONE
+
+
     file download 1 hour
-    validation
 
 Housing
     fix the axios 30min
