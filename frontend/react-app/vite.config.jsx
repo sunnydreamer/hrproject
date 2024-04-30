@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react-swc'
 // https://vitejs.dev/config/
 export default defineConfig({
   esbuild: {
-    loader: "jsx",
+    loader: { '.js': 'jsx' }, //"jsx",
     include: /src\/.*\.jsx?$/,
     // loader: "tsx",
     // include: /src\/.*\.[tj]sx?$/,
@@ -18,7 +18,8 @@ export default defineConfig({
           setup(build) {
             build.onLoad({ filter: /src\/.*\.js$/ }, async (args) => ({
               loader: "jsx",
-              contents: await fs.readFile(args.path, "utf8"),
+              // contents: await fs.readFile(args.path, "utf8"),
+              contents: args.contents,
             }));
           },
         },
