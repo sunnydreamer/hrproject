@@ -34,6 +34,11 @@ const userSchema = new Schema({
     model: { type: String },
     color: { type: String },
   },
+  visa: {
+    visaTitle: { type: String },
+    startDate: { type: Date },
+    endDate: { type: Date },
+  },
   emergencyContact: [
     { type: mongoose.Schema.Types.ObjectId, ref: "EmergencyContact" },
   ],

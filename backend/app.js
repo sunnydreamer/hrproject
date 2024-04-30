@@ -2,7 +2,8 @@ const express = require("express");
 const morgan = require("morgan");
 const cookieParser = require('cookie-parser');
 const router = require("./routers")
-const cors = require("cors");
+const bodyParser = require('body-parser')
+const cors = require('cors')
 
 const app = express();
 
@@ -10,7 +11,8 @@ const app = express();
 require("dotenv").config();
 
 // middlewares
-app.use("/public", express.static("public"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
   cors({
