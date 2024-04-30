@@ -110,11 +110,6 @@ const uploadDocuments = async (req, res) => {
     }
 }
 
-
-module.exports = { uploadDocuments, getDocuments }
-
-const User = require("../models/userModel");
-
 /**
  * A helper for generating JWT token using userId and email.
  * @param {*} userId
@@ -265,4 +260,6 @@ module.exports = {
   register,
   generateAndStoreTokens,
   login,
+  uploadDocuments, 
+  getDocuments
 };
