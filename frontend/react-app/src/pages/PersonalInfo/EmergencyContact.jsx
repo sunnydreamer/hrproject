@@ -22,11 +22,17 @@ function EmergencyContact({data, setData}){
     const [edit, setEdit] = useState(false);
 
     const contacts = data.emergencyContact;
-    console.log(contacts)
+    // console.log()
 
     function handleInputChange(e, index, field){
         const updatedContacts = [...contacts];
-        updatedContacts[index][field] = e.target.value;
+        // console.log(updatedContacts[index].phone)
+        if(field == "cell"){
+            updatedContacts[index].phone[field] = e.target.value;
+        }
+        else{
+            updatedContacts[index][field] = e.target.value;
+        }
         setData(prevData => ({ ...prevData, emergencyContact: updatedContacts }));
     };
 
@@ -159,134 +165,74 @@ function EmergencyContact({data, setData}){
                                     readOnly={!edit}
                                     />
                             </td>
-
-
                         </tr>
-
-                        // <tr key={index}>
-
-                        //     <td>
-                        //         {edit ? (
-                        //             <input
-                        //                 type="text"
-                        //                 value={contact.lastName}
-                        //                 onChange={(e) => handleInputChange(e, index, 'lastName')}
-                        //             />
-                        //         ) : (
-                        //             contact.lastName
-                        //         )}
-                        //     </td>
-                        //     <td>
-                        //         {edit ? (
-                        //             <input
-                        //                 type="text"
-                        //                 value={contact.middleName}
-                        //                 onChange={(e) => handleInputChange(e, index, 'middleName')}
-                        //             />
-                        //         ) : (
-                        //             contact.middleName
-                        //         )}
-                        //     </td>
-                        //     <td>
-                        //         {edit ? (
-                        //             <input
-                        //                 type="tel"
-                        //                 value={contact.phone}
-                        //                 onChange={(e) => handleInputChange(e, index, 'phone')}
-                        //             />
-                        //         ) : (
-                        //             contact.phone
-                        //         )}
-                        //     </td>
-                        //     <td>
-                        //         {edit ? (
-                        //             <input
-                        //                 type="email"
-                        //                 value={contact.email}
-                        //                 onChange={(e) => handleInputChange(e, index, 'email')}
-                        //             />
-                        //         ) : (
-                        //             contact.email
-                        //         )}
-                        //     </td>
-                        //     <td>
-                        //         {edit ? (
-                        //             <input
-                        //                 type="text"
-                        //                 value={contact.relationship}
-                        //                 onChange={(e) => handleInputChange(e, index, 'relationship')}
-                        //             />
-                        //         ) : (
-                        //             contact.relationship
-                        //         )}
-                        //     </td>
-                        // </tr>
                     ))}
                 </tbody>
             </table>
 
 
-        <div className="Emergency-Div">
-        <form className="Emergency-Div" onSubmit={makeNewContact}>
-            <div>
-            <label htmlFor="EmergencyFirstName">First Name:</label>
+
+        <form class="Create-Emergency-Div" onSubmit={makeNewContact}>
+            {/* <div> */}
+            {/* <label htmlFor="EmergencyFirstName">First Name:</label> */}
             <input 
                 type="text" 
                 id="EmergencyFirstName" 
                 name="EmergencyFirstName" 
                 value={newContact.firstName} 
                 onChange={(e) => setNewContact((prev) => ({ ...prev, firstName: e.target.value}))}/>
-            </div>
-            <div>
-            <label htmlFor="EmergencyLastName">Last Name:</label>
+            {/* </div> */}
+            {/* <div> */}
+            {/* <label htmlFor="EmergencyLastName">Last Name:</label> */}
             <input 
                 type="text" 
                 id="EmergencyLastName" 
                 name="EmergencyLastName"  
                 value={newContact.lastName}
                 onChange={(e) => setNewContact((prev) => ({ ...prev, lastName: e.target.value}))}/>
-            </div>
+            {/* </div> */}
 
-            <div>
-            <label htmlFor="EmergencyMiddleName">Middle Name:</label>
+            {/* <div> */}
+            {/* <label htmlFor="EmergencyMiddleName">Middle Name:</label> */}
             <input 
                 type="text" 
                 id="EmergencyMiddleName" 
                 name="EmergencyMiddleName"   
                 value={newContact.middleName}
                 onChange={(e) => setNewContact((prev) => ({ ...prev, middleName: e.target.value}))}/>
-            </div>
+            {/* </div> */}
 
-            <div>
-            <label htmlFor="EmergencyPhone">Phone:</label>
+            {/* <div> */}
+            {/* <label htmlFor="EmergencyPhone">Phone:</label> */}
             <input type="tel" 
                     id="EmergencyPhone" 
                     name="EmergencyPhone"  
                     value={newContact.phone.cell}
                     onChange={(e) => setNewContact((prev) => ({ ...prev, phone: { ...prev.phone, cell: e.target.value } }))}/>
 
-            </div>
-            <div>
-            <label htmlFor="EmergencyEmail">Email:</label>
+            {/* </div> */}
+            {/* <div> */}
+            {/* <label htmlFor="EmergencyEmail">Email:</label> */}
             <input 
                 type="email" 
                 id="EmergencyEmail"
                  name="EmergencyEmail"  
                 value={newContact.email}
                 onChange={(e) => setNewContact((prev) => ({ ...prev, email: e.target.value}))}/>
-            </div>
-            <div>
-            <label htmlFor="EmergencyRelationship">Relationship:</label>
+            {/* </div> */}
+            {/* <div> */}
+            {/* <label htmlFor="EmergencyRelationship">Relationship:</label> */}
             <input 
                 type="text" 
                 id="EmergencyRelationship" 
                 name="EmergencyRelationship"  
                 value={newContact.relationship}
                 onChange={(e) => setNewContact((prev) => ({ ...prev, relationship: e.target.value}))}/>
-            </div>
+            {/* </div> */}
+            <br></br>
             <button>Submit</button>
             </form>
-        </div>
+
         </div>
         </div>
     )

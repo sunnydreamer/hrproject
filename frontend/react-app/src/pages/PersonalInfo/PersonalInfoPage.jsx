@@ -99,7 +99,7 @@ const PersonalInfoPage = () => {
 
   return (
 
-    <div className="full-parent-height">
+    <div id="parent-personal">
 
       {data? (
         <>
@@ -108,7 +108,8 @@ const PersonalInfoPage = () => {
       <Contact data={data} setData={setData}></Contact>
       <Employment data={data} setData={setData}></Employment>
       <EmergencyContact data={data} setData={setData}></EmergencyContact>
-      <Documents data={data} setData={setData}></Documents> </>) 
+      <Documents data={data} setData={setData}></Documents>
+       </>) 
       : null }
 
 

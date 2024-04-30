@@ -9,12 +9,11 @@ function Employment({ data, setData }) {
 
     function handleChange(event) {
         const { name, value } = event.target;
+
+        // console.log(name, value)
         setData(prevData => ({
             ...prevData,
-            employment: {
-                ...prevData.employment,
-                [name]: value
-            }
+            [name]: value
         }));
     }
 
@@ -52,8 +51,8 @@ function Employment({ data, setData }) {
                 <label htmlFor="VisaTitle">Visa Title:</label>
                 <input
                     type="text"
-                    id="VisaTitle"
-                    name="VisaTitle"
+                    id="workAuthorization"
+                    name="workAuthorization"
                     value={data.workAuthorization}
                     onChange={handleChange}
                     readOnly={!editMode}
@@ -61,8 +60,8 @@ function Employment({ data, setData }) {
                 <label htmlFor="VisaStartDate">Start Date:</label>
                 <input
                     type="date"
-                    id="VisaStartDate"
-                    name="VisaStartDate"
+                    id="workAuthorizationStart"
+                    name="workAuthorizationStart"
                     value={formatDate(data.workAuthorizationStart)}
                     onChange={handleChange}
                     readOnly={!editMode}
@@ -70,8 +69,8 @@ function Employment({ data, setData }) {
                 <label htmlFor="VisaEndDate">End Date:</label>
                 <input
                     type="date"
-                    id="VisaEndDate"
-                    name="VisaEndDate"
+                    id="workAuthorizationEnd"
+                    name="workAuthorizationEnd"
                     value={formatDate(data.workAuthorizationEnd)}
                     onChange={handleChange}
                     readOnly={!editMode}
