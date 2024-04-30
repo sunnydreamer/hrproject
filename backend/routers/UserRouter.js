@@ -75,6 +75,7 @@ router
   .put("/info", (req, res) => {
     res.send("User info is modified successfully");
   })
+  .get("/personalinfo", GetUserInfo)
 
   // user visa page
   .put("/visa/:userid", (req, res) => {

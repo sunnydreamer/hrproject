@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import './styles.css'
 import axios from 'axios';
+import formatDate from './util';
 
 // check the dob
 
 function Name({data, setData}){
     const [edit, setEdit]= useState(true );
+
+
 
     function handleChange(event){
         setData((prev) => {
@@ -62,7 +65,7 @@ function Name({data, setData}){
                 <div className="Name-Div-Row">
                 <img id="Profile-Pic" src="https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image-768x576.png"></img>
                 {/* <input type="file" accept="image/*" onChange="" /> */}
-                <input id="uploadImage" type="file" name="myPhoto" onchange={PreviewImage} />
+                <input id="uploadImage" type="file" name="myPhoto" onChange={PreviewImage} />
 
                 </div>
 
@@ -102,7 +105,7 @@ function Name({data, setData}){
                     <div>
 
                         <label htmlFor="dob">Date of Birth:</label>
-                        <input onChange={handleChange} readOnly={edit} type="date" id="dob" name="dob" value={data.dob}/>
+                        <input onChange={handleChange} readOnly={edit} type="date" id="dob" name="dob" value={formatDate(data.dob)}/>
                     </div>
                     <div>
 

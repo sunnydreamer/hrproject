@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './styles.css';
 import axios from 'axios';
+import formatDate from './util';
+
 
 function Employment({ data, setData }) {
     const [editMode, setEditMode] = useState(false);
@@ -52,7 +54,7 @@ function Employment({ data, setData }) {
                     type="text"
                     id="VisaTitle"
                     name="VisaTitle"
-                    value={data.visa.visaTitle}
+                    value={data.workAuthorization}
                     onChange={handleChange}
                     readOnly={!editMode}
                 />
@@ -61,7 +63,7 @@ function Employment({ data, setData }) {
                     type="date"
                     id="VisaStartDate"
                     name="VisaStartDate"
-                    value={data.visa.startDate}
+                    value={formatDate(data.workAuthorizationStart)}
                     onChange={handleChange}
                     readOnly={!editMode}
                 />
@@ -70,7 +72,7 @@ function Employment({ data, setData }) {
                     type="date"
                     id="VisaEndDate"
                     name="VisaEndDate"
-                    value={data.visa.endDate}
+                    value={formatDate(data.workAuthorizationEnd)}
                     onChange={handleChange}
                     readOnly={!editMode}
                 />

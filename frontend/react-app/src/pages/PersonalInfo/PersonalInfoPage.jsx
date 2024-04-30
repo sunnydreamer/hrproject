@@ -19,7 +19,7 @@ function isValidJSON(jsonString) {
 
 const PersonalInfoPage = () => {
 
-  //Name grab first, last, middle, preffered, email, ssn, dob gender
+  // Name grab first, last, middle, preffered, email, ssn, dob gender
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -55,36 +55,41 @@ const PersonalInfoPage = () => {
     profilePicture:"",
   })
 
+
+  
+
   //maybe pass in the userid... or maybe not... it should be in cookie
   useEffect(() =>{
-    axios.get("http://localhost:3000/user/info")
+    axios.get("http://localhost:3000/user/personalinfo")
       .then(response => {
-        console.log(isValidJSON(response.data));
+        console.log(response.data);
 
         //set the first part
-        let initData ={
-          firstName: response.data.firstName,
-          lastName: response.data.lastName,
-          middleName: response.data.middleName,
-          preferredName: response.data.preferredName,
-          email: response.data.email,
-          ssn: response.data.ssn,
-          dob: response.data.dob,
-          gender: response.data.gender,
-          address: response.data.address,
-          visa: response.data.visa,
-          workAuthorization: response.data.workAuthorization,
-          workAuthorizationStart: response.data.workAuthorizationStart,
-          workAuthorizationEnd: response.data.workAuthorizationEnd,
-          phone: response.data.phone,
-          emergencyContact:  response.data.emergencyContact,
-          //documents go here 
-          //work auth pdf
-          driversLicense: response.data.driversLicense,
-          profilePicture: response.data.profilePicture
-        }
-        setData(initData);
-        console.log(initData.emergencyContact);
+        // let initData ={
+        //   firstName: response.data.firstName,
+        //   lastName: response.data.lastName,
+        //   middleName: response.data.middleName,
+        //   preferredName: response.data.preferredName,
+        //   email: response.data.email,
+        //   ssn: response.data.ssn,
+        //   dob: response.data.dob,
+        //   gender: response.data.gender,
+        //   address: response.data.address,
+        //   visa: response.data.visa,
+        //   workAuthorization: response.data.workAuthorization,
+        //   workAuthorizationStart: response.data.workAuthorizationStart,
+        //   workAuthorizationEnd: response.data.workAuthorizationEnd,
+        //   phone: response.data.phone,
+        //   emergencyContact:  response.data.emergencyContact,
+        //   //documents go here 
+        //   //work auth pdf
+        //   driversLicense: response.data.driversLicense,
+        //   profilePicture: response.data.profilePicture
+        // }
+        // setData(initData);
+        // console.log(initData.emergencyContact);
+
+        setData(response.data)
       })
       .catch(error => {
         console.error('Error fetching data:', error);
@@ -93,14 +98,22 @@ const PersonalInfoPage = () => {
 
 
   return (
+
     <div className="full-parent-height">
+
+      {data? (
+        <>
       <Name data={data} setData={setData}></Name>
       <Address data={data} setData={setData}></Address>
       <Contact data={data} setData={setData}></Contact>
       <Employment data={data} setData={setData}></Employment>
       <EmergencyContact data={data} setData={setData}></EmergencyContact>
-      <Documents data={data} setData={setData}></Documents>
+      <Documents data={data} setData={setData}></Documents> </>) 
+      : null }
+
+
     </div>
+
   );
 }
 
