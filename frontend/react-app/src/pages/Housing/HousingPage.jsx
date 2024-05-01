@@ -10,10 +10,11 @@ import axios from 'axios';
 
 
 const HousingPage = () => {
+  const [data, setData] = useState();
+  const [houseInfo, setHouseInfo] = useState(null);
+  let userId = null;
 
-  let [houseInfo, setHouseInfo] = useState(null);
-
-  let [showComment, setShowComment] = useState({
+  const [showComment, setShowComment] = useState({
     showBool : false,
     comments : []
   });
@@ -26,9 +27,14 @@ const HousingPage = () => {
   //the modal has been submitted.... then add it to the houseInfo
   //then add it to server
   const closeModal = (title, description) => {
-    const payload = {title, description, houseId: houseInfo.housing._id};
 
-    // console.log(houseInfo.housing._id)
+    const payload = {title, 
+                          description, 
+                          houseId: houseInfo.housing._id,
+                          userId: data._id
+                        };
+
+    
 
     //need to make the HousingReport on database
     //grab that ID...
@@ -60,9 +66,10 @@ const HousingPage = () => {
 
     // console.log(title, description, "+++")
     //send in the payload...
-    axios.post("http://localhost:3000/user/housing/report", payload)
+    axios.put("http://localhost:3000/user/housing/report", payload)
       .then(response =>
         {
+
           console.log(response.data)
         }
       )
@@ -76,6 +83,7 @@ const HousingPage = () => {
   };
 
 
+  console.log(data)
 
 
 function fetchfoo(){
@@ -84,13 +92,11 @@ function fetchfoo(){
       const initData = {
         housing : res.data.house
       }
-
-
       setHouseInfo(initData); // Set houseInfo when data is fetched
+      setData(res.data);
+
+      // userId = res.data._id;
     })
-    .then(
-      console.log(houseInfo)
-    )
     .catch(error => {
       console.error('Error fetching housing data:', error);
     });
