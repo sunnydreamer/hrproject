@@ -30,7 +30,7 @@ const authBlock = (req, res, next) => {
   }
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
   if (!decoded.userId || !validator.isMongoId(decoded.userId)) {
-    return res.status(401).json({ errors: ["Invalid token."] });
+    return res.status(401).json({ errors: ["You've been logged out. Please log in again."] });
   }
   req.body.userId = decoded.userId;
   req.body.email = decoded.email;
