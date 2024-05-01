@@ -11,11 +11,15 @@ const housingReportSchema = new Schema({
         enum: ["Open", "In Progress", "Closed"],
         default: "Open",
       },
+      timestamp: {
+        type: Date,
+        default: Date.now
+        },
       // think carefully about this... do we want infinite 
       housingComments: [{
+        createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
         username: {
-            type: String,
-            required: true
+            type: String
         },
         description: {
             type: String,
