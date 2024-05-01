@@ -122,6 +122,7 @@ router
   })
 
   // user housing page
+  .get("/housing", GetHousingInfo)
   .post("/housing/report", (req, res) => {
     res.send("Facility report created");
   })

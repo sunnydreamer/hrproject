@@ -10,8 +10,10 @@ const housingSchema = new Schema({
       zip: { type: String, required: true },
     },
     roommates: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    housingReport: [{ type: mongoose.Schema.Types.ObjectId, ref: "HousingReport" }]
+
 });
 
-const Housing = model("Housing", housingSchema);
+const Housing = model("HousingReport", housingSchema);
 
 module.exports = Housing;

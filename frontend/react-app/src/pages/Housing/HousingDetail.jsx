@@ -4,10 +4,10 @@ import './styles.css'
 
 
 function HousingDetail({ houseInfo }){
-    // console.log(houseInfo.housingReport)
+    console.log(houseInfo.housingReport)
 
     // let house = houseInfo.housing.house
-    console.log(houseInfo);
+
 
     // let address = JSON.stringify(house)
 
@@ -18,7 +18,8 @@ function HousingDetail({ houseInfo }){
     // }
 
     return(
-        <h1>hi</h1>
+        <></>
+        // <h1>hi</h1>
         // <div className="Housing-Div">
         //     <img id="Profile-Pic" src="https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image-768x576.png"></img>
 

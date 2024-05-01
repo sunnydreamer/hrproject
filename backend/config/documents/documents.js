@@ -7,7 +7,7 @@ const Housing = require(`../../models/housingModel`);
 const Document = require(`../../models/documentModel`);
 
 
-
+// add a house here for sunny
 const documents = async (housingId,) => {
   const hr1 = await User.create({
     house: housingId,
@@ -198,6 +198,10 @@ const documents = async (housingId,) => {
   });
   await e3.save();
 
+
+  //this one is sunny's
+  //add in new data
+
   const h1 = await Housing.create({
     address: {
       street: `123 Shinchan Ave`,
@@ -205,7 +209,7 @@ const documents = async (housingId,) => {
       state: `Oklahoma`,
       zip: `12345`,
     },
-    roommates: [hr1],
+    roommates: [hr1, e2, e1],
   });
 
   const h2 = await Housing.create({
@@ -216,6 +220,9 @@ const documents = async (housingId,) => {
       zip: `11344`,
     },
     roommates: [e1, e2],
+
+
+    
   });
 
   const h3 = await Housing.create({

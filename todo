@@ -3,12 +3,14 @@ Personal Info
     make sure fields are editable DONE
     fix the sizing  DONE
     fileupload for profiles DONE
-    file download done
+    file download DONE
 
 Housing
     fix the axios 30min
     do the request 1 hour
     figure out comments 30min
+
+SLEEP 3 hours
 
 Do redux 2hours
 Do validations 1hour

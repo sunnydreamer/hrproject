@@ -81,32 +81,37 @@ const userSchema = new Schema({
     email: { type: String },
     relationship: { type: String },
   },
-  housingReport: [{
-    title: { type: String },
-    description: { type: String },
-    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    housingComments: [{type: String}],
-    status: {
-      type: String,
-      enum: ["Open", "In Progress", "Closed"],
-      default: "Open",
-    },
-    address: {
-      street: { type: String },
-      streetLine2: { type: String },
-      city: { type: String },
-      state: { type: String },
-      zip: { type: String },
-    },
-  } ],
+  //need to move the housing report into the housing model
+  // housingReport: [{
+  //   title: { type: String },
+  //   description: { type: String },
+  //   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  //   housingComments: [{type: String}],
+  //   status: {
+  //     type: String,
+  //     enum: ["Open", "In Progress", "Closed"],
+  //     default: "Open",
+  //   },
+  //   address: {
+  //     street: { type: String },
+  //     streetLine2: { type: String },
+  //     city: { type: String },
+  //     state: { type: String },
+  //     zip: { type: String },
+  //   },
+  // } ],
   timestamp: { type: Date, default: Date.now },
-  roommates: [
-    {
-      name: { type: String },
-      phone: { type: String },
-    },
-  ],
-  house : [{ type: mongoose.Schema.Types.ObjectId, ref: "Housing" }]
+  // get rid of this
+  // roommates: [
+  //   {
+  //     name: { type: String },
+  //     phone: { type: String },
+  //   },
+  // ],
+  //keep roomates here
+  house : { type: mongoose.Schema.Types.ObjectId, ref: "Housing" },
+  houseReport : [{ type: mongoose.Schema.Types.ObjectId, ref: "HousingReport" }]
+  
 });
 
 const User = model(`User`, userSchema);

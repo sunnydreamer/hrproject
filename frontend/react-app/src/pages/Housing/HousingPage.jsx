@@ -39,7 +39,7 @@ function fetchfoo(){
 
   return (
     <div className="full-parent-height">
-      <h1 className='Housing'>Housing Detail</h1>
+      <h2 className='Housing'>Housing Detail</h2>
       {/* add housing detail */}
       <HousingDetail houseInfo={houseInfo}></HousingDetail>
       {/* <h1 className='Housing'>Facility Report</h1> */}
