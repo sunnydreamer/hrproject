@@ -14,6 +14,6 @@ const housingSchema = new Schema({
 
 });
 
-const Housing = model("HousingReport", housingSchema);
+const Housing = model("Housing", housingSchema);
 
 module.exports = Housing;

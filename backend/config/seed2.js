@@ -4,6 +4,8 @@ const User = require(`../models/userModel`);
 const Comment = require(`../models/commentModel`);
 const EmergencyContact = require(`../models/emergencyContactModel`);
 const Housing = require(`../models/housingModel`);
+const HousingReport = require(`../models/housingReportModel`);
+
 
 const Document = require("../models/documentModel");
 require(`dotenv`).config({ path: __dirname + `/./../.envBackend` });
@@ -54,7 +56,7 @@ const seed = async () => {
     // let id = await seedHousing();
     //give sunny the housing id
 
-    await documents(id);
+    await documents();
     // Save the new document to the database
     console.log("Seed successful!");
   } catch (error) {

@@ -1,14 +1,15 @@
 Todo:
 Personal Info
     fix date 30min DONE
-    make sure fields are editable 20min DONE
-    fix the sizing 45min DONE
+    make sure fields are editable 1hour DONE
+    fix the sizing 1min DONE
     fileupload for profiles 2 hour DONE
     file download 1 hour DONE
 
 Housing
-    fix schema 3 hour
-    fix reseeding 1hour
+    fix schema 3 hour DONE
+    fix reseeding 1hour DONE
+    do reseed 15 min DONE
 
 Do redux 2hours
 Do validations 1hour

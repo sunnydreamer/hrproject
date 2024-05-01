@@ -1,7 +1,7 @@
 const bcrypt = require(`bcrypt`);
 
 const User = require(`../../models/userModel`);
-const Comment = require(`../../models/commentModel`);
+// const Comment = require(`../../models/commentModel`);
 const EmergencyContact = require(`../../models/emergencyContactModel`);
 const Housing = require(`../../models/housingModel`);
 const Document = require(`../../models/documentModel`);
@@ -244,18 +244,18 @@ const documents = async () => {
     {
       title: "Leaky Faucet",
       description: "There's a leaky faucet in the kitchen.",
-      createdBy: h1, // User ObjectId
+      createdBy: hr1, // User ObjectId
       status: "Open",
       timestamp: new Date(),
       housingComments: [
         {
-          createdBy: h1,
+          createdBy: hr1,
           username: "sunnyli",
           description: "I'll take a look at it tomorrow.",
           timestamp: new Date(),
         },
         {
-          createdBy: h1,
+          createdBy: hr1,
           username: "sunnli",
           description: "We should call a plumber.",
           timestamp: new Date(),
