@@ -36,8 +36,8 @@ label{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    align-items: stretch;
-    flex-wrap: wrap;
+    // align-items: center;
+    // flex-wrap: wrap;
 }
 
 #Profile-Pic{
@@ -50,7 +50,6 @@ label{
 }
 
 .Name-Div-Row {
-
     display: flex;
     flex-direction: column;
     justify-content: space-evenly; /* or space-evenly */
@@ -58,6 +57,8 @@ label{
 
     flex-grow: 1;
 }
+
+
 
 
 /* address */
@@ -151,4 +152,8 @@ label{
     border: 0;
     box-shadow: none;
     display: flex; 
+}
+
+#uploadImage{
+    box-shadow: none;
 }

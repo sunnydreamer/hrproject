@@ -172,7 +172,7 @@ function EmergencyContact({data, setData}){
 
 
 
-        <form class="Create-Emergency-Div" onSubmit={makeNewContact}>
+        <form className="Create-Emergency-Div" onSubmit={makeNewContact}>
             {/* <div> */}
             {/* <label htmlFor="EmergencyFirstName">First Name:</label> */}
             <input 

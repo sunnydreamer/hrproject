@@ -53,6 +53,7 @@ const PersonalInfoPage = () => {
     //work auth pdf
     driversLicense:"",
     profilePicture:"",
+    opt:[]
   })
 
 
@@ -62,7 +63,7 @@ const PersonalInfoPage = () => {
   useEffect(() =>{
     axios.get("http://localhost:3000/user/personalinfo")
       .then(response => {
-        console.log(response.data);
+
 
         //set the first part
         // let initData ={
@@ -95,6 +96,8 @@ const PersonalInfoPage = () => {
         console.error('Error fetching data:', error);
       });
   }, [])
+
+
 
 
   return (

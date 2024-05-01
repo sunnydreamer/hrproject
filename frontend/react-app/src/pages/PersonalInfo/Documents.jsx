@@ -1,7 +1,14 @@
 import React from 'react'
 import './styles.css'
 
-function Documents(){
+function Documents({data}){
+
+    console.log(data)
+    console.log(data.opt, "==");
+
+    // data.driversLicense
+
+
 
     return(
         <div className="Document-Div">
