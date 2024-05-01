@@ -10,7 +10,7 @@ async function PostUserInfo(req, res){
     try {
         //grab the req payload
         let payload = req.body;
-        // console.log(payload)
+        console.log(payload, "************")
 
         //grab the curruser
         let CurrUser = await User.findOne({ firstName: 'Sunny' });
