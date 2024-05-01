@@ -1,6 +1,12 @@
 const mongoose = require(`mongoose`);
 const { Schema, model } = mongoose;
-
+// Made ssn optional
+// Made dob optional
+// Made gender optional
+// Made address optional
+// Made cell optional
+// Made username optional
+// Made password optional and set default to null
 const userSchema = new Schema({
   regToken: { type: String, default: null },
   regLinkToken: { type: String, default: null },
@@ -15,18 +21,18 @@ const userSchema = new Schema({
   },
   profilePicture: { type: String },
   email: { type: String, required: true, unique: true, immutable: true },
-  ssn: { type: String, required: true },
-  dob: { type: Date, required: true },
-  gender: { type: String, enum: ["male", "female", "n/a"], required: true },
+  ssn: { type: String },
+  dob: { type: Date },
+  gender: { type: String, enum: ["male", "female", "n/a"] },
   address: {
-    street: { type: String, required: true },
+    street: { type: String },
     streetLine2: { type: String },
-    city: { type: String, required: true },
-    state: { type: String, required: true },
-    zip: { type: String, required: true },
+    city: { type: String },
+    state: { type: String },
+    zip: { type: String },
   },
   phone: {
-    cell: { type: String, required: true },
+    cell: { type: String },
     work: { type: String },
   },
   carInfo: {
@@ -42,9 +48,9 @@ const userSchema = new Schema({
   emergencyContact: [
     { type: mongoose.Schema.Types.ObjectId, ref: "EmergencyContact" },
   ],
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  isHR: { type: Boolean, required: true },
+  username: { type: String, unique: true },
+  password: { type: String, default: null },
+  isHR: { type: Boolean, required: true, default: false },
   hasDriversLicense: { type: Boolean, default: false },
   driversLicense: {
     licenseNumber: { type: String },
