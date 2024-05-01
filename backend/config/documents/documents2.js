@@ -198,6 +198,7 @@ const documents = async () => {
     // housingReport: [  houseReport1    ]
   });
 
+
   const hr1 = await User.create({
     //house inserted here
     house: h1,
@@ -266,6 +267,9 @@ const documents = async () => {
   //now add the housing report to the house
   h1.housingReport.push(housereport1);
   await h1.save();
+  h1.roommates.push(hr1)
+  await h1.save()
+
 
 
 

@@ -49,6 +49,8 @@ const seed = async () => {
     await EmergencyContact.deleteMany({});
     await Housing.deleteMany({});
     await Document.deleteMany({});
+    await HousingReport.deleteMany({});
+
     console.log(`old data cleared`);
 
     console.log(`seeding database`);
