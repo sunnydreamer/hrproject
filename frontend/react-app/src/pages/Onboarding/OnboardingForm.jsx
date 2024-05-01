@@ -44,6 +44,7 @@ const OnboardingForm = ({ userInfo, setUserInfo }) => {
           changeHandler={changeHandler}
         />
         <WorkAuth userInfo={userInfo} changeHandler={changeHandler} />
+
       </form>
     </>
   );
