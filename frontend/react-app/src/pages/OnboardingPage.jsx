@@ -28,10 +28,27 @@ const OnboardingPage = () => {
     console.log("data", data);
   }, [data]); // Dependency on 'data' to re-run this effect when 'data' gets loaded
 
+  const [userInfo, setUserInfo] = useState({});
+  console.log(userInfo);
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
- 
+  const fetchUser = async () => {
+    const response = await fetch(`http://localhost:3000/user/getUser`);
+    const result = await response.json();
+    setUserInfo(result);
+  };
 
-  return <div className="full-parent-height">OnboardingPage</div>;
+  return (
+    <>
+      <div className="full-parent-height">
+        {userInfo.firstName ? (
+          <OnboardingForm userInfo={userInfo} setUserInfo={setUserInfo} />
+        ) : null}
+      </div>
+    </>
+  );
 };
 
 export default OnboardingPage;

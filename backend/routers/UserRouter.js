@@ -156,9 +156,10 @@ router
 
 
   // user onboarding
-  .post("/onboarding", (req, res) => {
+  .post("/onboarding", (reqs, res) => {
     res.send("Welcome onboard");
   })
+  .get(`/getUser`, GetUserInfo.fetchUserById)
 
   // user info page
   .put("/info", (req, res) => {
