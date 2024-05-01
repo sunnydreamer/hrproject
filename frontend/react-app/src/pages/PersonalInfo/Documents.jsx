@@ -74,6 +74,32 @@ function Documents({data}){
                     </div>
                 )}
             </div>
+            <div>
+            <a href={pdfUrl} target="_blank" rel="noopener noreferrer">SOME PDF NAME </a>
+
+                <button onClick={togglePopup}>Open Preview</button>
+                {showPopup && (
+                    <div className="popup">
+                        <div className="popup-inner">
+                            <button onClick={togglePopup}>Close</button>
+                            <FileThumbnail fileUrl={pdfUrl} />
+                        </div>
+                    </div>
+                )}
+            </div>
+            <div>
+            <a href={pdfUrl} target="_blank" rel="noopener noreferrer">SOME PDF NAME </a>
+
+                <button onClick={togglePopup}>Open Preview</button>
+                {showPopup && (
+                    <div className="popup">
+                        <div className="popup-inner">
+                            <button onClick={togglePopup}>Close</button>
+                            <FileThumbnail fileUrl={pdfUrl} />
+                        </div>
+                    </div>
+                )}
+            </div>
 
 
             {/* {data.opt.map((each, index) => (

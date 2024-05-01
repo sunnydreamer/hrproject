@@ -5,6 +5,8 @@ const { check } = require("express-validator");
 const GetUserInfo = require("../controllers/GetUserInfo");
 const PostUserInfo = require("../controllers/PostUserInfo");
 const PostUserContact = require("../controllers/PostUserContact");
+const PutHousingReport = require("../controllers/PostUserContact");
+
 
 const GetHousingInfo = require("../controllers/GetHousingInfo");
 const UserController = require("../controllers/UserController");
@@ -123,9 +125,14 @@ router
 
   // user housing page
   .get("/housing", GetHousingInfo)
+
+  //create housing report 
   .post("/housing/report", (req, res) => {
     res.send("Facility report created");
   })
+
+
+
   .put("/housing/report/:reportid", (req, res) => {
     res.send("Replied facility report successfully");
   });

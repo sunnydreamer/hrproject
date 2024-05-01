@@ -3,7 +3,7 @@ import './styles.css'
 
 
 
-function HousingComment({houseinfo}){
+function HousingComment({showComment}){
 
     // let comment = [
     //     "Comment1",
@@ -13,20 +13,15 @@ function HousingComment({houseinfo}){
     // ]
 
 
-    return(
-        // <div className='comment'>
-        //     {comment.map((each, index) =>
-        //     (
-        //         <div>
-        //             <p>{each}</p>
-        //             <hr></hr>
-        //         </div>
-        //     )
-
-        //     )}
-        // </div>
-        <></>
-    )
+    return (
+        <div className='Comment-Div'>
+          {showComment.comments.map((each, index) => (
+            <div key={index}>
+              <input type="text" value={each.description} readOnly />
+            </div>
+          ))}
+        </div>
+      );
 
 }
 

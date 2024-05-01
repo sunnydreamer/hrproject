@@ -1,10 +1,49 @@
-/* 
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    height: 50vh;
+    width: 50vw
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+
+.Housing-Parent{
+    font-size: 1.5em;
+}
 
 .Housing{
     color: black;
     padding: 20px;
 }
+.Comment-Div{
+    background-color: grey;
+    margin: 3em;
+    border-radius: 2em;
+}
 
+.Comment-Div *{
+    margin-left: 2em;
+    width: 88%
+}
 
 .Housing-Div{
     background-color: grey;
@@ -50,7 +89,7 @@ th{
 }
 
 td, tr, table, th{
-    border:  1px black solid;
+    /* border:  1px black solid; */
     text-align: center;
 }
 
@@ -64,4 +103,4 @@ td, tr, table, th{
     justify-content: left;
     align-items: stretch;
     flex-wrap: wrap;
-} */
+}

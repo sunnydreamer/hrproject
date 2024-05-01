@@ -10,10 +10,10 @@ function HousingReport({houseInfo, setShowComment}){
 
 
 
-    let houseReport = houseInfo;
+    let houseReport = houseInfo.housing.housingReport;
     // console.log(JSON.stringify(houseReport))
     // console.log(Array.isArray(houseReport))
-    console.log(JSON.stringify(houseReport), "=============")
+
 
     if(!houseReport){
         console.log("dones't exist")
@@ -23,10 +23,12 @@ function HousingReport({houseInfo, setShowComment}){
         return <div>No housing report available</div>;
       }
 
-    // function showComment(){
-    //     setShowComment(true);
-    //     console.log("pressed")
-    // }
+    function showComment(event, each){
+        setShowComment({
+            showBool: true,
+            comments: each.housingComments 
+        });
+    }
 
     return(
         <div className="Housing-Report">
@@ -43,7 +45,7 @@ function HousingReport({houseInfo, setShowComment}){
                 <tbody>
                     {houseReport.map((each, index) => 
                     (
-                        <tr key={index} onClick={showComment}>
+                        <tr key={index} onClick={() => showComment(event, each)} id={each.housingComment}>
                             <td>{each.title}</td>
                             <td>{each.description}</td>
                             <td>{each.status}</td>

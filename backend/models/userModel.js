@@ -110,8 +110,9 @@ const userSchema = new Schema({
   // ],
   //keep roomates here
   house : { type: mongoose.Schema.Types.ObjectId, ref: "Housing" },
-  houseReport : [{ type: mongoose.Schema.Types.ObjectId, ref: "HousingReport" }]
-  
+  //keep housingReport here and also inside of the housing model
+  // actually.... dont use this
+  // houseReport : [{ type: mongoose.Schema.Types.ObjectId, ref: "HousingReport" }]
 });
 
 const User = model(`User`, userSchema);
