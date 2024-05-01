@@ -11,11 +11,11 @@ Housing
     fix reseeding 1hour DONE
     do reseed 30 min DONE
     
-    setupendpoints + test 1.5hours
-    details + roomates 30min
-    show comments 30min
-    add comments 30min
-    edit comments 30min
+    setupendpoints + test 1.5hours DONE
+    details + roomates 30min DONE
+    add report 1.5 hours DONE 
+    show comments 30min DONE
+    add + edit comments 1.5hours
     ------------------------
     2 hours
 
@@ -23,8 +23,4 @@ Housing
     Do validations 1hour
     Change to use cookies for data 1 hour
 --------------------------
-16 hours
-
-
-
-
+20.5 hours
