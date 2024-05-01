@@ -53,7 +53,7 @@ const userSchema = new Schema({
   },
   workAuthorization: {
     type: String,
-    enum: ["citizen", "green card", "H1B", "F1", "H4", "other"],
+    enum: ["citizen", "green card", "H1B", "F1", "H4", "L2", "other"],
   },
   workAuthorizationStart:{
     type: Date, default: null
