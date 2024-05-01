@@ -36,6 +36,7 @@ const LoginPage = (props) => {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: 'include',
       body: JSON.stringify({
         email: email,
         password: password,
@@ -48,7 +49,7 @@ const LoginPage = (props) => {
         if (data.errors) {
           setErrors(data.errors);
         } else {
-          navigate("/user/onboarding");
+          navigate(data.navigate);
         }
       }).catch((error) => {
         console.log(error);
