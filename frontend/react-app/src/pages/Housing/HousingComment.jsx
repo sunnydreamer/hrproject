@@ -3,29 +3,26 @@ import './styles.css'
 
 
 
-function HousingComment({houseinfo}){
+function HousingComment({showComment}){
 
-    let comment = [
-        "Comment1",
-        "Cooment2",
-        "Reply1",
-        "Reply2"
-    ]
+    // let comment = [
+    //     "Comment1",
+    //     "Cooment2",
+    //     "Reply1",
+    //     "Reply2"
+    // ]
 
-
-    return(
-        <div className='comment'>
-            {comment.map((each, index) =>
-            (
-                <div>
-                    <p>{each}</p>
-                    <hr></hr>
-                </div>
-            )
-
-            )}
+    console.log(showComment)
+    return (
+        <div className='Comment-Div'>
+          {showComment.comments.map((each, index) => (
+            <div key={index}>
+              {/* <label></label> */}
+              <input type="text" value={each.description} readOnly />
+            </div>
+          ))}
         </div>
-    )
+      );
 
 }
 

@@ -10,6 +10,27 @@ import { NavLink } from "react-router-dom";
  */
 
 const NavBar = (props) => {
+
+  const logoutHandler = () => {
+    // For logging out
+    useEffect(() => {
+      fetch("http://localhost:3000/user/logout", {
+        method: "GET",
+        credentials: "include",
+      })
+      .then((res) => {
+        console.log(res);
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }, []);
+  };
+
   return (
     <div className="nav-bar flex-col">
       {props.navLinks && props.navLinks.length > 0 ? (

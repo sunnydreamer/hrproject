@@ -1,12 +1,12 @@
 
 
-button{
+/* button{
     padding: 0;
 
     width: 5em;
     height: 2em;
     border-radius: 10px;
-}
+} */
 
 .buttons{
     display: flex;
@@ -19,7 +19,11 @@ input{
     border-radius: 3px;
     border: 0;
 }
-.Document-Div{
+label{
+    margin: 0 0 0 1vw;
+}
+
+/* .Document-Div{
     background-color: grey;
     margin: 3em;
     border-radius: 2em;
@@ -28,7 +32,7 @@ input{
     justify-content: space-evenly;
     align-items: stretch;
     flex-wrap: wrap;
-}
+} */
 
 .Name-Div{
     background-color: grey;
@@ -83,7 +87,8 @@ input{
 }
 
 #StreetName{
-    width: 45vw;
+    width: 40vw;
+    margin: 0 5vw 0 0;
 }
 
 
@@ -101,7 +106,6 @@ input{
 
 #City{
     width: 20vw;
-
 }
 
 #State{
@@ -111,7 +115,6 @@ input{
 
 #Zip{
     width: 10vw;
-
 }
 
 /* contact */
@@ -127,36 +130,30 @@ input{
     align-items: center;
 }
 
-.Emergency-Div{
-    /* height: 5vw; */
-    background-color: grey;
-    margin: 0 3em;
-    border-radius: 2em;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-}
+
 
 .Emergency-Div-Parent{
     background-color: grey;
     margin: 0 3em;
+    padding: 2em ;
     border-radius: 2em;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-  
-}
 
-.Emergency-Div-Parent > table, td, th{
-    border: none;
-    text-align: center;
-  
-}
-
-.Emergency-Div > *{
-    margin: 2em;
 
 }
+.Emergency-Div-Parent input {
+    background-color: white;
+    width: 12vw;
+}
 
+.Emergency-Div-Parent table{
+    margin-bottom: 1em;
+}
+
+
+
+.Create-Emergency-Div{
+    background-color: grey;
+    border: 0;
+    box-shadow: none;
+    display: flex; 
+} 

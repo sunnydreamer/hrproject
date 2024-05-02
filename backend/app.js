@@ -2,8 +2,8 @@ const express = require("express");
 const morgan = require("morgan");
 const cookieParser = require('cookie-parser');
 const router = require("./routers")
-const bodyParser = require('body-parser')
 const cors = require('cors')
+// const bodyParser = require('body-parser')
 
 const app = express();
 
@@ -11,8 +11,8 @@ const app = express();
 require("dotenv").config();
 
 // middlewares
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
   cors({
@@ -22,18 +22,18 @@ app.use(
 );
 app.use(morgan(":method :url :status :response-time ms"));
 app.use(cookieParser());
-app.use(cors());
+// app.use(cors());
 
 
 // use router
 app.use(router);
 
-app.get("/", (req, res) => {
-  res.send("Welcome to backend");
-});
+// app.get("/", (req, res) => {
+//   res.send("Welcome to backend");
+// });
 
-app.all("*", (req, res) => {
-  res.status(400).send(`The URI ${req.url} is not valid.`);
-});
+// app.all("*", (req, res) => {
+//   res.status(400).send(`The URI ${req.url} is not valid.`);
+// });
 
 module.exports = app;

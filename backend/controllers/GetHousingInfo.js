@@ -1,5 +1,6 @@
 const User = require("../models/userModel");
 const Housing = require("../models/housingModel");
+const HousingReport = require("../models/housingReportModel");
 
 
 const EmergencyContact = require("../models/emergencyContactModel");
@@ -11,9 +12,15 @@ async function GetHousingInfo(req, res){
 
     try {
         let CurrUser = await User.findOne({ firstName: 'Sunny' })
-                            .populate('house')
-                            .populate('housingReport')
-                            // .populate('hous')
+
+                            .populate({
+                                path: 'house',
+                                populate: [
+                                    { path: 'roommates'},
+                                    { path: 'housingReport' } // Populate housingReport for the house
+                                ]
+                            });
+
 
 
         // console.log(JSON.stringify(CurrUser.house[0]));
@@ -25,6 +32,7 @@ async function GetHousingInfo(req, res){
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ message: 'Internal Server Error' });
+
     }
 }
 

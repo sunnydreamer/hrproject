@@ -5,9 +5,17 @@ const { check } = require("express-validator");
 const GetUserInfo = require("../controllers/GetUserInfo");
 const PostUserInfo = require("../controllers/PostUserInfo");
 const PostUserContact = require("../controllers/PostUserContact");
+const PutHousingReport = require("../controllers/PutHousingReport.js");
+const PutHousingReportComment = require("../controllers/PutHousingReportComment.js");
+
+
 
 const GetHousingInfo = require("../controllers/GetHousingInfo");
 const UserController = require("../controllers/UserController");
+
+const { auth, authBlock } = require("../middlewares/authMiddleware");
+
+
 
 // multer set for file handling
 const storage = multer.diskStorage({
@@ -23,13 +31,40 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router
+  .get("/auth", authBlock)
   .get("/documents/:userId", UserController.getDocuments)
   .put(
     "/documents/:userId",
     upload.single("file"),
     UserController.uploadDocuments
   )
-  .post("/send-email", UserController.generateAndStoreTokens)
+  .post(
+    "/send-email",
+    [
+      check("firstName")
+        .trim()
+        .escape()
+        .not()
+        .isEmpty()
+        .withMessage("First name is required."),
+      check("lastName")
+        .trim()
+        .escape()
+        .not()
+        .isEmpty()
+        .withMessage("Last name is required."),
+      check("email")
+        .trim()
+        .escape()
+        .normalizeEmail()
+        .isEmail()
+        .withMessage("Invalid email address.")
+        .not()
+        .isEmpty()
+        .withMessage("Email is required."),
+    ],
+    UserController.generateAndStoreTokens
+  )
   .post("/info", PostUserInfo)
   .post("/info/contact", PostUserContact)
   .put("/visa/:userid", (req, res) => {
@@ -38,14 +73,14 @@ router
   .post("/housing/report", (req, res) => {
     res.send("Facility report created");
   })
-  .put("/housing/report/:reportid", (req, res) => {
-    res.send("Replied facility report successfully");
-  })
+  // .put("/housing/report/:reportid", (req, res) => {
+  //   res.send("Replied facility report successfully");
+  // })
 
   // user registration token verification
   .post(
-    "/registration-with-token/:regLinkToken",
-    [check("regToken").trim().escape()],
+    "/registration-with-token/:regLinkTokenFromUrl",
+    [check("regToken").trim().escape().not().isEmpty().withMessage("Registration token is required.")],
     UserController.registrationWithToken
   )
 
@@ -62,6 +97,12 @@ router
         .normalizeEmail()
         .isEmail()
         .withMessage("Please enter a valid email address."),
+      check("username")
+        .not()
+        .isEmpty()
+        .withMessage("Username is required.")
+        .trim()
+        .escape(),
       check("password")
         .not()
         .isEmpty()
@@ -105,6 +146,15 @@ router
     UserController.login
   )
 
+  .get("/logout", UserController.logout)
+
+
+  .get("/fetch", authBlock, UserController.fetchUserData)
+  .post("/push", authBlock, UserController.pushUserData)
+
+
+
+
   // user onboarding
   .post("/onboarding", (req, res) => {
     res.send("Welcome onboard");
@@ -114,6 +164,7 @@ router
   .put("/info", (req, res) => {
     res.send("User info is modified successfully");
   })
+  .get("/personalinfo", GetUserInfo)
 
   // user visa page
   .put("/visa/:userid", (req, res) => {
@@ -121,11 +172,17 @@ router
   })
 
   // user housing page
-  .post("/housing/report", (req, res) => {
-    res.send("Facility report created");
-  })
-  .put("/housing/report/:reportid", (req, res) => {
-    res.send("Replied facility report successfully");
-  });
+  .get("/housing", GetHousingInfo)
+
+  //create housing report 
+  .put("/housing/report", PutHousingReport)
+  .put("/housing/report/comment", PutHousingReportComment)
+
+
+
+
+  // .put("/housing/report/:reportid", (req, res) => {
+  //   res.send("Replied facility report successfully");
+  // });
 
 module.exports = router;

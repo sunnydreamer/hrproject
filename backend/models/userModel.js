@@ -13,7 +13,7 @@ const userSchema = new Schema({
     enum: ["Not Started", "Pending", "Approved", "Rejected"],
     default: "Not Started",
   },
-  profilePicture: { type: String, default: "" },
+  profilePicture: { type: String, default: "https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg" },
   email: {
     type: String,
     required: true,
@@ -25,7 +25,6 @@ const userSchema = new Schema({
   gender: {
     type: String,
     enum: ["male", "female", "n/a"],
-    required: true,
     default: "n/a",
   },
   address: {
@@ -52,8 +51,8 @@ const userSchema = new Schema({
   emergencyContact: [
     { type: mongoose.Schema.Types.ObjectId, ref: "EmergencyContact" },
   ],
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  username: { type: String, unique: true },
+  password: { type: String, default: null },
   isHR: { type: Boolean, required: true, default: false },
   hasDriversLicense: { type: Boolean, default: false },
   driversLicense: {
@@ -94,34 +93,8 @@ const userSchema = new Schema({
     email: { type: String, default: "" },
     relationship: { type: String, default: "" },
   },
-  housingReport: [
-    {
-      title: { type: String },
-      description: { type: String },
-      createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-      housingComments: [{ type: String }],
-      status: {
-        type: String,
-        enum: ["Open", "In Progress", "Closed"],
-        default: "Open",
-      },
-      address: {
-        street: { type: String },
-        streetLine2: { type: String },
-        city: { type: String },
-        state: { type: String },
-        zip: { type: String },
-      },
-    },
-  ],
   timestamp: { type: Date, default: Date.now },
-  roommates: [
-    {
-      name: { type: String },
-      phone: { type: String },
-    },
-  ],
-  house: [{ type: mongoose.Schema.Types.ObjectId, ref: "Housing" }],
+  house : { type: mongoose.Schema.Types.ObjectId, ref: "Housing" },
 });
 
 const User = model(`User`, userSchema);
