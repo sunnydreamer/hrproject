@@ -3,7 +3,7 @@ const EmergencyContact = require("../models/emergencyContactModel");
 
 const fetchUserById = async (req, res) => {
   try {
-    const user = await User.findOne({ _id: `66340b072e4abd1b0fe284c8` });
+    const user = await User.findOne({ _id: `663246912e262e906a94b4a1` });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
