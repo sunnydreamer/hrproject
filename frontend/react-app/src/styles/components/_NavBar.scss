@@ -19,3 +19,8 @@
   margin: 5px;
   font-size: $l-size;
 }
+
+.nav-link:hover {
+  color: $theme-blue;
+  // outline: 1px solid $theme-blue;
+}

@@ -127,7 +127,7 @@ const uploadDocuments = async (req, res) => {
  */
 const generateJwt = (userId, email) => {
   const token = jwt.sign({ userId, email }, process.env.JWT_SECRET, {
-    expiresIn: "15m",
+    expiresIn: "30m",
   });
   return token;
 };
@@ -143,7 +143,7 @@ const generateJwt = (userId, email) => {
 const registrationWithToken = async (req, res) => {
   const validationErrors = validationResult(req);
   if (!validationErrors.isEmpty()) {
-    const errors = validationErrors.errors.map(error => error.msg);
+    const errors = validationErrors.errors.map((error) => error.msg);
     return res.status(400).json({ errors });
   }
   const regLinkTokenFromUrl = req.params.regLinkTokenFromUrl;
@@ -152,7 +152,13 @@ const registrationWithToken = async (req, res) => {
   console.log("regLinkTokenFromBody", regLinkTokenFromBody);
   if (regLinkTokenFromUrl !== regLinkTokenFromBody) {
     console.log("regLinkTokens don't match");
-    return res.status(400).json({ errors: ["The registration link is invalid. Please contact your HR representative if you have any questions."] });
+    return res
+      .status(400)
+      .json({
+        errors: [
+          "The registration link is invalid. Please contact your HR representative if you have any questions.",
+        ],
+      });
   }
 
   console.log("regLinkTokens match");
@@ -168,11 +174,20 @@ const registrationWithToken = async (req, res) => {
 
   try {
     // Verify both tokens
-    await verifyToken(regLinkTokenFromBody, "The registration link is either invalid or has expired. Please contact your HR representative if you have any questions.");
-    await verifyToken(regToken, "The registration token is either invalid or has expired. Please contact your HR representative if you have any questions.");
+    await verifyToken(
+      regLinkTokenFromBody,
+      "The registration link is either invalid or has expired. Please contact your HR representative if you have any questions."
+    );
+    await verifyToken(
+      regToken,
+      "The registration token is either invalid or has expired. Please contact your HR representative if you have any questions."
+    );
 
     // Proceed with finding the user
-    const user = await User.findOne({ regLinkToken: regLinkTokenFromBody, regToken });
+    const user = await User.findOne({
+      regLinkToken: regLinkTokenFromBody,
+      regToken,
+    });
     if (!user) {
       return res.status(404).json({
         errors: [
@@ -190,7 +205,9 @@ const registrationWithToken = async (req, res) => {
     }
 
     // Success response
-    res.status(200).json({ email: user.email, message: "Registration Token Verified." });
+    res
+      .status(200)
+      .json({ email: user.email, message: "Registration Token Verified." });
   } catch (error) {
     console.error(error.message);
     return res.status(403).json({ errors: [error.message] });
@@ -285,7 +302,7 @@ const login = async (req, res) => {
     const token = generateJwt(user._id, email);
     res.cookie("token", token, {
       httpOnly: true,
-      maxAge: 900000, // 15 minutes
+      maxAge: 1800000, // 30 minutes
       // sameSite: 'None', // Fine for local development
       // secure: true, // Comment this out unless you're using HTTPS
       path: "/", // Cookie is available throughout the domain
@@ -312,14 +329,13 @@ const login = async (req, res) => {
 const logout = (req, res) => {
   console.log("Cookies at logout:", req.cookies); // This will log the cookies received at the server
   try {
-    res.clearCookie("token", { path: '/' }); // Ensure path matches the setting
+    res.clearCookie("token", { path: "/" }); // Ensure path matches the setting
     return res.status(200).json({ message: "Logged out successfully." });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "500 Internal Server Error" });
   }
 };
-
 
 /**
  * generateAndStoreTokens generates registration link token and registration token for the user and updates the database.
@@ -399,25 +415,23 @@ const fetchUserData = async (req, res) => {
   const userId = req.body.userId;
   try {
     const user = await User.findById(userId)
-      .populate('emergencyContact') // Populates the emergency contact references
+      .populate("emergencyContact") // Populates the emergency contact references
       .populate({
-        path: 'house',
+        path: "house",
         populate: [
-            { path: 'roommates'},
-            { path: 'housingReport' } // Populate housingReport for the house
-        ]
-    });
+          { path: "roommates" },
+          { path: "housingReport" }, // Populate housingReport for the house
+        ],
+      });
     if (!user) {
       return res.status(404).json({ errors: ["User not found."] });
     }
     return res.status(200).json(user);
-  }
-  catch (error) {
+  } catch (error) {
     console.error(error);
     return res.status(500).json({ errors: ["500 Internal Server Error"] });
   }
-}
-
+};
 
 const pushUserData = async (req, res) => {
   const userId = req.body.userId;
@@ -428,12 +442,11 @@ const pushUserData = async (req, res) => {
       return res.status(404).json({ errors: ["User not found."] });
     }
     return res.status(200).json({ message: "User data updated successfully." });
-  }
-  catch (error) {
+  } catch (error) {
     console.error(error);
     return res.status(500).json({ errors: ["500 Internal Server Error"] });
   }
-}
+};
 
 module.exports = {
   registrationWithToken,
@@ -444,5 +457,5 @@ module.exports = {
   uploadDocuments,
   getDocuments,
   fetchUserData,
-  pushUserData
+  pushUserData,
 };

@@ -59,19 +59,25 @@ const LoginPage = (props) => {
   };
   return (
     <div className="main-content centered">
-      <form onSubmit={loginSubmitHandler}>
+      <form className="form-styles" onSubmit={loginSubmitHandler}>
         <div className="form-header">
           <h1 style={{ color: "#000000" }}>Employee Login</h1>
         </div>
         <div className="form-group">
           <div className="field-group">
             <div className="flex-row centered">
-              <label>Email*: </label>
-              <input name="email" type="text" placeholder="Enter email" />
+              <label className="form-label">Email*: </label>
+              <input
+                className="form-input"
+                name="email"
+                type="text"
+                placeholder="Enter email"
+              />
             </div>
             <div className="flex-row centered">
-              <label>Password*: </label>
+              <label className="form-label">Password*: </label>
               <input
+                className="form-input"
                 name="password"
                 type="password"
                 placeholder="Enter password"
