@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-
+import { useDispatch } from "react-redux";
+import { RESET_STATE, resetState } from "../redux/redux";
 
 /**
  * props.navLinks: Array of objects with the following structure:
@@ -12,14 +12,17 @@ import { useEffect } from "react";
  */
 
 const NavBar = (props) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutHandler = () => {
-    // For logging out
+    // Clean up redux store
+    dispatch(resetState());
 
-      fetch("http://localhost:3000/user/logout", {
-        method: "GET",
-        credentials: "include",
-      })
+    // Clean up cookie
+    fetch("http://localhost:3000/user/logout", {
+      method: "GET",
+      credentials: "include",
+    })
       .then((res) => {
         // console.log(res);
         return res.json();
@@ -31,7 +34,6 @@ const NavBar = (props) => {
       .catch((error) => {
         console.log(error);
       });
-
   };
 
   return (
@@ -56,7 +58,15 @@ const NavBar = (props) => {
           <NavLink to="/user/housing" className="nav-link">
             Housing
           </NavLink>
-          <button onClick={logoutHandler} className="nav-link" style={{border:"none", backgroundColor: "transparent", padding: 0, textAlign: "left"}}>
+          <button
+            onClick={logoutHandler}
+            className="nav-link"
+            style={{
+              border: "none",
+              backgroundColor: "transparent",
+              padding: 0,
+              textAlign: "left",
+            }}>
             Logout
           </button>
         </>
