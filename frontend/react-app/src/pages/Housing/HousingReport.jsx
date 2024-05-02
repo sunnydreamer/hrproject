@@ -1,18 +1,18 @@
 import React from 'react'
 import './styles.css'
 
-function HousingReport({houseInfo, setShowComment}){
+function HousingReport({data, setShowComment}){
 
-    let address = "19000 New jersey road, 2323, New York, Australia"
-
-    // get the report
-    // console.log(houseInfo.housingReport)
+    // let houseInfo = data.house;
 
 
 
-    let houseReport = houseInfo.housing.housingReport;
-    // console.log(JSON.stringify(houseReport))
-    // console.log(Array.isArray(houseReport))
+
+
+    let houseReport = data.house?.housingReport;
+
+
+
 
 
     if(!houseReport){
@@ -26,7 +26,8 @@ function HousingReport({houseInfo, setShowComment}){
     function showComment(event, each){
         setShowComment({
             showBool: true,
-            comments: each.housingComments 
+            comments: each.housingComments,
+            housingID: each._id
         });
     }
 
@@ -37,8 +38,8 @@ function HousingReport({houseInfo, setShowComment}){
                     <tr>
                         <th>Title</th>
                         <th>Description</th>
-                        {/* <th>Created By</th> */}
-                        {/* <th>Timestamp</th> */}
+                        <th>Created By</th>
+                        <th>Timestamp</th>
                         <th>Status</th>
                     </tr>
                 </thead>

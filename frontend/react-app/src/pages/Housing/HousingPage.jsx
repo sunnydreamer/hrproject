@@ -12,11 +12,12 @@ import axios from 'axios';
 const HousingPage = () => {
   const [data, setData] = useState();
   const [houseInfo, setHouseInfo] = useState(null);
-  let userId = null;
+  const [comment, setComment] = useState("");
 
   const [showComment, setShowComment] = useState({
     showBool : false,
-    comments : []
+    comments : [],
+    housingId: ""
   });
   const [isOpen, setIsOpen] = useState(false);
 
@@ -33,57 +34,17 @@ const HousingPage = () => {
                           houseId: houseInfo.housing._id,
                           userId: data._id
                         };
-
-    
-
-    //need to make the HousingReport on database
-    //grab that ID...
-    //take it to the house...
-    //add it into housingReport
-
-    //soo... we need in payload... the houseID...
-
-
-
-    
-    // const updatedHouseInfo = { ...houseInfo };
-
-    // // Shallow copy the housing object
-    // const updatedHousing = { ...updatedHouseInfo.housing };
-  
-    // // Update the housingReport property
-    // updatedHousing.housingReport =  [... updatedHousing.housingReport, payload];
-  
-    // // Update the houseInfo state with the new housing object
-    // setHouseInfo({
-    //   ...updatedHouseInfo,
-    //   housing: updatedHousing,
-    // });
-
-
-
-
-
-    // console.log(title, description, "+++")
-    //send in the payload...
     axios.put("http://localhost:3000/user/housing/report", payload)
       .then(response =>
         {
-
           console.log(response.data)
+          setIsOpen(false);
         }
       )
       .catch(error => 
           console.error("error")
       )
-
-
-    //send the data over
-    setIsOpen(false);
   };
-
-
-  console.log(data)
 
 
 function fetchfoo(){
@@ -92,7 +53,7 @@ function fetchfoo(){
       const initData = {
         housing : res.data.house
       }
-      setHouseInfo(initData); // Set houseInfo when data is fetched
+      setHouseInfo(initData); 
       setData(res.data);
 
       // userId = res.data._id;
@@ -102,11 +63,34 @@ function fetchfoo(){
     });
 }
 
-  // console.log(houseInfo)
+// creation of new comment 
+function handleComment(event){
+  const payload = {
+    housingId: showComment.housingID,
+    comment: comment
+  }
+
+  axios.put("http://localhost:3000/user/housing/report/comment", payload)
+  .then(response =>
+    {
+      // console.log(response.data, "========")
+      setComment("")
+      setIsOpen(false);
+    }
+  )
+  .catch(error => 
+      console.error("error")
+  )
+
+}
+
+// console.log(houseInfo)
+
+//usecallback
 
   useEffect(() => {
     fetchfoo();
-  }, []);
+  }, [isOpen]);
 
   return (
     <div className="Housing-Parent">
@@ -117,14 +101,24 @@ function fetchfoo(){
           <h2 className='Housing'>Facility Report</h2>
           <button onClick={openModal}>New Report</button>
           <Modal isOpen={isOpen} onClose={closeModal} />
-          <HousingReport houseInfo={houseInfo} setShowComment={setShowComment}></HousingReport>
-
-
+          <HousingReport data={data} setShowComment={setShowComment}></HousingReport>
 
           {showComment.showBool? 
           <div>
             <h2 className='Housing'>Report Comments</h2>
+            {/*comeback to the comments, and filter out only the ones for that user*/}
             <HousingComment showComment={showComment}></HousingComment>
+            <br></br>
+            <h2>New Comment</h2>
+            <input 
+                type="text" 
+                name="Comment" 
+                id="Comment" 
+                value={comment} 
+                onChange={(event) => {
+                  setComment(event.target.value)}}
+            />
+            <button onClick={handleComment}>Submit</button>
           </div>
           :
           <div></div>}

@@ -24,3 +24,12 @@ Housing
     Change to use cookies for data 1 hour
 --------------------------
 20.5 hours
+
+header: include
+{
+    credentials: include
+}
+
+
+username
+email

@@ -6,6 +6,8 @@ const GetUserInfo = require("../controllers/GetUserInfo");
 const PostUserInfo = require("../controllers/PostUserInfo");
 const PostUserContact = require("../controllers/PostUserContact");
 const PutHousingReport = require("../controllers/PutHousingReport.js");
+const PutHousingReportComment = require("../controllers/PutHousingReportComment.js");
+
 
 
 const GetHousingInfo = require("../controllers/GetHousingInfo");
@@ -40,9 +42,9 @@ router
   .post("/housing/report", (req, res) => {
     res.send("Facility report created");
   })
-  .put("/housing/report/:reportid", (req, res) => {
-    res.send("Replied facility report successfully");
-  })
+  // .put("/housing/report/:reportid", (req, res) => {
+  //   res.send("Replied facility report successfully");
+  // })
 
   // user registration token verification
   .post(
@@ -128,6 +130,8 @@ router
 
   //create housing report 
   .put("/housing/report", PutHousingReport)
+  .put("/housing/report/comment", PutHousingReportComment)
+
 
 
 

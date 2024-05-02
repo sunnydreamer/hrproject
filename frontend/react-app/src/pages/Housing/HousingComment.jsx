@@ -12,11 +12,12 @@ function HousingComment({showComment}){
     //     "Reply2"
     // ]
 
-
+    console.log(showComment)
     return (
         <div className='Comment-Div'>
           {showComment.comments.map((each, index) => (
             <div key={index}>
+              {/* <label></label> */}
               <input type="text" value={each.description} readOnly />
             </div>
           ))}
