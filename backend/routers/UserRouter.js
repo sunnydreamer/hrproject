@@ -7,13 +7,12 @@ const PostUserInfo = require("../controllers/PostUserInfo");
 const PostUserContact = require("../controllers/PostUserContact");
 const PutHousingReport = require("../controllers/PutHousingReport.js");
 const PutHousingReportComment = require("../controllers/PutHousingReportComment.js");
-const AddEmergencyContact = require("../controllers/AddEmergencyContact");
+const OnboardingController = require("../controllers/OnboardingControllers.js");
 
 const GetHousingInfo = require("../controllers/GetHousingInfo");
 const UserController = require("../controllers/UserController");
 
 const { auth, authBlock } = require("../middlewares/authMiddleware");
-const UpdateUserInfo = require("../controllers/UpdateUserInfo.js");
 
 // multer set for file handling
 const storage = multer.diskStorage({
@@ -160,9 +159,9 @@ router
   .post("/onboarding", (reqs, res) => {
     res.send("Welcome onboard");
   })
-  .get(`/onboarding/getUser`, GetUserInfo.fetchUserById)
-  .post(`/onboarding/eContact`, AddEmergencyContact)
-  .put(`/onboarding/updateUser`, UpdateUserInfo)
+  .get(`/onboarding/getUser`, OnboardingController.fetchUserById)
+  .post(`/onboarding/eContact`, OnboardingController.addEmergencyContact)
+  .put(`/onboarding/updateUser`, OnboardingController.updateUserInfo)
 
   // user info page
   .put("/info", (req, res) => {
