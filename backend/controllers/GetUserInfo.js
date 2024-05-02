@@ -10,6 +10,7 @@ async function GetUserInfo(req, res){
     try {
         let CurrUser = await User.findOne({ firstName: 'Sunny' })
                                         .populate('emergencyContact')
+                                        .populate('opt')
                                 // .populate('EmergencyContact')
                                 // .exec((err, user) => {
                                 //     if (err) {

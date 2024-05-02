@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import './styles.css';
 import axios from 'axios';
+import formatDate from './util';
+
 
 function Employment({ data, setData }) {
     const [editMode, setEditMode] = useState(false);
 
     function handleChange(event) {
         const { name, value } = event.target;
+
+        // console.log(name, value)
         setData(prevData => ({
             ...prevData,
-            employment: {
-                ...prevData.employment,
-                [name]: value
-            }
+            [name]: value
         }));
     }
 
@@ -50,27 +51,27 @@ function Employment({ data, setData }) {
                 <label htmlFor="VisaTitle">Visa Title:</label>
                 <input
                     type="text"
-                    id="VisaTitle"
-                    name="VisaTitle"
-                    value={data.visa.visaTitle}
+                    id="workAuthorization"
+                    name="workAuthorization"
+                    value={data.workAuthorization}
                     onChange={handleChange}
                     readOnly={!editMode}
                 />
                 <label htmlFor="VisaStartDate">Start Date:</label>
                 <input
                     type="date"
-                    id="VisaStartDate"
-                    name="VisaStartDate"
-                    value={data.visa.startDate}
+                    id="workAuthorizationStart"
+                    name="workAuthorizationStart"
+                    value={formatDate(data.workAuthorizationStart)}
                     onChange={handleChange}
                     readOnly={!editMode}
                 />
                 <label htmlFor="VisaEndDate">End Date:</label>
                 <input
                     type="date"
-                    id="VisaEndDate"
-                    name="VisaEndDate"
-                    value={data.visa.endDate}
+                    id="workAuthorizationEnd"
+                    name="workAuthorizationEnd"
+                    value={formatDate(data.workAuthorizationEnd)}
                     onChange={handleChange}
                     readOnly={!editMode}
                 />

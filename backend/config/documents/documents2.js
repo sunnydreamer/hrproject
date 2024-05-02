@@ -1,61 +1,16 @@
 const bcrypt = require(`bcrypt`);
 
 const User = require(`../../models/userModel`);
-const Comment = require(`../../models/commentModel`);
+// const Comment = require(`../../models/commentModel`);
 const EmergencyContact = require(`../../models/emergencyContactModel`);
 const Housing = require(`../../models/housingModel`);
 const Document = require(`../../models/documentModel`);
+const HousingReport = require(`../../models/housingReportModel`);
+
 
 
 // add a house here for sunny
-const documents = async (housingId,) => {
-  const hr1 = await User.create({
-    house: housingId,
-    firstName: `Sunny`,
-    lastName: `Li`,
-    email: `sunnyli@gmail.com`,
-    ssn: `123456789`,
-    dob: new Date(`2000-01-01`),
-    gender: `female`,
-    address: {
-      street: `123 Shinchan Ave`,
-      city: `Oklahoma City`,
-      state: `Oklahoma`,
-      zip: `12345`,
-    },
-    phone: {
-      cell: `9171231234`,
-    },
-    emergencyContact: [
-      await EmergencyContact.create({
-        firstName: `Crayon`,
-        lastName: `ShinChan`,
-        phone: {
-          cell: `3214442345`,
-        },
-        email: `sunnyscontact@gmail.com`,
-        relationship: `Bestie`,
-      }),
-    ],
-    username: `sunnyli`,
-    password: await bcrypt.hash(`sunnyPW`, Number(process.env.SALT)),
-    isHR: true,
-    workAuthorization: `citizen`,
-    workAuthorizationStart: new Date(`2000-01-01`),
-    workAuthorizationEnd: new Date(`2000-01-01`),
-    housingReport:[ {
-      title: "test",
-      description: "some compliant",
-      housingComments: [],
-      status: "In Progress",
-      address: {
-        street: "123 Main St",
-        city: "Anytown",
-        state: "AnyState",
-        zip: "12345",
-      },
-    } ],
-  });
+const documents = async () => {
 
   const e1 = await User.create({
     firstName: `Maurice`,
@@ -200,15 +155,7 @@ const documents = async (housingId,) => {
   //this one is sunny's
   //add in new data
 
-  const h1 = await Housing.create({
-    address: {
-      street: `123 Shinchan Ave`,
-      city: `Oklahoma City`,
-      state: `Oklahoma`,
-      zip: `12345`,
-    },
-    roommates: [hr1, e2, e1],
-  });
+
 
   const h2 = await Housing.create({
     address: {
@@ -218,9 +165,6 @@ const documents = async (housingId,) => {
       zip: `11344`,
     },
     roommates: [e1, e2],
-
-
-    
   });
 
   const h3 = await Housing.create({
@@ -233,6 +177,108 @@ const documents = async (housingId,) => {
     },
     roommates: [e3],
   });
+
+
+
+
+
+
+
+
+  //create house here
+  const h1 = await Housing.create({
+    address: {
+      street: `123 Shinchan Ave`,
+      city: `Oklahoma City`,
+      state: `Oklahoma`,
+      zip: `12345`,
+    },
+    roommates: [e2, e1],
+    //add housing reports later
+    // housingReport: [  houseReport1    ]
+  });
+
+
+  const hr1 = await User.create({
+    //house inserted here
+    house: h1,
+    registrationLinkToken: `abc123`,
+    registrationToken: `abc456`,
+    firstName: `Sunny`,
+    lastName: `Li`,
+    email: `sunnyli@gmail.com`,
+    ssn: `123456789`,
+    dob: new Date(`2000-01-01`),
+    gender: `female`,
+    address: {
+      street: `123 Shinchan Ave`,
+      city: `Oklahoma City`,
+      state: `Oklahoma`,
+      zip: `12345`,
+    },
+    phone: {
+      cell: `9171231234`,
+    },
+    emergencyContact: [
+      await EmergencyContact.create({
+        firstName: `Crayon`,
+        lastName: `ShinChan`,
+        phone: {
+          cell: `3214442345`,
+        },
+        email: `sunnyscontact@gmail.com`,
+        relationship: `Bestie`,
+      }),
+    ],
+    username: `sunnyli`,
+    password: await bcrypt.hash(`sunnyPW`, Number(process.env.SALT)),
+    isHR: true,
+    workAuthorization: `citizen`,
+    workAuthorizationStart: new Date(`2000-01-01`),
+    workAuthorizationEnd: new Date(`2000-01-01`),
+  });
+
+
+
+  //report is created
+  const housereport1 = await HousingReport.create(
+    {
+      title: "Leaky Faucet",
+      description: "There's a leaky faucet in the kitchen.",
+      createdBy: hr1, // User ObjectId
+      status: "Open",
+      timestamp: new Date(),
+      housingComments: [
+        {
+          createdBy: hr1,
+          username: "sunnyli",
+          description: "I'll take a look at it tomorrow.",
+          timestamp: new Date(),
+        },
+        {
+          createdBy: hr1,
+          username: "sunnli",
+          description: "We should call a plumber.",
+          timestamp: new Date(),
+        },
+      ]
+  });
+
+  //now add the housing report to the house
+  h1.housingReport.push(housereport1);
+  await h1.save();
+  h1.roommates.push(hr1)
+  await h1.save()
+
+
+
+
+
+
+
+
+
+
 };
 
 module.exports = documents;
