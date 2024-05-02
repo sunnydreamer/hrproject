@@ -25,7 +25,7 @@ const useAuth = () => {
         .catch((error) => {
           console.log(error);
           // setIsAuthenticated(false);
-          navigate("/not-found", { state: { errorTitle: "403 Forbidden" }, replace: true })
+          navigate("/not-found", { state: { errorTitle: "403 Not Authorized" }, replace: true })
         });
     }
   }, []);
