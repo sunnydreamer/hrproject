@@ -57,7 +57,7 @@ const RegistrationPage = () => {
 
   return (
     <div className="main-content centered">
-      <form onSubmit={registrationSubmitHandler}>
+      <form className='form-styles' onSubmit={registrationSubmitHandler}>
         <div className="form-header">
           <h1 style={{color: "#000000"}}>
             New Employee Registration
@@ -66,8 +66,9 @@ const RegistrationPage = () => {
         <div className="form-group">
           <div className="field-group">
             <div className="flex-row centered">
-              <label>Email*: </label>
+              <label className='form-label'>Email*: </label>
               <input
+                className='form-input'
                 name="email"
                 type="text"
                 value={data.email}
@@ -75,24 +76,27 @@ const RegistrationPage = () => {
               />
             </div>
             <div className="flex-row centered">
-              <label>Username*: </label>
+              <label className='form-label'>Username*: </label>
               <input
+                className='form-input'
                 name="username"
                 type="text"
                 placeholder="Enter username"
               />
             </div>
             <div className="flex-row centered">
-              <label>Password*: </label>
+              <label className='form-label'>Password*: </label>
               <input
+                className='form-input'
                 name="password"
                 type="password"
                 placeholder="Enter password"
               />
             </div>
             <div className="flex-row centered">
-              <label>Confirm Password*: </label>
+              <label className='form-label'>Confirm Password*: </label>
               <input
+                className='form-input'
                 name="confirmPassword"
                 type="password"
                 placeholder="Re-enter your password"
