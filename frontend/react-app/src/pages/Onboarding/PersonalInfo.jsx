@@ -1,3 +1,5 @@
+import React from "react";
+
 const PersonalInfo = ({ userInfo, changeHandler }) => {
   return (
     <>
@@ -90,11 +92,7 @@ const PersonalInfo = ({ userInfo, changeHandler }) => {
       />
       <br />
       <label htmlFor="gender">Gender: </label>
-      <select
-        id="gender"
-        value={userInfo.gender}
-        onChange={changeHandler}
-      >
+      <select id="gender" value={userInfo.gender} onChange={changeHandler}>
         <option value={`male`}>Male</option>
         <option value={`female`}>Female</option>
         <option value={`n/a`}>N/A</option>

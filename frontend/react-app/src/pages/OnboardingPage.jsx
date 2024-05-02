@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from "../redux/fetchUserData";
-import store from "../redux/redux";
+import React, { useEffect, useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { fetchData } from "../redux/fetchUserData";
+// import store from "../redux/redux";
+import OnboardingForm from "./Onboarding/OnboardingForm";
 
 const OnboardingPage = () => {
   // const dispatch = useDispatch();
@@ -16,26 +17,26 @@ const OnboardingPage = () => {
   // // console.log("data", data);
   // console.log("store.getState()", store.getState());
 
-  const dispatch = useDispatch();
-  const data = useSelector((state) => state.payload); // Assuming 'data' is the part of the state updated by fetchData
+  // const dispatch = useDispatch();
+  // const data = useSelector((state) => state.payload); // Assuming 'data' is the part of the state updated by fetchData
 
-  useEffect(() => {
-    dispatch(fetchData());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchData());
+  // }, [dispatch]);
 
-  useEffect(() => {
-    console.log("store.getState()", store.getState()); // You can get data two ways
-    console.log("data", data);
-  }, [data]); // Dependency on 'data' to re-run this effect when 'data' gets loaded
+  // useEffect(() => {
+  //   console.log("store.getState()", store.getState()); // You can get data two ways
+  //   console.log("data", data);
+  // }, [data]); // Dependency on 'data' to re-run this effect when 'data' gets loaded
 
   const [userInfo, setUserInfo] = useState({});
-  console.log(userInfo);
+
   useEffect(() => {
     fetchUser();
   }, []);
 
   const fetchUser = async () => {
-    const response = await fetch(`http://localhost:3000/user/getUser`);
+    const response = await fetch(`http://localhost:3000/user/onboarding/getUser`);
     const result = await response.json();
     setUserInfo(result);
   };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
   const [ownCar, setOwnCar] = useState(false);
@@ -24,7 +24,7 @@ const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
       <br />
       {userInfo.hasDriversLicense ? (
         <>
-          <label htmlFor="driversLicense.licenseNumber">License Number</label>
+          <label htmlFor="driversLicense.licenseNumber">License Number: </label>
           <input
             type="text"
             id="driversLicense.licenseNumber"
@@ -32,7 +32,7 @@ const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
             onChange={changeHandler}
           />
           <br />
-          <label htmlFor="driversLicense.expirationDate">Expiration Date</label>
+          <label htmlFor="driversLicense.expirationDate">Expiration Date: </label>
           <input
             type="date"
             id="driversLicense.expirationDate"

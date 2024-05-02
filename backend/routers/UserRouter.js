@@ -7,15 +7,13 @@ const PostUserInfo = require("../controllers/PostUserInfo");
 const PostUserContact = require("../controllers/PostUserContact");
 const PutHousingReport = require("../controllers/PutHousingReport.js");
 const PutHousingReportComment = require("../controllers/PutHousingReportComment.js");
-
-
+const AddEmergencyContact = require("../controllers/AddEmergencyContact");
 
 const GetHousingInfo = require("../controllers/GetHousingInfo");
 const UserController = require("../controllers/UserController");
 
 const { auth, authBlock } = require("../middlewares/authMiddleware");
-
-
+const UpdateUserInfo = require("../controllers/UpdateUserInfo.js");
 
 // multer set for file handling
 const storage = multer.diskStorage({
@@ -80,7 +78,14 @@ router
   // user registration token verification
   .post(
     "/registration-with-token/:regLinkTokenFromUrl",
-    [check("regToken").trim().escape().not().isEmpty().withMessage("Registration token is required.")],
+    [
+      check("regToken")
+        .trim()
+        .escape()
+        .not()
+        .isEmpty()
+        .withMessage("Registration token is required."),
+    ],
     UserController.registrationWithToken
   )
 
@@ -148,24 +153,22 @@ router
 
   .get("/logout", UserController.logout)
 
-
   .get("/fetch", authBlock, UserController.fetchUserData)
   .post("/push", authBlock, UserController.pushUserData)
-
-
-
 
   // user onboarding
   .post("/onboarding", (reqs, res) => {
     res.send("Welcome onboard");
   })
-  .get(`/getUser`, GetUserInfo.fetchUserById)
+  .get(`/onboarding/getUser`, GetUserInfo.fetchUserById)
+  .post(`/onboarding/eContact`, AddEmergencyContact)
+  .put(`/onboarding/updateUser`, UpdateUserInfo)
 
   // user info page
   .put("/info", (req, res) => {
     res.send("User info is modified successfully");
   })
-  .get("/personalinfo", GetUserInfo)
+  // .get("/personalinfo", GetUserInfo)
 
   // user visa page
   .put("/visa/:userid", (req, res) => {
@@ -175,15 +178,12 @@ router
   // user housing page
   .get("/housing", GetHousingInfo)
 
-  //create housing report 
+  //create housing report
   .put("/housing/report", PutHousingReport)
-  .put("/housing/report/comment", PutHousingReportComment)
+  .put("/housing/report/comment", PutHousingReportComment);
 
-
-
-
-  // .put("/housing/report/:reportid", (req, res) => {
-  //   res.send("Replied facility report successfully");
-  // });
+// .put("/housing/report/:reportid", (req, res) => {
+//   res.send("Replied facility report successfully");
+// });
 
 module.exports = router;

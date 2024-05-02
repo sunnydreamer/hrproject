@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 const WorkAuth = ({ userInfo, changeHandler }) => {
   const [extraOptions, setExtraOptions] = useState(false);
@@ -60,6 +60,7 @@ const WorkAuth = ({ userInfo, changeHandler }) => {
             <option value={"F1"}>F1</option>
             <option value={"other"}>other</option>
           </select>
+          <br />
         </>
       ) : null}
       {otherOption ? (
@@ -71,11 +72,13 @@ const WorkAuth = ({ userInfo, changeHandler }) => {
             value={userInfo.workAuthorization}
             onChange={changeHandler}
           />
+          <br />
         </>
       ) : null}
       {isF1 ? (
         <>
-          <label>Please upload OPT receipt</label>
+          <label>Please upload OPT receipt: </label>
+          <br />
         </>
       ) : null}
     </>

@@ -34,7 +34,7 @@ async function GetUserInfo(req, res) {
 
 const fetchUserById = async (req, res) => {
   try {
-    const user = await User.findOne({ _id: `6631558ef7a2a77d7f547c50` });
+    const user = await User.findOne({ _id: `663246912e262e906a94b4a1` });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
