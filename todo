@@ -15,21 +15,10 @@ Housing
     details + roomates 30min DONE
     add report 1.5 hours DONE 
     show comments 30min DONE
-    add + edit comments 1.5hours
+    add comments 1hours DONE
     ------------------------
-    2 hours
-
-    Do redux 2hours
-    Do validations 1hour
+    Check validations 1hour
     Change to use cookies for data 1 hour
 --------------------------
-20.5 hours
+20 hours
 
-header: include
-{
-    credentials: include
-}
-
-
-username
-email
