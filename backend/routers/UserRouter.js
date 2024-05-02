@@ -9,6 +9,10 @@ const PostUserContact = require("../controllers/PostUserContact");
 const GetHousingInfo = require("../controllers/GetHousingInfo");
 const UserController = require("../controllers/UserController");
 
+const { auth, authBlock } = require("../middlewares/authMiddleware");
+
+
+
 // multer set for file handling
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -23,13 +27,40 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router
+  .get("/auth", authBlock)
   .get("/documents/:userId", UserController.getDocuments)
   .put(
     "/documents/:userId",
     upload.single("file"),
     UserController.uploadDocuments
   )
-  .post("/send-email", UserController.generateAndStoreTokens)
+  .post(
+    "/send-email",
+    [
+      check("firstName")
+        .trim()
+        .escape()
+        .not()
+        .isEmpty()
+        .withMessage("First name is required."),
+      check("lastName")
+        .trim()
+        .escape()
+        .not()
+        .isEmpty()
+        .withMessage("Last name is required."),
+      check("email")
+        .trim()
+        .escape()
+        .normalizeEmail()
+        .isEmail()
+        .withMessage("Invalid email address.")
+        .not()
+        .isEmpty()
+        .withMessage("Email is required."),
+    ],
+    UserController.generateAndStoreTokens
+  )
   .post("/info", PostUserInfo)
   .post("/info/contact", PostUserContact)
   .put("/visa/:userid", (req, res) => {
@@ -44,8 +75,8 @@ router
 
   // user registration token verification
   .post(
-    "/registration-with-token/:regLinkToken",
-    [check("regToken").trim().escape()],
+    "/registration-with-token/:regLinkTokenFromUrl",
+    [check("regToken").trim().escape().not().isEmpty().withMessage("Registration token is required.")],
     UserController.registrationWithToken
   )
 
@@ -62,6 +93,12 @@ router
         .normalizeEmail()
         .isEmail()
         .withMessage("Please enter a valid email address."),
+      check("username")
+        .not()
+        .isEmpty()
+        .withMessage("Username is required.")
+        .trim()
+        .escape(),
       check("password")
         .not()
         .isEmpty()
@@ -104,6 +141,15 @@ router
     ],
     UserController.login
   )
+
+  .get("/logout", UserController.logout)
+
+
+  .get("/fetch", authBlock, UserController.fetchUserData)
+  .post("/push", authBlock, UserController.pushUserData)
+
+
+
 
   // user onboarding
   .post("/onboarding", (req, res) => {
