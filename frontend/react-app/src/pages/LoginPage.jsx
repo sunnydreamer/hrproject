@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // User click on registration link in email
@@ -36,6 +36,7 @@ const LoginPage = (props) => {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify({
         email: email,
         password: password,
@@ -48,9 +49,10 @@ const LoginPage = (props) => {
         if (data.errors) {
           setErrors(data.errors);
         } else {
-          navigate("/user/onboarding");
+          navigate(data.navigate);
         }
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.log(error);
         setErrors(["500 Internal Server Error"]);
       });
@@ -65,10 +67,7 @@ const LoginPage = (props) => {
           <div className="field-group">
             <div className="flex-row centered">
               <label>Email*: </label>
-              <input 
-                name="email" 
-                type="text" 
-                placeholder="Enter email" />
+              <input name="email" type="text" placeholder="Enter email" />
             </div>
             <div className="flex-row centered">
               <label>Password*: </label>
