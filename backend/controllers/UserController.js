@@ -381,6 +381,60 @@ const generateAndStoreTokens = async (req, res) => {
   return res.status(200).json({ regLinkToken, regToken });
 };
 
+// const fetchUserData = async (req, res) => {
+//   const userId = req.body.userId;
+//   try {
+//     const user = await User.findById(userId);
+//     if (!user) {
+//       return res.status(404).json({ errors: ["User not found."] });
+//     }
+//     return res.status(200).json(user);
+//   }
+//   catch (error) {
+//     console.error(error);
+//     return res.status(500).json({ errors: ["500 Internal Server Error"] });
+//   }
+// }
+const fetchUserData = async (req, res) => {
+  const userId = req.body.userId;
+  try {
+    const user = await User.findById(userId)
+      .populate('emergencyContact') // Populates the emergency contact references
+      .populate({
+        path: 'house',
+        populate: [
+            { path: 'roommates'},
+            { path: 'housingReport' } // Populate housingReport for the house
+        ]
+    });
+    if (!user) {
+      return res.status(404).json({ errors: ["User not found."] });
+    }
+    return res.status(200).json(user);
+  }
+  catch (error) {
+    console.error(error);
+    return res.status(500).json({ errors: ["500 Internal Server Error"] });
+  }
+}
+
+
+const pushUserData = async (req, res) => {
+  const userId = req.body.userId;
+  const userData = req.body.userData;
+  try {
+    const user = await User.findOneAndReplace({ _id: userId }, userData);
+    if (!user) {
+      return res.status(404).json({ errors: ["User not found."] });
+    }
+    return res.status(200).json({ message: "User data updated successfully." });
+  }
+  catch (error) {
+    console.error(error);
+    return res.status(500).json({ errors: ["500 Internal Server Error"] });
+  }
+}
+
 module.exports = {
   registrationWithToken,
   register,
@@ -389,4 +443,6 @@ module.exports = {
   logout,
   uploadDocuments,
   getDocuments,
+  fetchUserData,
+  pushUserData
 };

@@ -11,6 +11,8 @@ const UserController = require("../controllers/UserController");
 
 const { auth, authBlock } = require("../middlewares/authMiddleware");
 
+
+
 // multer set for file handling
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -141,6 +143,13 @@ router
   )
 
   .get("/logout", UserController.logout)
+
+
+  .get("/fetch", authBlock, UserController.fetchUserData)
+  .post("/push", authBlock, UserController.pushUserData)
+
+
+
 
   // user onboarding
   .post("/onboarding", (req, res) => {
