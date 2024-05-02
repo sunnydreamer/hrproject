@@ -42,7 +42,7 @@ const VisaPage = () => {
       const formData = new FormData();
       formData.append('file', file);
       formData.append('documentType', docType)
-      const response = await axios.put(`/documents/662fe6ad0c28afb3008ef2fc`, formData, {
+      const response = await axios.put(`/documents/66321f8a46e3d7ae427847d8`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -62,7 +62,7 @@ const VisaPage = () => {
     const fetchData = async () => {
       try {
         // Fetch user information
-        const documentsData = await axios.get('/documents/662fe6ad0c28afb3008ef2fc');
+        const documentsData = await axios.get('/documents/66321f8a46e3d7ae427847d8');
         setUserDocuments(documentsData.data)
 
         // Find the first document with a status other than "Approved"
@@ -98,7 +98,7 @@ const VisaPage = () => {
     <div className="full-parent-height">
       {/* the page should not show any documents if the work authorization type is not OPT, userDocuments will be null for every situation except OPT*/}
       {userDocuments ?
-        <div>
+        <div className="stepperContainer">
           <Stepper
             orientation="vertical"
             sx={{
@@ -125,7 +125,7 @@ const VisaPage = () => {
               [`& .${typographyClasses['title-sm']}`]: {
                 textTransform: 'uppercase',
                 letterSpacing: '1px',
-                fontSize: '10px',
+                fontSize: '18px',
               },
             }}
           >

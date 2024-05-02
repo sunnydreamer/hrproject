@@ -34,15 +34,15 @@ const AppRouter = () => (
           element={<Page title="Registration" navLinks={[]}><RegisterWithTokenPage /></Page>}
         />
         <Route
-          path="registration" 
+          path="registration"
           element={<Page title="Registration" navLinks={[]}><RegistrationPage /></Page>}
         />
         <Route
           path="login"
           element={<Page title="Login" navLinks={[]}><LoginPage /></Page>}
         />
-        <Route 
-          path="onboarding-application" 
+        <Route
+          path="onboarding-application"
           element={<Page title="Onboarding Application" navLinks={[]}><OnboardingPage /></Page>}
         />
 
