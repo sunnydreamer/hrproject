@@ -32,6 +32,17 @@ async function GetUserInfo(req, res) {
   }
 }
 
+const fetchUserById = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: `6631558ef7a2a77d7f547c50` });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.status(200).send(user);
+  } catch (errpr) {
+    console.error("Error:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 
-
-module.exports = GetUserInfo;
+module.exports = { GetUserInfo, fetchUserById };

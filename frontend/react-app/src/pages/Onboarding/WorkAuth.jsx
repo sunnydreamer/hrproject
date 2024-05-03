@@ -28,6 +28,7 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler }) => {
     changeHandler(e);
   };
 
+<<<<<<< HEAD
   const uploadOptReceipt = (e) => {
     const optReceipt = e.target.files[0];
     const reader = new FileReader();
@@ -51,6 +52,8 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler }) => {
     reader.readAsDataURL(optReceipt);
   };
 
+=======
+>>>>>>> 203f3140789bcad1742dc10e0f8acb0d55812b37
   return (
     <>
       <label htmlFor="workAuthorization">
@@ -83,7 +86,10 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler }) => {
             <option value={"F1"}>F1</option>
             <option value={"other"}>other</option>
           </select>
+<<<<<<< HEAD
           <br />
+=======
+>>>>>>> 203f3140789bcad1742dc10e0f8acb0d55812b37
         </>
       ) : null}
       {otherOption ? (
@@ -95,14 +101,21 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler }) => {
             value={userInfo.workAuthorization}
             onChange={changeHandler}
           />
+<<<<<<< HEAD
           <br />
+=======
+>>>>>>> 203f3140789bcad1742dc10e0f8acb0d55812b37
         </>
       ) : null}
       {isF1 ? (
         <>
+<<<<<<< HEAD
           <label htmlFor="optReceipt">Please upload OPT receipt: </label>
           <input type="file" id="optReceipt" />
           <br />
+=======
+          <label>Please upload OPT receipt</label>
+>>>>>>> 203f3140789bcad1742dc10e0f8acb0d55812b37
         </>
       ) : null}
     </>

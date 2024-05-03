@@ -108,6 +108,7 @@ const PersonalInfo = ({ userInfo, setUserInfo, changeHandler }) => {
         onChange={changeHandler}
       />
       <br />
+<<<<<<< HEAD
       <label htmlFor="dob">DOB: </label>
       <input
         type="Date"
@@ -118,6 +119,14 @@ const PersonalInfo = ({ userInfo, setUserInfo, changeHandler }) => {
       <br />
       <label htmlFor="gender">Gender: </label>
       <select id="gender" value={userInfo.gender} onChange={changeHandler}>
+=======
+      <label htmlFor="gender">Gender: </label>
+      <select
+        id="gender"
+        value={userInfo.gender}
+        onChange={changeHandler}
+      >
+>>>>>>> 203f3140789bcad1742dc10e0f8acb0d55812b37
         <option value={`male`}>Male</option>
         <option value={`female`}>Female</option>
         <option value={`n/a`}>N/A</option>
