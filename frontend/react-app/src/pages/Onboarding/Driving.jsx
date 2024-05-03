@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React, { useState } from "react";
-=======
-import { useState } from "react";
->>>>>>> 203f3140789bcad1742dc10e0f8acb0d55812b37
 
 const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
   const [ownCar, setOwnCar] = useState(false);
@@ -44,11 +40,7 @@ const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
       <br />
       {userInfo.hasDriversLicense ? (
         <>
-<<<<<<< HEAD
           <label htmlFor="driversLicense.licenseNumber">License Number: </label>
-=======
-          <label htmlFor="driversLicense.licenseNumber">License Number</label>
->>>>>>> 203f3140789bcad1742dc10e0f8acb0d55812b37
           <input
             type="text"
             id="driversLicense.licenseNumber"
@@ -56,13 +48,9 @@ const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
             onChange={changeHandler}
           />
           <br />
-<<<<<<< HEAD
           <label htmlFor="driversLicense.expirationDate">
             Expiration Date:{" "}
           </label>
-=======
-          <label htmlFor="driversLicense.expirationDate">Expiration Date</label>
->>>>>>> 203f3140789bcad1742dc10e0f8acb0d55812b37
           <input
             type="date"
             id="driversLicense.expirationDate"
@@ -70,7 +58,6 @@ const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
             onChange={changeHandler}
           />
           <br />
-<<<<<<< HEAD
           <label htmlFor="driversLicense.licenseImage">
             Upload copy of license:{" "}
           </label>
@@ -78,15 +65,6 @@ const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
             type="file"
             id="driversLicense.licenseImage"
             onChange={uploadDriversLicense}
-=======
-          {/* How to upload image */}
-          <label htmlFor="driversLicense.licenseImage">Upload copy of license: </label>
-          <input
-            type="text"
-            id="driversLicense.licenseImage"
-            value={userInfo.driversLicense.licenseImage}
-            onChange={changeHandler}
->>>>>>> 203f3140789bcad1742dc10e0f8acb0d55812b37
           />
           <br />
           <label htmlFor="ownCar">Do you own a car? </label>

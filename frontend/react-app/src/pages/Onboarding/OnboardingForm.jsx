@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState } from "react";
 import Driving from "./Driving";
 import PersonalInfo from "./PersonalInfo";
@@ -10,13 +9,6 @@ const OnboardingForm = ({ userInfo, setUserInfo }) => {
   const [showInfo, setShowInfo] = useState(true);
   const [showContact, setShowContact] = useState(false);
 
-=======
-import Driving from "./Driving";
-import PersonalInfo from "./PersonalInfo";
-import WorkAuth from "./WorkAuth";
-
-const OnboardingForm = ({ userInfo, setUserInfo }) => {
->>>>>>> 203f3140789bcad1742dc10e0f8acb0d55812b37
   const changeHandler = (e) => {
     if (e.target.id.includes(`.`)) {
       const keys = e.target.id.split(`.`);
