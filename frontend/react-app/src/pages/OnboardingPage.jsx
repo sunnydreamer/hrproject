@@ -5,18 +5,8 @@ import React, { useEffect, useState } from "react";
 import OnboardingForm from "./Onboarding/OnboardingForm";
 
 const OnboardingPage = () => {
-  // const dispatch = useDispatch();
-  // // const data = useSelector((state) => state.data);
 
-  // console.log("in onboarding page");
-  // useEffect(() => {
-  //   console.log("dispatch(fetchData)");
-  //   dispatch(fetchData());
-  // }, [dispatch]);
-  // console.log("after fetching");
-  // // console.log("data", data);
-  // console.log("store.getState()", store.getState());
-
+  // // Code for using redux
   // const dispatch = useDispatch();
   // const data = useSelector((state) => state.payload); // Assuming 'data' is the part of the state updated by fetchData
 

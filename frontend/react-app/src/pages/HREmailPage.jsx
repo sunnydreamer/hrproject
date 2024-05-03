@@ -61,31 +61,34 @@ const HREmailPage = (props) => {
 
   return (
     <div className="main-content centered">
-      <form onSubmit={sendEmailHandler}>
+      <form className="form-styles" onSubmit={sendEmailHandler}>
         <div className="form-header">
           <h1 style={{ color: "#000000" }}>Send Registration Email</h1>
         </div>
         <div className="form-group">
           <div className="field-group">
             <div className="flex-row centered">
-              <label>Employee First Name*: </label>
+              <label className="form-label">Employee First Name*: </label>
               <input
+                className="form-input"
                 name="firstName"
                 type="text"
                 placeholder="Enter employee's first name"
               />
             </div>
             <div className="flex-row centered">
-              <label>Employee Last Name*: </label>
+              <label className="form-label">Employee Last Name*: </label>
               <input
+                className="form-input"
                 name="lastName"
                 type="text"
                 placeholder="Enter employee's last name"
               />
             </div>
             <div className="flex-row centered">
-              <label>Employee Email*: </label>
+              <label className="form-label">Employee Email*: </label>
               <input
+                className="form-input"
                 name="email"
                 type="text"
                 placeholder="Enter employee's email"

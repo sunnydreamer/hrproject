@@ -20,22 +20,22 @@ const userSchema = new Schema({
     unique: true,
     immutable: true,
   },
-  ssn: { type: String, required: true, default: "" },
-  dob: { type: Date, required: true, default: "" },
+  ssn: { type: String, default: "" },
+  dob: { type: Date, default: "" },
   gender: {
     type: String,
     enum: ["male", "female", "n/a"],
     default: "n/a",
   },
   address: {
-    street: { type: String, required: true, default: "" },
+    street: { type: String, default: "" },
     streetLine2: { type: String, default: "" },
-    city: { type: String, required: true, default: "" },
-    state: { type: String, required: true, default: "" },
-    zip: { type: String, required: true, default: "" },
+    city: { type: String, default: "" },
+    state: { type: String, default: "" },
+    zip: { type: String, default: "" },
   },
   phone: {
-    cell: { type: String, required: true, default: "" },
+    cell: { type: String, default: "" },
     work: { type: String, default: "" },
   },
   carInfo: {
@@ -53,7 +53,7 @@ const userSchema = new Schema({
   ],
   username: { type: String, unique: true },
   password: { type: String, default: null },
-  isHR: { type: Boolean, required: true, default: false },
+  isHR: { type: Boolean, default: false },
   hasDriversLicense: { type: Boolean, default: false },
   driversLicense: {
     licenseNumber: { type: String, default: "" },
@@ -63,7 +63,7 @@ const userSchema = new Schema({
   workAuthorization: {
     type: String,
     enum: ["citizen", "green card", "H1B", "F1", "H4", "other"],
-    default: "citizen",
+    default: "",
   },
   workAuthorizationStart: {
     type: Date,
@@ -74,10 +74,10 @@ const userSchema = new Schema({
     default: null,
   },
   opt: {
-    receipt: { type: mongoose.Schema.Types.ObjectId, ref: "Document" },
-    ead: { type: mongoose.Schema.Types.ObjectId, ref: "Document" },
-    i983: { type: mongoose.Schema.Types.ObjectId, ref: "Document" },
-    i20: { type: mongoose.Schema.Types.ObjectId, ref: "Document" },
+    receipt: { type: mongoose.Schema.Types.ObjectId, ref: "Document", default: null },
+    ead: { type: mongoose.Schema.Types.ObjectId, ref: "Document", default: null },
+    i983: { type: mongoose.Schema.Types.ObjectId, ref: "Document", default: null },
+    i20: { type: mongoose.Schema.Types.ObjectId, ref: "Document", default: null },
   },
   visa: {
     visaTitle: { type: String, default: "" },
@@ -94,7 +94,7 @@ const userSchema = new Schema({
     relationship: { type: String, default: "" },
   },
   timestamp: { type: Date, default: Date.now },
-  house : { type: mongoose.Schema.Types.ObjectId, ref: "Housing" },
+  house: { type: mongoose.Schema.Types.ObjectId, ref: "Housing" },
 });
 
 const User = model(`User`, userSchema);

@@ -1,1 +1,17 @@
-<p>navbar works!</p>
+<div *ngIf="showNav" class="nav-bar flex-col">
+  <ng-container *ngIf="navLinks && navLinks.length > 0; else defaultLinks">
+    <a
+      *ngFor="let link of navLinks; let i = index"
+      [routerLink]="link.path"
+      class="nav-link"
+    >
+      {{ link.title }}
+    </a>
+  </ng-container>
+  <ng-template #defaultLinks>
+    <a routerLink="/employee-profile" class="nav-link">Employee Profile</a>
+    <a routerLink="/visa-status" class="nav-link">Visa Status</a>
+    <a routerLink="/hiring-management" class="nav-link">Hiring Management</a>
+    <a routerLink="/housing-management" class="nav-link">Housing Management</a>
+  </ng-template>
+</div>

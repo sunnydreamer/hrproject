@@ -1,4 +1,4 @@
-form {
+.form-styles {
   background-color: white;
   margin-top: 0;
   padding: 30px;
@@ -31,13 +31,13 @@ form {
   text-align: left;
 }
 
-label {
+.form-label {
   font-size: $s-size;
   font-weight: bold;
   margin-right: 10px;
 }
 
-input {
+.form-input {
   width: 250px;
   padding: 12px 12px;
   font-size: $s-size;

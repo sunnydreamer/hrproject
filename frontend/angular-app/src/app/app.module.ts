@@ -11,6 +11,8 @@ import { VisaManagementComponent } from './pages/visa-management/visa-management
 import { HiringManagementComponent } from './pages/hiring-management/hiring-management.component';
 import { HousingManagementComponent } from './pages/housing-management/housing-management.component';
 import { VisaStatusComponent } from './pages/visa-status/visa-status.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ErrorComponent } from './pages/error/error.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { VisaStatusComponent } from './pages/visa-status/visa-status.component';
     HiringManagementComponent,
     HousingManagementComponent,
     VisaStatusComponent,
+    HeaderComponent,
+    ErrorComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

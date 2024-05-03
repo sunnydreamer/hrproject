@@ -13,16 +13,19 @@ const RegisterWithTokenPage = () => {
     // console.log(event.target.elements);
     const regToken = event.target.elements.regToken.value;
 
-    fetch(`http://localhost:3000/user/registration-with-token/${regLinkToken}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        regLinkTokenFromBody: regLinkToken,
-        regToken: regToken,
-      }),
-    })
+    fetch(
+      `http://localhost:3000/user/registration-with-token/${regLinkToken}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          regLinkTokenFromBody: regLinkToken,
+          regToken: regToken,
+        }),
+      }
+    )
       .then((res) => {
         // console.log(res);
         return res.json();
@@ -38,7 +41,8 @@ const RegisterWithTokenPage = () => {
             state: { email: data.email, regLinkToken, regToken },
           });
         }
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.log(error);
         res.status(500).json({ errors: ["500 Internal Server Error"] });
       });
@@ -46,19 +50,17 @@ const RegisterWithTokenPage = () => {
 
   return (
     <div className="main-content centered">
-      <form onSubmit={registerWithTokenSubmitHandler}>
+      <form className="form-styles" onSubmit={registerWithTokenSubmitHandler}>
         <div className="form-header">
           {/*<h2>{`Hi, ${"firstName"}!`}</h2>*/}
-          <h2>
-            Please submit your registration token below to get
-            started.
-          </h2>
+          <h2>Please submit your registration token below to get started.</h2>
         </div>
         <div className="form-group">
           <div className="field-group">
             <div className="flex-row centered">
-              <label>Registration Token: </label>
+              <label className="form-label">Registration Token: </label>
               <input
+                className="form-input"
                 name="regToken"
                 type="text"
                 placeholder="Registration Token"
