@@ -1,8 +1,25 @@
 import React from "react";
 
-const PersonalInfo = ({ userInfo, changeHandler }) => {
+const PersonalInfo = ({ userInfo, setUserInfo, changeHandler }) => {
+  const uploadPFP = (e) => {
+    const pfp = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = async () => {
+      const img = reader.result;
+
+      await setUserInfo({ ...userInfo, profilePicture: img });
+    };
+
+    reader.readAsDataURL(pfp);
+  };
+
   return (
     <>
+      <br />
+      <img src={userInfo.profilePicture} />
+      <input type="file" id="profilePicture" onChange={uploadPFP} />
+      <br />
       <label htmlFor="firstName">First Name: </label>
       <input
         type="text"
@@ -88,6 +105,14 @@ const PersonalInfo = ({ userInfo, changeHandler }) => {
         type="password"
         id="ssn"
         value={userInfo.ssn}
+        onChange={changeHandler}
+      />
+      <br />
+      <label htmlFor="dob">DOB: </label>
+      <input
+        type="Date"
+        id="dob"
+        value={userInfo.dob}
         onChange={changeHandler}
       />
       <br />

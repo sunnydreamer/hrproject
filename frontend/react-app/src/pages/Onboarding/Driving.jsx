@@ -10,6 +10,22 @@ const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
     if (e.target.value === `false`) setOwnCar(false);
   };
 
+  const uploadDriversLicense = (e) => {
+    const driversLicenseImg = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = async () => {
+      const img = reader.result;
+
+      await setUserInfo({
+        ...userInfo,
+        driversLicense: { ...userInfo.driversLicense, licenseImage: img },
+      });
+    };
+
+    reader.readAsDataURL(driversLicenseImg);
+  };
+
   return (
     <>
       <label htmlFor="hasDriversLicense">Do you have a driver's license?</label>
@@ -32,7 +48,9 @@ const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
             onChange={changeHandler}
           />
           <br />
-          <label htmlFor="driversLicense.expirationDate">Expiration Date: </label>
+          <label htmlFor="driversLicense.expirationDate">
+            Expiration Date:{" "}
+          </label>
           <input
             type="date"
             id="driversLicense.expirationDate"
@@ -40,13 +58,13 @@ const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
             onChange={changeHandler}
           />
           <br />
-          {/* How to upload image */}
-          <label htmlFor="driversLicense.licenseImage">Upload copy of license: </label>
+          <label htmlFor="driversLicense.licenseImage">
+            Upload copy of license:{" "}
+          </label>
           <input
-            type="text"
+            type="file"
             id="driversLicense.licenseImage"
-            value={userInfo.driversLicense.licenseImage}
-            onChange={changeHandler}
+            onChange={uploadDriversLicense}
           />
           <br />
           <label htmlFor="ownCar">Do you own a car? </label>

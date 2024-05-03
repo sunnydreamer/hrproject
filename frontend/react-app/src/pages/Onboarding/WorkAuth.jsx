@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const WorkAuth = ({ userInfo, changeHandler }) => {
+const WorkAuth = ({ userInfo, setUserInfo, changeHandler }) => {
   const [extraOptions, setExtraOptions] = useState(false);
   const [otherOption, setOtherOption] = useState(false);
   const [isF1, setIsF1] = useState(false);
@@ -26,6 +26,29 @@ const WorkAuth = ({ userInfo, changeHandler }) => {
     }
 
     changeHandler(e);
+  };
+
+  const uploadOptReceipt = (e) => {
+    const optReceipt = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = async () => {
+      const img = reader.result;
+
+      await setUserInfo({
+        ...userInfo,
+        opt: {
+          receipt: {
+            userId: userInfo._id,
+            documentType: `Receipt`,
+            document: img,
+            status: `Pending`,
+          },
+        },
+      });
+    };
+
+    reader.readAsDataURL(optReceipt);
   };
 
   return (
@@ -77,7 +100,8 @@ const WorkAuth = ({ userInfo, changeHandler }) => {
       ) : null}
       {isF1 ? (
         <>
-          <label>Please upload OPT receipt: </label>
+          <label htmlFor="optReceipt">Please upload OPT receipt: </label>
+          <input type="file" id="optReceipt" />
           <br />
         </>
       ) : null}

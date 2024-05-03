@@ -65,16 +65,21 @@ const OnboardingForm = ({ userInfo, setUserInfo }) => {
       {showInfo ? (
         <>
           <form>
-            <br />
-            <img src={userInfo.profilePicture} />
-            <br />
-            <PersonalInfo userInfo={userInfo} changeHandler={changeHandler} />
+            <PersonalInfo
+              userInfo={userInfo}
+              setUserInfo={setUserInfo}
+              changeHandler={changeHandler}
+            />
             <Driving
               userInfo={userInfo}
               setUserInfo={setUserInfo}
               changeHandler={changeHandler}
             />
-            <WorkAuth userInfo={userInfo} changeHandler={changeHandler} />
+            <WorkAuth
+              userInfo={userInfo}
+              setUserInfo={setUserInfo}
+              changeHandler={changeHandler}
+            />
             <Referral userInfo={userInfo} changeHandler={changeHandler} />
           </form>
 
