@@ -1,5 +1,7 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { RESET_STATE, resetState } from "../redux/redux";
 
 /**
  * props.navLinks: Array of objects with the following structure:
@@ -10,25 +12,28 @@ import { NavLink } from "react-router-dom";
  */
 
 const NavBar = (props) => {
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const logoutHandler = () => {
-    // For logging out
-    useEffect(() => {
-      fetch("http://localhost:3000/user/logout", {
-        method: "GET",
-        credentials: "include",
-      })
+    // Clean up redux store
+    dispatch(resetState());
+
+    // Clean up cookie
+    fetch("http://localhost:3000/user/logout", {
+      method: "GET",
+      credentials: "include",
+    })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
+        navigate("/user/login");
       })
       .catch((error) => {
         console.log(error);
       });
-    }, []);
   };
 
   return (
@@ -53,6 +58,17 @@ const NavBar = (props) => {
           <NavLink to="/user/housing" className="nav-link">
             Housing
           </NavLink>
+          <button
+            onClick={logoutHandler}
+            className="nav-link"
+            style={{
+              border: "none",
+              backgroundColor: "transparent",
+              padding: 0,
+              textAlign: "left",
+            }}>
+            Logout
+          </button>
         </>
       )}
     </div>
