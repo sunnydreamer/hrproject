@@ -1,1 +1,29 @@
-<p>employee-profile works!</p>
+
+
+
+
+<!-- <p>employee-profile works!</p> -->
+
+
+<div id="profile-container">
+    <div id="profile-search" >
+        <input [(ngModel)]="search">
+    </div>
+    <div id="profile-main">
+        <div id="profile-list">
+            profile-list
+            {{people | json}}
+            <div *ngFor="let pair of people | keyvalue">
+                <!-- Key: {{ pair.key }}, Value: {{ pair.value }} -->
+                <div *ngFor="let thing of pair.value | keyvalue">
+                    <a href="http://localhost:5173/user">
+                        {{ thing.key }} : {{ thing.value }}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

@@ -1,0 +1,31 @@
+#profile-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#profile-main{
+    display: flex;
+    flex-direction: row;
+}
+
+/* Style for the search bar */
+#profile-search {
+    background-color: red;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Style for the profile list */
+#profile-list {
+    padding: 10px;
+    /* border-bottom: 1px solid #ccc; */
+    background-color: green;
+    width: 100vw;
+}
+
+/* Style for the profile viewer */
+#profile-viewer {
+    padding: 10px;
+    background-color: blue;
+    width: 75vw;
+}
