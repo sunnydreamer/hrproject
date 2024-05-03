@@ -24,6 +24,7 @@ const Referral = ({ userInfo, changeHandler }) => {
             id="reference.firstName"
             value={userInfo.reference.firstName}
             onChange={changeHandler}
+            required
           />
           <br />
           <label htmlFor="reference.middleName">Middle Name: </label>
@@ -32,6 +33,7 @@ const Referral = ({ userInfo, changeHandler }) => {
             id="reference.middleName"
             value={userInfo.reference.middleName}
             onChange={changeHandler}
+            required
           />
           <br />
           <label htmlFor="reference.lastName">Last Name: </label>
@@ -40,6 +42,7 @@ const Referral = ({ userInfo, changeHandler }) => {
             id="reference.lastName"
             value={userInfo.reference.lastName}
             onChange={changeHandler}
+            required
           />
           <br />
           <label htmlFor="reference.preferredName">Preferred Name: </label>
@@ -48,6 +51,7 @@ const Referral = ({ userInfo, changeHandler }) => {
             id="reference.preferredName"
             value={userInfo.reference.preferredName}
             onChange={changeHandler}
+            required
           />
           <br />
           <label htmlFor="reference.phone">Phone: </label>
@@ -56,14 +60,16 @@ const Referral = ({ userInfo, changeHandler }) => {
             id="reference.phone"
             value={userInfo.reference.phone}
             onChange={changeHandler}
+            required
           />
           <br />
           <label htmlFor="reference.email">Email: </label>
           <input
-            type="text"
+            type="email"
             id="reference.email"
             value={userInfo.reference.email}
             onChange={changeHandler}
+            required
           />
           <br />
           <label htmlFor="reference.relationship">Relationship: </label>
@@ -72,6 +78,7 @@ const Referral = ({ userInfo, changeHandler }) => {
             id="reference.relationship"
             value={userInfo.reference.relationship}
             onChange={changeHandler}
+            required
           />
           <br />
         </>

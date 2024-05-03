@@ -65,6 +65,7 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler }) => {
         id="workAuthorization"
         value={userInfo.workAuthorization}
         onChange={citiGreenChange}
+        required
       >
         <option></option>
         <option value={"citizen"}>Citizen</option>
@@ -81,6 +82,7 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler }) => {
             id="workAuthorization"
             value={userInfo.workAuthorization}
             onChange={citiGreenChange}
+            required
           >
             <option></option>
             <option value={"H1-B"}>H1-B</option>
@@ -95,6 +97,7 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler }) => {
             id="workAuthorizationStart"
             value={userInfo.workAuthorizationStart}
             onChange={changeHandler}
+            required
           />
           <br />
           <label htmlFor="workAuthorizationEnd">End Date: </label>
@@ -103,6 +106,7 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler }) => {
             id="workAuthorizationEnd"
             value={userInfo.workAuthorizationEnd}
             onChange={changeHandler}
+            required
           />
           <br />
         </>
@@ -115,6 +119,7 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler }) => {
             id="workAuthorization"
             value={userInfo.workAuthorization}
             onChange={changeHandler}
+            required
           />
           <br />
         </>
@@ -122,7 +127,7 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler }) => {
       {isF1 ? (
         <>
           <label htmlFor="optReceipt">Please upload OPT receipt: </label>
-          <input type="file" id="optReceipt" />
+          <input type="file" id="optReceipt" required />
           <br />
         </>
       ) : null}

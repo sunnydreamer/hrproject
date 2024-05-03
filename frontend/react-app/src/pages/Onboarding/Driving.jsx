@@ -33,6 +33,7 @@ const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
         id="hasDriversLicense"
         value={userInfo.hasDriversLicense}
         onChange={changeHandler}
+        required
       >
         <option value={true}>Yes</option>
         <option value={false}>No</option>
@@ -46,6 +47,7 @@ const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
             id="driversLicense.licenseNumber"
             value={userInfo.driversLicense.licenseNumber}
             onChange={changeHandler}
+            required
           />
           <br />
           <label htmlFor="driversLicense.expirationDate">
@@ -56,6 +58,7 @@ const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
             id="driversLicense.expirationDate"
             value={userInfo.driversLicense.expirationDate}
             onChange={changeHandler}
+            required
           />
           <br />
           <label htmlFor="driversLicense.licenseImage">
@@ -65,10 +68,11 @@ const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
             type="file"
             id="driversLicense.licenseImage"
             onChange={uploadDriversLicense}
+            required
           />
           <br />
           <label htmlFor="ownCar">Do you own a car? </label>
-          <select id="ownCar" value={ownCar} onChange={ownCarHandler}>
+          <select id="ownCar" value={ownCar} onChange={ownCarHandler} required>
             <option value={true}>Yes</option>
             <option value={false}>No</option>
           </select>
@@ -81,6 +85,7 @@ const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
                 id="carInfo.make"
                 value={userInfo.carInfo.make}
                 onChange={changeHandler}
+                required
               />
               <br />
               <label htmlFor="carInfo.model">Model: </label>
@@ -89,6 +94,7 @@ const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
                 id="carInfo.model"
                 value={userInfo.carInfo.model}
                 onChange={changeHandler}
+                required
               />
               <br />
               <label htmlFor="carInfo.color">Color: </label>
@@ -97,6 +103,7 @@ const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
                 id="carInfo.color"
                 value={userInfo.carInfo.color}
                 onChange={changeHandler}
+                required
               />
               <br />
             </>

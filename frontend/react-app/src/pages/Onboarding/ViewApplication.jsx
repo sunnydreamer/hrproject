@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const ViewApplication = ({ userInfo }) => {
   const [emergencyContacts, setEmergencyContacts] = useState([]);
-console.log(emergencyContacts)
+
   useEffect(() => {
     fetchEmergencyContacts();
   }, []);
@@ -26,7 +26,6 @@ console.log(emergencyContacts)
     }
   };
 
-  console.log(userInfo);
   return (
     <>
       <h2>View Application</h2>

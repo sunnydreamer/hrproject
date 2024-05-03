@@ -26,6 +26,7 @@ const PersonalInfo = ({ userInfo, setUserInfo, changeHandler }) => {
         id="firstName"
         value={userInfo.firstName}
         onChange={changeHandler}
+        required
       />
       <br />
       <label htmlFor="lastName">Last Name: </label>
@@ -34,6 +35,7 @@ const PersonalInfo = ({ userInfo, setUserInfo, changeHandler }) => {
         id="lastName"
         value={userInfo.lastName}
         onChange={changeHandler}
+        required
       />
       <br />
       <label htmlFor="middleName">Middle Name: </label>
@@ -58,6 +60,14 @@ const PersonalInfo = ({ userInfo, setUserInfo, changeHandler }) => {
         id="phone.cell"
         value={userInfo.phone.cell}
         onChange={changeHandler}
+        required
+      />
+      <label htmlFor="phone.work">Phone Number (work): </label>
+      <input
+        type="text"
+        id="phone.work"
+        value={userInfo.phone.work}
+        onChange={changeHandler}
       />
       <br />
       <label htmlFor="address.street">Street: </label>
@@ -66,6 +76,7 @@ const PersonalInfo = ({ userInfo, setUserInfo, changeHandler }) => {
         id="address.street"
         value={userInfo.address.street}
         onChange={changeHandler}
+        required
       />
       <br />
       <label htmlFor="address.streetLine2">Street 2: </label>
@@ -82,6 +93,7 @@ const PersonalInfo = ({ userInfo, setUserInfo, changeHandler }) => {
         id="address.city"
         value={userInfo.address.city}
         onChange={changeHandler}
+        required
       />
       <br />
       <label htmlFor="address.state">State: </label>
@@ -90,6 +102,7 @@ const PersonalInfo = ({ userInfo, setUserInfo, changeHandler }) => {
         id="address.state"
         value={userInfo.address.state}
         onChange={changeHandler}
+        required
       />
       <br />
       <label htmlFor="address.zip">Zip: </label>
@@ -98,6 +111,7 @@ const PersonalInfo = ({ userInfo, setUserInfo, changeHandler }) => {
         id="address.zip"
         value={userInfo.address.zip}
         onChange={changeHandler}
+        required
       />
       <br />
       <label htmlFor="ssn">SSN: </label>
@@ -106,6 +120,7 @@ const PersonalInfo = ({ userInfo, setUserInfo, changeHandler }) => {
         id="ssn"
         value={userInfo.ssn}
         onChange={changeHandler}
+        required
       />
       <br />
       <label htmlFor="dob">DOB: </label>
@@ -114,6 +129,7 @@ const PersonalInfo = ({ userInfo, setUserInfo, changeHandler }) => {
         id="dob"
         value={userInfo.dob}
         onChange={changeHandler}
+        required
       />
       <br />
       <label htmlFor="gender">Gender: </label>
