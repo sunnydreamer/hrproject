@@ -3,10 +3,12 @@
 <button (click) = "openDialog()">Add House</button>
 <!-- <app-house-modal></app-house-modal> -->
 <div id="main-house">
-    <app-housing-view>
+    <app-housing-view [allHouses]="houses" (newItemEvent)="showHouse($event)">
     </app-housing-view>
     <!-- add the summary here -->
     <div id="box">
+        <!-- stored in this. currHoue -->
+        {{currHouse | json}}
     </div>
 
 </div>

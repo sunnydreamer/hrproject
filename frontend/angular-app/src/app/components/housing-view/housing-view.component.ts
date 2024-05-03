@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-housing-view',
@@ -7,24 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HousingViewComponent implements OnInit {
 
+  @Input() allHouses: Array<any> = [];
+  @Output() newItemEvent = new EventEmitter<string>();
+
+
   constructor() { }
-  houses = [
-    { name: 'House 1', description: 'Description of House 1' },
-    { name: 'House 2', description: 'Description of House 2' },
-    { name: 'House 2', description: 'Description of House 2' },
-    { name: 'House 2', description: 'Description of House 2' },
-    { name: 'House 2', description: 'Description of House 2' },
-    { name: 'House 2', description: 'Description of House 2' },
-    { name: 'House 2', description: 'Description of House 2' },
-    { name: 'House 2', description: 'Description of House 2' },
-    { name: 'House 2', description: 'Description of House 2' },
-    { name: 'House 2', description: 'Description of House 2' },
-    // Add more house objects as needed
-  ];
 
   selectHouse(selectedHouse: any) {
-    console.log('Selected house:', selectedHouse);
+    // console.log('Selected house:', selectedHouse);
     // Handle selected house here
+    //emit the house selected
+    this.newItemEvent.emit(selectedHouse);
   }
 
 

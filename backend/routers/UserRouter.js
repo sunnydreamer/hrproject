@@ -11,6 +11,8 @@ const GetHRProfile = require("../controllers/GetHRProfile");
 
 
 const GetHousingInfo = require("../controllers/GetHousingInfo");
+const GetAllHousingInfo = require("../controllers/GetAllHousingInfo");
+
 const UserController = require("../controllers/UserController");
 
 const { auth, authBlock } = require("../middlewares/authMiddleware");
@@ -173,6 +175,8 @@ router
 
   // user housing page
   .get("/housing", GetHousingInfo)
+  .get("/housing/all", GetAllHousingInfo)
+
 
   //create housing report 
   .put("/housing/report", PutHousingReport)

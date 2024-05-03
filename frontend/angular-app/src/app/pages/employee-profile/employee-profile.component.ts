@@ -39,6 +39,9 @@ export class EmployeeProfileComponent implements OnInit {
   
   //inject the http here
   constructor(private http: HttpClient) {
+
+   }
+  ngOnInit(): void {
     this.http.get<any[]>('http://localhost:3000/user/hr/userprofiles').subscribe(response => {
       this.people = response;
       this.peopleStatic = response;
@@ -56,10 +59,7 @@ export class EmployeeProfileComponent implements OnInit {
         return 0;
       });
       
-      console.log( response, "=========");
     });
-   }
-  ngOnInit(): void {
   }
 
 }
