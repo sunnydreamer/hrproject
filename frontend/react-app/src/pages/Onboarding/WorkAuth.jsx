@@ -10,6 +10,11 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler }) => {
       setExtraOptions(false);
       setOtherOption(false);
       setIsF1(false);
+      setUserInfo({
+        ...userInfo,
+        workAuthorizationStart: null,
+        workAuthorizationEnd: null,
+      });
     }
     if (e.target.value === `no`) {
       setOtherOption(false);
@@ -83,6 +88,22 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler }) => {
             <option value={"F1"}>F1</option>
             <option value={"other"}>other</option>
           </select>
+          <br />
+          <label htmlFor="workAuthorizationStart">Start Date: </label>
+          <input
+            type="Date"
+            id="workAuthorizationStart"
+            value={userInfo.workAuthorizationStart}
+            onChange={changeHandler}
+          />
+          <br />
+          <label htmlFor="workAuthorizationEnd">End Date: </label>
+          <input
+            type="Date"
+            id="workAuthorizationEnd"
+            value={userInfo.workAuthorizationEnd}
+            onChange={changeHandler}
+          />
           <br />
         </>
       ) : null}

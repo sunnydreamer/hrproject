@@ -7,7 +7,7 @@ const Driving = ({ userInfo, setUserInfo, changeHandler }) => {
       setOwnCar(true);
       setUserInfo({ ...userInfo, carInfo: { make: ``, model: ``, color: `` } });
     }
-    if (e.target.value === `false`) setOwnCar(false);
+    if (e.target.value === `false`) {setOwnCar(false)}
   };
 
   const uploadDriversLicense = (e) => {

@@ -162,6 +162,8 @@ router
   .get(`/onboarding/getUser`, OnboardingController.fetchUserById)
   .post(`/onboarding/eContact`, OnboardingController.addEmergencyContact)
   .put(`/onboarding/updateUser`, OnboardingController.updateUserInfo)
+  //fetch contacts has to be post since get with body can cause problems
+  .post(`/onboarding/fetchContacts`, OnboardingController.fetchEmergencyContacts)
 
   // user info page
   .put("/info", (req, res) => {

@@ -47,13 +47,16 @@ const OnboardingForm = ({ userInfo, setUserInfo }) => {
           headers: {
             "Content-Type": `application/json`,
           },
-          body: JSON.stringify({ userInfo }),
+          body: JSON.stringify({
+            userInfo: { ...userInfo, onboardingStatus: `Pending` },
+          }),
         }
       );
 
       const result = await response.json();
 
       console.log(result);
+      location.reload();
     } catch (error) {
       console.error(error);
     }

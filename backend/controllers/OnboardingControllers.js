@@ -43,4 +43,26 @@ const addEmergencyContact = async (req, res) => {
   }
 };
 
-module.exports = { fetchUserById, updateUserInfo, addEmergencyContact };
+const fetchEmergencyContacts = async (req, res) => {
+  try {
+    const { contactIdList } = req.body;
+    const fetchedContacts = [];
+
+    for (let i = 0; i < contactIdList.length; i++) {
+      const contact = await EmergencyContact.findById(contactIdList[i]);
+      fetchedContacts.push(contact);
+    }
+
+    res.send(fetchedContacts);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+module.exports = {
+  fetchUserById,
+  updateUserInfo,
+  addEmergencyContact,
+  fetchEmergencyContacts,
+};
