@@ -1,0 +1,12 @@
+.scrollable-container {
+    max-height: 100vh; /* Adjust height as needed */
+    overflow-y: auto;
+  }
+  
+  .house {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    background-color: #f9f9f9;
+  }

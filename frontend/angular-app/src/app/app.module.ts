@@ -12,6 +12,8 @@ import { HiringManagementComponent } from './pages/hiring-management/hiring-mana
 import { HousingManagementComponent } from './pages/housing-management/housing-management.component';
 import { VisaStatusComponent } from './pages/visa-status/visa-status.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HousingViewComponent } from './components/housing-view/housing-view.component';
+
 
 
 @NgModule({
@@ -26,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     HiringManagementComponent,
     HousingManagementComponent,
     VisaStatusComponent,
+    HousingViewComponent
   ],
   imports: [BrowserModule,
             AppRoutingModule,

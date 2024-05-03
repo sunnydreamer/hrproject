@@ -1,0 +1,8 @@
+<!-- house-selector.component.html -->
+<div class="scrollable-container">
+    <div *ngFor="let house of houses" class="house" (click)="selectHouse(house)">
+      <h3>{{ house.name }}</h3>
+      <p>{{ house.description }}</p>
+      <!-- Display other details of the house -->
+    </div>
+  </div>
