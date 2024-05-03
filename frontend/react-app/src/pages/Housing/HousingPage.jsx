@@ -13,6 +13,7 @@ const HousingPage = () => {
   const [data, setData] = useState();
   const [houseInfo, setHouseInfo] = useState(null);
   const [comment, setComment] = useState("");
+  // console.log(houseInfo, data)
 
   const [showComment, setShowComment] = useState({
     showBool : false,
@@ -50,11 +51,15 @@ const HousingPage = () => {
 function fetchfoo(){
     axios.get("http://localhost:3000/user/housing")
     .then(res => {
+
+      console.log(res.data)
       const initData = {
         housing : res.data.house
       }
+
       setHouseInfo(initData); 
       setData(res.data);
+ 
 
       // userId = res.data._id;
     })
@@ -73,7 +78,6 @@ function handleComment(event){
   axios.put("http://localhost:3000/user/housing/report/comment", payload)
   .then(response =>
     {
-      // console.log(response.data, "========")
       setComment("")
       setIsOpen(false);
     }
@@ -101,7 +105,7 @@ function handleComment(event){
           <h2 className='Housing'>Facility Report</h2>
           <button onClick={openModal}>New Report</button>
           <Modal isOpen={isOpen} onClose={closeModal} />
-          <HousingReport data={data} setShowComment={setShowComment}></HousingReport>
+          {/* <HousingReport data={data} setShowComment={setShowComment}></HousingReport> */}
 
           {showComment.showBool? 
           <div>

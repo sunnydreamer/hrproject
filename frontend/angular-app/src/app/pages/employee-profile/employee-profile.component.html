@@ -1,1 +1,35 @@
-<p>employee-profile works!</p>
+
+
+
+
+<!-- <p>employee-profile works!</p> -->
+
+
+<div id="profile-container">
+    <div id="profile-search" >
+        <input [(ngModel)]="search" (input)="onSearchChange($event)">
+        <!-- (change)="onInputChange($event)" -->
+    </div>
+    <div id="profile-main">
+        <div id="profile-list">
+            <h1>Profiles</h1>
+            <!-- {{people | json}} -->
+            <div *ngFor="let person of people" class="profile-box">
+                <img src={{person.profilePicture}} alt="ProfilePic">
+                <p>Name: 
+                    <!-- <a href="http://localhost:5173/user" id={{person._id}}> -->
+                    <a [href]="'http://localhost:5173/user/hruser/' + person._id">
+
+                    {{ person.firstName }} {{ person.lastName }} {{ person.preferredName? "("+ person.preferredName + ")" : ""}}
+                    </a>
+                </p>
+                <p>SSN: {{person.ssn}}</p>
+                <p>Work Authorization: {{person.workAuthorization}}</p>
+                <p>Phone: {{person.phone.cell ? person.phone.cell: person.phone.work}}</p>
+                <p>Email: {{person.email}}</p>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -22,13 +22,13 @@ function HousingDetail({ houseInfo }){
 // zip
 // : 
 // "12345"
-    const address = houseInfo.housing.address.street + " "
-                    + houseInfo.housing.address.city + ", "
-                    + houseInfo.housing.address.state + ", "
-                    + houseInfo.housing.address.zip + " "
+    const address = houseInfo.housing?.address.street + " "
+                    + houseInfo.housing?.address.city + ", "
+                    + houseInfo.housing?.address.state + ", "
+                    + houseInfo.housing?.address.zip + " "
 
     // const roomates = houseInfo.housing.roommates[0].firstName;
-    const roommates = houseInfo.housing.roommates;
+    const roommates = houseInfo.housing?.roommates;
 
 
 
@@ -52,7 +52,7 @@ function HousingDetail({ houseInfo }){
                     <h3>Roomates</h3>
                     <ul>
                         {/* for now there are none */}
-                        {roommates.map((each, index) => 
+                        {roommates?.map((each, index) => 
 
                             <li key={index}> {each.firstName} {each.lastName}
                                 <br/>

@@ -7,9 +7,14 @@ const PostUserInfo = require("../controllers/PostUserInfo");
 const PostUserContact = require("../controllers/PostUserContact");
 const PutHousingReport = require("../controllers/PutHousingReport.js");
 const PutHousingReportComment = require("../controllers/PutHousingReportComment.js");
+
+const GetHRProfile = require("../controllers/GetHRProfile");
 const OnboardingController = require("../controllers/OnboardingControllers.js");
 
+
 const GetHousingInfo = require("../controllers/GetHousingInfo");
+const GetAllHousingInfo = require("../controllers/GetAllHousingInfo");
+
 const UserController = require("../controllers/UserController");
 
 const { auth, authBlock } = require("../middlewares/authMiddleware");
@@ -178,10 +183,17 @@ router
 
   // user housing page
   .get("/housing", GetHousingInfo)
+  .get("/housing/all", GetAllHousingInfo)
+
 
   //create housing report
   .put("/housing/report", PutHousingReport)
-  .put("/housing/report/comment", PutHousingReportComment);
+  .put("/housing/report/comment", PutHousingReportComment)
+
+  // get user for HR
+  .get("/hr/userprofiles/", GetHRProfile)
+  .get("/hr/userprofiles/:id", GetHRProfile)
+
 
 // .put("/housing/report/:reportid", (req, res) => {
 //   res.send("Replied facility report successfully");
