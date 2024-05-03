@@ -36,7 +36,6 @@ export class EmployeeProfileComponent implements OnInit {
 
     this.people = filteredPeople;
   }
-
   
   //inject the http here
   constructor(private http: HttpClient) {
@@ -57,7 +56,7 @@ export class EmployeeProfileComponent implements OnInit {
         return 0;
       });
       
-      console.log( response);
+      console.log( response, "=========");
     });
    }
   ngOnInit(): void {

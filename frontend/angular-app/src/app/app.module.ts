@@ -13,6 +13,9 @@ import { HousingManagementComponent } from './pages/housing-management/housing-m
 import { VisaStatusComponent } from './pages/visa-status/visa-status.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HousingViewComponent } from './components/housing-view/housing-view.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { HouseModalComponent } from './house-modal/house-modal.component';
 
 
 
@@ -28,12 +31,16 @@ import { HousingViewComponent } from './components/housing-view/housing-view.com
     HiringManagementComponent,
     HousingManagementComponent,
     VisaStatusComponent,
-    HousingViewComponent
+    HousingViewComponent,
+    HouseModalComponent
   ],
   imports: [BrowserModule,
             AppRoutingModule,
             FormsModule,
-            HttpClientModule
+            HttpClientModule,
+            BrowserAnimationsModule,
+            MatDialogModule
+
           ],
   providers: [],
   bootstrap: [AppComponent],

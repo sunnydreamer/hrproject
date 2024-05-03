@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>New House</h1>
+<div mat-dialog-content>
+  <!-- Provide an address, landlord information, basic facility information -->
+  <input type="text" placeholder="Address" [(ngModel)]="address" name="address">
+
+  <!-- Landlord information -->
+  <input type="text" placeholder="Landlord Name" [(ngModel)]="landlordName" name="landlordName">
+  <input type="text" placeholder="Landlord Contact" [(ngModel)]="landlordContact" name="landlordContact">
+  
+<!-- add the basic facility info here -->
+<input type="text" placeholder="Beds" [(ngModel)]="beds" name="beds">
+<input type="text" placeholder="Mattresses" [(ngModel)]="mattresses" name="mattresses">
+<input type="text" placeholder="Tables" [(ngModel)]="tables" name="tables">
+<input type="text" placeholder="Chairs" [(ngModel)]="chairs" name="chairs">
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Close</button>
+</div>
