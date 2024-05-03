@@ -8,7 +8,82 @@
     <!-- add the summary here -->
     <div id="box">
         <!-- stored in this. currHoue -->
-        {{currHouse | json}}
+        <!-- {{currHouse | json}} -->
+        <!-- a. Number of beds, mattresses, tables, chairs
+        b. Facility reports for that house (title, date, status)
+        i. Display 3-5 reports per page, sorted by date/time created
+        ii. Each report should display the title, description, created by, timestamp, and status (Open, In Progress, Closed)
+        iii. It should also display the list of comments (description, created by, timestamp)
+        iv. HR should be able to add or update their own comments -->
+
+        <h2>Info</h2>
+        <h3>Address: <br>
+            {{currHouse.address.street + " " + currHouse.address.streetLine2 +  ", " + currHouse.address.city + " " + currHouse.address.state + ", " + currHouse.address.zip}}</h3>
+        <h3>Landlord:</h3>
+        <ul>
+            <li>Name: {{currHouse.landlord.fullName}}</li>
+            <li>Phone: {{currHouse.landlord.phone}}</li>
+            <li>Email: {{currHouse.landlord.email}}</li>
+        </ul>
+        <hr>
+        <h3>Beds: {{currHouse.beds}} </h3>
+        <h3>Mattresses: {{currHouse.mattresses || ""}}</h3>
+        <h3>Tables: {{currHouse.tables || ""}}</h3>
+        <h3>Chairs: {{currHouse.chairs || ""}}</h3>
+
+
+
+        <!-- employee information -->
+
+        <hr>
+        <h2>Employee</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Car</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let person of currHouse.roommates">
+                    <td>
+                        {{ person.firstName + (person.preferredName ? "(" + person.preferredName + ") " : '') + ' ' + person.lastName }}
+                    </td>
+                    <td>
+                        {{person.phone.cell}}
+                    </td>
+                    <td>
+                        {{person.email}}
+                    </td>
+                    <td>
+                        {{person.carInfo.make ? person.carInfo.color + " "+ person.carInfo.make + " " + person.carInfo.model
+                            : 
+                            "None"
+                        }}
+                    </td>
+                </tr>
+
+
+            </tbody>
+
+        </table>
+
+
+        <hr>
+        <!-- Facility info -->
+        <h2>Facility Info</h2>
+
+        <!-- e (title, date, status) -->
+
+        <!-- <h3>{{currHouse.housingReport.title + " | " + currHouse.housingReport.status  + " | " +currHouse.housingReport.timestamp}} </h3> -->
+        {{currHouse.housingReport | json}}
+
+        <!-- {{currHouse.housingReport._id }} -->
+
+
     </div>
 
 </div>

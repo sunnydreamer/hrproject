@@ -11,11 +11,11 @@ async function GetAllHousingInfo(req, res){
     // let userid = //get this from the token middlwear... don't worry for now
 
     try {
-        let all = await Housing.find();
+        let all = await Housing.find()
+        .populate("roommates")
+        .populate("housingReport");
 
-
-
-        // console.log(JSON.stringify(CurrUser.house[0]));
+        console.log(JSON.stringify(all));
 
         if (!all) {
             return res.status(404).json({ message: 'User not found' });

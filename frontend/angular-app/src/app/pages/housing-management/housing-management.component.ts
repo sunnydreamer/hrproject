@@ -11,10 +11,11 @@ import { HttpClient } from '@angular/common/http';
 export class HousingManagementComponent implements OnInit {
 
   houses: Array<object> = [];
-  currHouse : object = {};
+  currHouse : any = {};
+
 
   showHouse($event: any){
-    console.log($event);
+    // console.log($event);
     this.currHouse = $event;
   }
 
@@ -29,14 +30,18 @@ export class HousingManagementComponent implements OnInit {
   
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.ngOnInit();
     });
+
   }
 
   ngOnInit(): void {
     this.http.get<any[]>('http://localhost:3000/user/housing/all').subscribe(response => {
-      console.log(response);
+      // console.log(response);
       this.houses = response;
       this.currHouse = this.houses[0];
+      // console.log(this.currHouse);
+
     });
   }
 }

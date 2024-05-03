@@ -12,12 +12,14 @@ const housingSchema = new Schema({
     roommates: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     housingReport: [{ type: mongoose.Schema.Types.ObjectId, ref: "HousingReport" }],
     landlord: {
-      fullName: {type: String, required: true, default:""},
-      phone: {type: String, required: true, default:""},
-      email: {type: String, required: true, default:""},
-    }
-
-
+      fullName: {type: String, default:"Some name"},
+      phone: {type: String, default:"some phone"},
+      email: {type: String, default:"some email"},
+    },
+    tables: {type:Number, required: true, default:1},
+    chairs: {type:Number, required: true, default:1},
+    beds: {type:Number, required: true, default:1},
+    mattresses: {type:Number, required: true, default:1}
 });
 
 const Housing = model("Housing", housingSchema);
