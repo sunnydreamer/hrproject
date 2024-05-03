@@ -17,7 +17,9 @@
             <div *ngFor="let person of people" class="profile-box">
                 <img src={{person.profilePicture}} alt="ProfilePic">
                 <p>Name: 
-                    <a href="http://localhost:5173/user">
+                    <!-- <a href="http://localhost:5173/user" id={{person._id}}> -->
+                    <a [href]="'http://localhost:5173/user/hruser/' + person._id">
+
                     {{ person.firstName }} {{ person.lastName }} {{ person.preferredName? "("+ person.preferredName + ")" : ""}}
                     </a>
                 </p>

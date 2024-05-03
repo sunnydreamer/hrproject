@@ -179,8 +179,8 @@ router
   .put("/housing/report/comment", PutHousingReportComment)
 
   // get user for HR
-
-  .get("/hr/userprofiles", GetHRProfile)
+  .get("/hr/userprofiles/", GetHRProfile)
+  .get("/hr/userprofiles/:id", GetHRProfile)
 
 
 

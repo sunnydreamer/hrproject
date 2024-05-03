@@ -6,9 +6,10 @@ const User = require("../models/userModel");
 // wait for the token, add it to the middlewear
 async function GetHRProfile(req, res){
     // let userid = //get this from the token middlwear... don't worry for now
+    const id = req.params.id;
 
     try {
-        let CurrUser = await User.find();
+        let CurrUser = await User.find({_id: id });
 
         if (!CurrUser) {
             return res.status(404).json({ message: 'User not found' });

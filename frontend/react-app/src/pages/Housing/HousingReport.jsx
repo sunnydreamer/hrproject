@@ -16,7 +16,7 @@ function HousingReport({data, setShowComment}){
 
 
     if(!houseReport){
-        console.log("dones't exist")
+        console.log("doesn't exist")
     }
 
     if (!Array.isArray(houseReport)) {
