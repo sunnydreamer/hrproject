@@ -7,7 +7,7 @@ const PostUserInfo = require("../controllers/PostUserInfo");
 const PostUserContact = require("../controllers/PostUserContact");
 const PutHousingReport = require("../controllers/PutHousingReport.js");
 const PutHousingReportComment = require("../controllers/PutHousingReportComment.js");
-
+const GetHRProfile = require("../controllers/GetHRProfile");
 
 
 const GetHousingInfo = require("../controllers/GetHousingInfo");
@@ -178,6 +178,9 @@ router
   .put("/housing/report", PutHousingReport)
   .put("/housing/report/comment", PutHousingReportComment)
 
+  // get user for HR
+
+  .get("/hr/userprofiles", GetHRProfile)
 
 
 

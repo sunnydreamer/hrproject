@@ -7,22 +7,26 @@
 
 <div id="profile-container">
     <div id="profile-search" >
-        <input [(ngModel)]="search">
+        <input [(ngModel)]="search" (input)="onSearchChange($event)">
+        <!-- (change)="onInputChange($event)" -->
     </div>
     <div id="profile-main">
         <div id="profile-list">
-            profile-list
-            {{people | json}}
-            <div *ngFor="let pair of people | keyvalue">
-                <!-- Key: {{ pair.key }}, Value: {{ pair.value }} -->
-                <div *ngFor="let thing of pair.value | keyvalue">
+            <h1>Profiles</h1>
+            <!-- {{people | json}} -->
+            <div *ngFor="let person of people" class="profile-box">
+                <img src={{person.profilePicture}} alt="ProfilePic">
+                <p>Name: 
                     <a href="http://localhost:5173/user">
-                        {{ thing.key }} : {{ thing.value }}
+                    {{ person.firstName }} {{ person.lastName }} {{ person.preferredName? "("+ person.preferredName + ")" : ""}}
                     </a>
-                </div>
+                </p>
+                <p>SSN: {{person.ssn}}</p>
+                <p>Work Authorization: {{person.workAuthorization}}</p>
+                <p>Phone: {{person.phone.cell ? person.phone.cell: person.phone.work}}</p>
+                <p>Email: {{person.email}}</p>
             </div>
         </div>
-
     </div>
 
 
