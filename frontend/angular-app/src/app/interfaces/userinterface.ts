@@ -90,6 +90,12 @@ export interface VisaPendingUser {
     documentName: string;
     action: string;
   };
+  allApprovedDocuments: {
+    receipt: string;
+    ead: string;
+    i983: string;
+    i20: string;
+  };
   workAuthorizationStart: string | null;
   workAuthorizationEnd: string | null;
   daysRemaining: string | number;

@@ -9,18 +9,42 @@ import { VisaPendingUser } from 'src/app/interfaces/userinterface';
 })
 export class VisaStatusComponent implements OnInit {
   constructor(private http: HttpClient) {}
-  VisaPendingUsers: VisaPendingUser[] = [];
+  visaPendingUsers: VisaPendingUser[] = [];
   selectedOption: string = 'Pending';
+  allVisaUsers: any[] = [];
+  peopleStatic: any[] = [];
+  search: string = '';
 
   ngOnInit(): void {
+    // Fetch visa pending users
     this.http
       .get<{ message: string; data: VisaPendingUser[] }>(
         'http://localhost:3000/hr/getVisaPendingUsers'
       )
       .subscribe((response) => {
-        console.log(response);
-        this.VisaPendingUsers = response.data;
-        console.log(this.VisaPendingUsers);
+        this.visaPendingUsers = response.data;
+      });
+
+    // Fetch user profiles
+    this.http
+      .get<{ message: string; data: VisaPendingUser[] }>(
+        'http://localhost:3000/hr/getAllVisaUsers'
+      )
+      .subscribe((response) => {
+        this.allVisaUsers = response.data;
+        this.peopleStatic = response.data;
+        // sort alpha by last name
+        this.allVisaUsers.sort((a, b) => {
+          const nameA = a.name.toUpperCase();
+          const nameB = b.name.toUpperCase();
+          if (nameA > nameB) {
+            return -1;
+          }
+          if (nameA < nameB) {
+            return 1;
+          }
+          return 0;
+        });
       });
   }
 }

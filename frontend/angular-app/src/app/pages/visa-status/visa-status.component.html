@@ -16,7 +16,7 @@
   </div>
 
   <div *ngIf="selectedOption === 'Pending'">
-    <ng-container *ngFor="let user of VisaPendingUsers">
+    <ng-container *ngFor="let user of visaPendingUsers">
       <app-user-card
         [name]="user.name"
         [workAuthorization]="user.workAuthorization"
@@ -24,6 +24,23 @@
         [endDate]="user.workAuthorizationEnd"
         [daysRemaining]="user.daysRemaining"
         [nextStep]="user.nextStep"
+        [showAction]="true"
+        [showAllApprovedFiles]="false"
+      ></app-user-card>
+    </ng-container>
+  </div>
+  <div *ngIf="selectedOption === 'All'">
+    <ng-container *ngFor="let user of allVisaUsers">
+      <app-user-card
+        [name]="user.name"
+        [workAuthorization]="user.workAuthorization"
+        [startDate]="user.workAuthorizationStart"
+        [endDate]="user.workAuthorizationEnd"
+        [daysRemaining]="user.daysRemaining"
+        [nextStep]="user.nextStep"
+        [showAction]="false"
+        [showAllApprovedFiles]="true"
+        [allApprovedDocuments]="user.allApprovedDocuments"
       ></app-user-card>
     </ng-container>
   </div>

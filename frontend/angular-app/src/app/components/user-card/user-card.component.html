@@ -1,6 +1,8 @@
 <mat-card class="card">
   <mat-card-header>
-    <mat-card-title>{{ name }}</mat-card-title>
+    <div class="titleContainer">
+      <mat-card-title>{{ name }}</mat-card-title>
+    </div>
     <div class="user-info-col">
       <mat-card-subtitle
         >Work Authorization: {{ workAuthorization }}</mat-card-subtitle
@@ -29,33 +31,44 @@
 
       <mat-card-subtitle>Next step: {{ nextStep.action }}</mat-card-subtitle>
     </div>
+    <div *ngIf="showAllApprovedFiles" class="user-info-col">
+      <mat-card-subtitle>Approved Documents</mat-card-subtitle>
+      <div *ngFor="let document of allApprovedDocuments | keyvalue">
+        <span>{{ document.key }}</span>
+        <button mat-button color="primary" (click)="openLink(document.value)">
+          View Files
+        </button>
+      </div>
+    </div>
   </mat-card-header>
-  <mat-card-actions align="end" *ngIf="nextStep?.action === 'review'">
-    <button mat-button (click)="openLink(nextStep.documentLink)">
-      View Files
-    </button>
-    <button mat-button (click)="approveDocument(nextStep.documentId)">
-      Approve
-    </button>
-    <button mat-button (click)="toggleInput()">Reject</button>
-  </mat-card-actions>
-  <div *ngIf="showNewInput" align="end">
-    <input
-      id="comment"
-      type="text"
-      placeholder="Comment"
-      [(ngModel)]="comment"
-    />
-    <button
-      mat-flat-button
-      color="primary"
-      mat-button
-      (click)="rejectDocument(nextStep.documentId, comment)"
-    >
-      Send
-    </button>
+  <div *ngIf="showAction">
+    <mat-card-actions align="end" *ngIf="nextStep?.action === 'review'">
+      <button mat-button (click)="openLink(nextStep.documentLink)">
+        View Files
+      </button>
+      <button mat-button (click)="approveDocument(nextStep.documentId)">
+        Approve
+      </button>
+      <button mat-button (click)="toggleInput()">Reject</button>
+    </mat-card-actions>
+    <div *ngIf="showNewInput" align="end">
+      <input
+        id="comment"
+        type="text"
+        placeholder="Comment"
+        [(ngModel)]="comment"
+      />
+      <button
+        mat-flat-button
+        color="primary"
+        mat-button
+        (click)="rejectDocument(nextStep.documentId, comment)"
+      >
+        Send
+      </button>
+    </div>
+    <mat-card-actions align="end" *ngIf="nextStep?.action === 'upload'">
+      <button mat-button>Notification</button>
+    </mat-card-actions>
   </div>
-  <mat-card-actions align="end" *ngIf="nextStep?.action === 'upload'">
-    <button mat-button>Notification</button>
-  </mat-card-actions>
 </mat-card>

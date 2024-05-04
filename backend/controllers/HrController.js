@@ -125,8 +125,83 @@ const reviewDocument = async (req, res) => {
     }
 };
 
+const getAllApprovedDocuments = async (docList) => {
+    try {
+        const approvedDocs = {};
+        const expectedFields = ["receipt", "ead", "i983", "i20"]
+
+        for (const field of expectedFields) {
+            const docId = docList[field];
+            if (!mongoose.Types.ObjectId.isValid(docId)) {
+                continue;
+            }
+            const document = await Document.findById(docId);
+            if (document && document.status === "Approved") {
+                approvedDocs[field] = document.document;
+            }
+        }
+        return approvedDocs;
+    } catch (error) {
+        console.error("Error getting all the approved documents:", error);
+        throw error;
+    }
+};
+
+const getAllVisaUsers = async (req, res) => {
+    try {
+        const query = {
+            isHR: false,
+            workAuthorization: { $nin: ['citizen', 'green card'] }
+        };
+
+        const visaUsers = await User.find(query)
+        const usersWithNextSteps = await Promise.all(visaUsers.map(async (user) => {
+            const userId = user._id;
+            // get next step
+            const nextStep = await getUserNextStep(userId)
+            // get all approved documents
+            const allApprovedDocuments = await getAllApprovedDocuments(user.opt)
+            // format the return data
+            const name = `${user.firstName} ${user.lastName}`
+            const workAuthorization = user.workAuthorization
+            const workAuthorizationStart = user.workAuthorizationStart
+            const workAuthorizationEnd = user.workAuthorizationEnd
+            const now = new Date();
+            const differenceInMilliseconds = workAuthorizationEnd - now;
+            let daysRemaining = null;
+            if (workAuthorizationEnd === null) {
+                daysRemaining = "End date is invalid"
+            }
+            else if (differenceInMilliseconds < 0) {
+                daysRemaining = "Expired"
+            } else {
+                daysRemaining = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24))
+            }
+
+            return {
+                name: name,
+                workAuthorization: workAuthorization,
+                nextStep: nextStep,
+                allApprovedDocuments: allApprovedDocuments,
+                workAuthorizationStart: workAuthorizationStart,
+                workAuthorizationEnd: workAuthorizationEnd,
+                daysRemaining: daysRemaining,
+                nextStep: nextStep
+            };
+        }));
+
+        res.status(200).json({
+            message: "Retrieve All Visa Users successfully",
+            data: usersWithNextSteps,
+        });
+    } catch (error) {
+        console.error("Error fetching visa pending users:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+};
+
 module.exports = {
-    getVisaPendingUsers, reviewDocument
+    getVisaPendingUsers, reviewDocument, getAllVisaUsers
 };
 
 

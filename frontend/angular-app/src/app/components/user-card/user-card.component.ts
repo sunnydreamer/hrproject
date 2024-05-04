@@ -17,12 +17,19 @@ export class UserCardComponent implements OnInit {
     documentName: string;
     action: string;
   };
+  @Input() allApprovedDocuments!: {
+    receipt: string;
+    ead: string;
+    i983: string;
+    i20: string;
+  };
   @Input() startDate!: string | null;
   @Input() endDate!: string | null;
   @Input() daysRemaining!: string | number;
+  @Input() showAction: boolean = true;
+  @Input() showAllApprovedFiles: boolean = true;
 
   constructor(private http: HttpClient) {}
-
   showNewInput: boolean = false;
   comment: string = '';
 
