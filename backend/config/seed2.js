@@ -10,8 +10,6 @@ const HousingReport = require(`../models/housingReportModel`);
 const Document = require("../models/documentModel");
 require(`dotenv`).config({ path: __dirname + `/./../.envBackend` });
 
-const MONGO_URI = "mongodb+srv://hrproject:hrproject@cluster0.sxrauue.mongodb.net/hrproject?retryWrites=true&w=majority&appName=Cluster0";
-
 const seed = async () => {
   try {
     console.log(MONGO_URI);

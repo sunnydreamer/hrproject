@@ -58,39 +58,40 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler }) => {
 
   return (
     <>
-      <label htmlFor="workAuthorization">
-        Are you a citizen or a permanent resident of the U.S.?
-      </label>
-      <select
-        id="workAuthorization"
-        value={userInfo.workAuthorization}
-        onChange={citiGreenChange}
-        required
-      >
-        <option></option>
-        <option value={"citizen"}>Citizen</option>
-        <option value={"green card"}>Green Card</option>
-        <option value={"no"}>No</option>
-      </select>
-      <br />
+      <div className="line">
+        <label htmlFor="workAuthorization">
+          Are you a citizen or a permanent resident of the U.S.?
+        </label>
+        <select
+          id="workAuthorization"
+          value={userInfo.workAuthorization}
+          onChange={citiGreenChange}
+        >
+          <option></option>
+          <option value={"citizen"}>Citizen</option>
+          <option value={"green card"}>Green Card</option>
+          <option value={"no"}>No</option>
+        </select>
+      </div>
       {extraOptions ? (
         <>
-          <label htmlFor="workAuthorization">
-            What is your work authorization?{" "}
-          </label>
-          <select
-            id="workAuthorization"
-            value={userInfo.workAuthorization}
-            onChange={citiGreenChange}
-            required
-          >
-            <option></option>
-            <option value={"H1-B"}>H1-B</option>
-            <option value={"L2"}>L2</option>
-            <option value={"F1"}>F1</option>
-            <option value={"other"}>other</option>
-          </select>
-          <br />
+          <div className="line">
+            <label htmlFor="workAuthorization">
+              What is your work authorization?{" "}
+            </label>
+            <select
+              id="workAuthorization"
+              value={userInfo.workAuthorization}
+              onChange={citiGreenChange}
+              required
+            >
+              <option></option>
+              <option value={"H1-B"}>H1-B</option>
+              <option value={"L2"}>L2</option>
+              <option value={"F1"}>F1</option>
+              <option value={"other"}>other</option>
+            </select>
+          </div>
           <label htmlFor="workAuthorizationStart">Start Date: </label>
           <input
             type="Date"
