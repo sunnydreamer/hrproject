@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-user-card',
@@ -74,5 +76,24 @@ export class UserCardComponent implements OnInit {
           console.error('Error sending review request:', error);
         },
       });
+  }
+
+  // send email to user
+  public sendEmail(toName: string, documentName: string) {
+    emailjs.init(environment.EMAILJS_USER_ID);
+
+    var templateParams = {
+      to_name: toName,
+      document_name: documentName,
+    };
+
+    emailjs.send('service_rktkncq', 'template_91iuxc9', templateParams).then(
+      function (response) {
+        console.log('SUCCESS!', response.status, response.text);
+      },
+      function (err) {
+        console.log('FAILED...', err);
+      }
+    );
   }
 }

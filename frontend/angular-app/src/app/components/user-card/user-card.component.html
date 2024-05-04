@@ -68,7 +68,9 @@
       </button>
     </div>
     <mat-card-actions align="end" *ngIf="nextStep?.action === 'upload'">
-      <button mat-button>Notification</button>
+      <button mat-button (click)="sendEmail(name, nextStep.documentName)">
+        Send Notification
+      </button>
     </mat-card-actions>
   </div>
 </mat-card>
