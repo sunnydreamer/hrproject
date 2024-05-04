@@ -23,6 +23,7 @@ import { MatCardModule } from '@angular/material/card';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
+    MatButtonToggleModule,
   ],
 
   providers: [],

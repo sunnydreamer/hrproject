@@ -7,3 +7,12 @@ h1 {
 .visa-page-container {
   padding: 30px;
 }
+
+.toggleContainer {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.custom-button {
+  width: 100px;
+}

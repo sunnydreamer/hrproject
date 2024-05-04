@@ -10,6 +10,7 @@ import { VisaPendingUser } from 'src/app/interfaces/userinterface';
 export class VisaStatusComponent implements OnInit {
   constructor(private http: HttpClient) {}
   VisaPendingUsers: VisaPendingUser[] = [];
+  selectedOption: string = 'Pending';
 
   ngOnInit(): void {
     this.http
