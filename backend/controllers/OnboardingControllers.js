@@ -38,6 +38,11 @@ const updateUserInfo = async (req, res) => {
 
     // upload file to aws3
     const uploadedFile = req.file;
+    if (!uploadedFile) {
+      //when no document, just return the function
+      res.status(200).json({ message: "Successfully updated the user" });
+      return
+    }
 
     // send to aws and get the aws file location
     const s3Location = await awsS3Upload(
@@ -54,7 +59,6 @@ const updateUserInfo = async (req, res) => {
     });
     await newDocument.save();
     //find user and store that under opt
-
     user.opt["receipt"] = newDocument._id;
     await user.save();
 
