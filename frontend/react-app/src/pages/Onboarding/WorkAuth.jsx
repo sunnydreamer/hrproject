@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Button from '@mui/material/Button';
 
-const WorkAuth = ({ userInfo, setUserInfo, changeHandler }) => {
+const WorkAuth = ({ userInfo, setUserInfo, changeHandler, file, setFile }) => {
   const [extraOptions, setExtraOptions] = useState(false);
   const [otherOption, setOtherOption] = useState(false);
   const [isF1, setIsF1] = useState(false);
@@ -31,6 +32,13 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler }) => {
     }
 
     changeHandler(e);
+  };
+
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0]
+    if (selectedFile) {
+      setFile(selectedFile);
+    }
   };
 
   const uploadOptReceipt = (e) => {
@@ -127,9 +135,17 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler }) => {
       ) : null}
       {isF1 ? (
         <>
-          <label htmlFor="optReceipt">Please upload OPT receipt: </label>
-          <input type="file" id="optReceipt" required />
-          <br />
+          <input
+            type="file"
+            id="file-input"
+            accept=".pdf,.doc,.docx"
+            onChange={handleFileChange}
+            style={{ display: 'none' }}
+          />
+          <label htmlFor="file-input">
+            <Button variant="contained" component="span">Upload OPT receipt</Button>
+            {file && <div>Selected file: {file.name}</div>}
+          </label>
         </>
       ) : null}
     </>
