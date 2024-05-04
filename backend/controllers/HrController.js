@@ -8,9 +8,6 @@ const Document = require("../models/documentModel");
 const mongoose = require("mongoose");
 
 
-const fs = require("fs");
-const { s3, bucketName } = require("../config/aws");
-
 async function getUserNextStep(userId) {
     const user = await User.findOne(userId);
     if (!user || !user.opt) {
@@ -33,6 +30,8 @@ async function getUserNextStep(userId) {
                 const isAllSet = document.status === 'Approved' && i === expectedFields.length - 1
                 return {
                     isAllSet: isAllSet,
+                    documentStatus: document.status,
+                    documentId: document._id,
                     documentLink: document.document,
                     documentName: isAllSet ? null : (document.status === 'Approved' ? expectedFields[i + 1] : field),
                     action: action
@@ -108,8 +107,26 @@ const getVisaPendingUsers = async (req, res) => {
     }
 };
 
+const reviewDocument = async (req, res) => {
+    try {
+        const { documentId, status, comment } = req.body;
+
+        // Validate documentId and status
+        if (!documentId || !status) {
+            return res.status(400).json({ error: "Invalid input data" });
+        }
+
+        await Document.findByIdAndUpdate(documentId, { status: status, comment: comment });
+
+        res.status(200).json({ message: "Document updated successfully" });
+    } catch (error) {
+        console.error("Error updating document:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+};
+
 module.exports = {
-    getVisaPendingUsers
+    getVisaPendingUsers, reviewDocument
 };
 
 

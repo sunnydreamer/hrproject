@@ -1,5 +1,13 @@
 <div class="visa-page-container">
   <h1>Pending Employees</h1>
-  <app-user-card></app-user-card>
-  <app-user-card></app-user-card>
+  <ng-container *ngFor="let user of VisaPendingUsers">
+    <app-user-card
+      [name]="user.name"
+      [workAuthorization]="user.workAuthorization"
+      [startDate]="user.workAuthorizationStart"
+      [endDate]="user.workAuthorizationEnd"
+      [daysRemaining]="user.daysRemaining"
+      [nextStep]="user.nextStep"
+    ></app-user-card>
+  </ng-container>
 </div>

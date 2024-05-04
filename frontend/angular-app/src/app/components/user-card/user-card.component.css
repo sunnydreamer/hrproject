@@ -5,3 +5,12 @@
 .user-info-col {
   margin-left: 20px;
 }
+
+#comment {
+  height: 40px;
+  width: 200px;
+  border-radius: 8px;
+  padding: 8px;
+  margin-right: 5px;
+  border: 1px solid gray;
+}
