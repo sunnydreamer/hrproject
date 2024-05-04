@@ -1,6 +1,6 @@
 <div class="visa-page-container">
   <h1>Visa-Status Employees</h1>
-  <div class="toggleContainer">
+  <div class="toggle-container">
     <mat-button-toggle-group
       name="fontStyle"
       aria-label="Font Style"
@@ -30,18 +30,30 @@
     </ng-container>
   </div>
   <div *ngIf="selectedOption === 'All'">
-    <ng-container *ngFor="let user of allVisaUsers">
-      <app-user-card
-        [name]="user.name"
-        [workAuthorization]="user.workAuthorization"
-        [startDate]="user.workAuthorizationStart"
-        [endDate]="user.workAuthorizationEnd"
-        [daysRemaining]="user.daysRemaining"
-        [nextStep]="user.nextStep"
-        [showAction]="false"
-        [showAllApprovedFiles]="true"
-        [allApprovedDocuments]="user.allApprovedDocuments"
-      ></app-user-card>
-    </ng-container>
+    <div class="search-contianer">
+      <div id="profile-search">
+        Search: <input [(ngModel)]="search" (input)="onSearchChange($event)" />
+      </div>
+
+      <ng-container *ngIf="allVisaUsers.length === 0; else userCards">
+        <h2>No user found</h2>
+      </ng-container>
+    </div>
+
+    <ng-template #userCards>
+      <ng-container *ngFor="let user of allVisaUsers">
+        <app-user-card
+          [name]="user.name"
+          [workAuthorization]="user.workAuthorization"
+          [startDate]="user.workAuthorizationStart"
+          [endDate]="user.workAuthorizationEnd"
+          [daysRemaining]="user.daysRemaining"
+          [nextStep]="user.nextStep"
+          [showAction]="false"
+          [showAllApprovedFiles]="true"
+          [allApprovedDocuments]="user.allApprovedDocuments"
+        ></app-user-card>
+      </ng-container>
+    </ng-template>
   </div>
 </div>

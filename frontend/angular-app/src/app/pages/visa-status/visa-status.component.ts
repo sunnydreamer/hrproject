@@ -12,8 +12,18 @@ export class VisaStatusComponent implements OnInit {
   visaPendingUsers: VisaPendingUser[] = [];
   selectedOption: string = 'Pending';
   allVisaUsers: any[] = [];
-  peopleStatic: any[] = [];
+  allVisaUsersStatic: any[] = [];
   search: string = '';
+
+  //change this, people here
+  onSearchChange($event: any) {
+    const searchTerm = $event.target.value;
+    const filteredPeople = this.allVisaUsersStatic.filter((person) => {
+      return person.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+
+    this.allVisaUsers = filteredPeople;
+  }
 
   ngOnInit(): void {
     // Fetch visa pending users
@@ -32,7 +42,7 @@ export class VisaStatusComponent implements OnInit {
       )
       .subscribe((response) => {
         this.allVisaUsers = response.data;
-        this.peopleStatic = response.data;
+        this.allVisaUsersStatic = response.data;
         // sort alpha by last name
         this.allVisaUsers.sort((a, b) => {
           const nameA = a.name.toUpperCase();
