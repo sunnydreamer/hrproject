@@ -7,14 +7,6 @@ import EmergencyContact from './EmergencyContact';
 import Employment from './Employment';
 import axios from 'axios';
 
-function isValidJSON(jsonString) {
-  try {
-    JSON.parse(jsonString);
-    return true;
-  } catch (error) {
-    return false;
-  }
-}
 
 
 const PersonalInfoPage = () => {
@@ -30,10 +22,10 @@ const PersonalInfoPage = () => {
     dob: "",
     gender: "",
     address: {
-      city:"",
-      state:"",
-      address:"",
-      addressLine2:"",
+      city: "",
+      state: "",
+      address: "",
+      addressLine2: "",
       zip: ""
     },
     workAuthorization: "",
@@ -44,23 +36,23 @@ const PersonalInfoPage = () => {
       endDate: "",
       visaTitle: ""
     },
-    phone:{
-      work:"",
-      cell:""
+    phone: {
+      work: "",
+      cell: ""
     },
     emergencyContact: [],
     //documents go here 
     //work auth pdf
-    driversLicense:"",
-    profilePicture:"",
-    opt:[]
+    driversLicense: "",
+    profilePicture: "",
+    opt: []
   })
 
 
-  
+
 
   //maybe pass in the userid... or maybe not... it should be in cookie
-  useEffect(() =>{
+  useEffect(() => {
     axios.get("http://localhost:3000/user/personalinfo")
       .then(response => {
 
@@ -104,16 +96,16 @@ const PersonalInfoPage = () => {
 
     <div id="parent-personal">
 
-      {data? (
+      {data ? (
         <>
-      <Name data={data} setData={setData}></Name>
-      <Address data={data} setData={setData}></Address>
-      <Contact data={data} setData={setData}></Contact>
-      <Employment data={data} setData={setData}></Employment>
-      <EmergencyContact data={data} setData={setData}></EmergencyContact>
-      <Documents data={data} setData={setData}></Documents>
-       </>) 
-      : null }
+          <Name data={data} setData={setData}></Name>
+          <Address data={data} setData={setData}></Address>
+          <Contact data={data} setData={setData}></Contact>
+          <Employment data={data} setData={setData}></Employment>
+          <EmergencyContact data={data} setData={setData}></EmergencyContact>
+          <Documents data={data} setData={setData}></Documents>
+        </>)
+        : null}
 
 
     </div>

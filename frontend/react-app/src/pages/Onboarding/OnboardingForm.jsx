@@ -4,6 +4,7 @@ import PersonalInfo from "./PersonalInfo";
 import WorkAuth from "./WorkAuth";
 import EmergencyContacts from "./EmergencyContacts";
 import Referral from "./Referral";
+import Button from '@mui/material/Button';
 
 const OnboardingForm = ({ userInfo, setUserInfo }) => {
   const [showInfo, setShowInfo] = useState(true);
@@ -56,7 +57,6 @@ const OnboardingForm = ({ userInfo, setUserInfo }) => {
       const result = await response.json();
 
       console.log(result);
-      location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -64,9 +64,9 @@ const OnboardingForm = ({ userInfo, setUserInfo }) => {
 
   return (
     <>
-      <h2 onClick={() => setShowInfo(!showInfo)}>Personal Information</h2>
+      <h2 style={{ textAlign: "center" }} onClick={() => setShowInfo(!showInfo)}>Personal Information</h2>
       {showInfo ? (
-        <>
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
           <form>
             <PersonalInfo
               userInfo={userInfo}
@@ -84,22 +84,22 @@ const OnboardingForm = ({ userInfo, setUserInfo }) => {
               changeHandler={changeHandler}
             />
             <Referral userInfo={userInfo} changeHandler={changeHandler} />
+
+            <h2 onClick={() => setShowContact(!showContact)}>
+              Emergency Contacts:{" "}
+            </h2>
+            {showContact ? (
+              <>
+                <EmergencyContacts
+                  userInfo={userInfo}
+                  setUserInfo={setUserInfo}
+                />
+              </>
+            ) : null}
+
+            <Button type="submit" variant="contained" onClick={submitFormHandler} > Submit Form</Button>
           </form>
-
-          <h2 onClick={() => setShowContact(!showContact)}>
-            Emergency Contacts:{" "}
-          </h2>
-          {showContact ? (
-            <>
-              <EmergencyContacts
-                userInfo={userInfo}
-                setUserInfo={setUserInfo}
-              />
-            </>
-          ) : null}
-
-          <button onClick={submitFormHandler}>Submit Form</button>
-        </>
+        </div >
       ) : null}
     </>
   );

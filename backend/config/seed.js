@@ -33,9 +33,6 @@ async function seedHousing() {
   }
 }
 
-const MONGO_URI =
-  "mongodb+srv://hrproject:hrproject@cluster0.sxrauue.mongodb.net/hrproject?retryWrites=true&w=majority&appName=Cluster0";
-
 const seed = async () => {
   try {
     console.log(MONGO_URI);
