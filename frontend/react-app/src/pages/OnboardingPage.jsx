@@ -25,10 +25,7 @@ const OnboardingPage = () => {
 
   useEffect(() => {
     if (userInfo.onboardingStatus === "Approved") {
-      navigate("/not-found", {
-        state: { errorTitle: "403 Not Authorized" },
-        replace: true,
-      });
+      navigate("/user");
     }
   }, [navigate, userInfo]);
 
