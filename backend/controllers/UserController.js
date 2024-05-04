@@ -458,4 +458,5 @@ module.exports = {
   getDocuments,
   fetchUserData,
   pushUserData,
+  awsS3Upload
 };

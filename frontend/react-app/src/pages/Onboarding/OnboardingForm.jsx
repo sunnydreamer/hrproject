@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Driving from "./Driving";
 import PersonalInfo from "./PersonalInfo";
 import WorkAuth from "./WorkAuth";
@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 const OnboardingForm = ({ userInfo, setUserInfo }) => {
   const [showInfo, setShowInfo] = useState(true);
   const [showContact, setShowContact] = useState(false);
+  const [file, setFile] = useState(null)
 
   const changeHandler = (e) => {
     if (e.target.id.includes(`.`)) {
@@ -39,18 +40,22 @@ const OnboardingForm = ({ userInfo, setUserInfo }) => {
     setUserInfo({ ...userInfo });
   };
 
-  const submitFormHandler = async () => {
+  const submitFormHandler = async (e) => {
+    e.preventDefault()
     try {
+
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('userId', userInfo._id)
+      // Append JSON data to FormData
+      formData.append('userInfo', JSON.stringify({ ...userInfo, onboardingStatus: 'Pending' }));
+
+
       const response = await fetch(
         `http://localhost:3000/user/onboarding/updateUser`,
         {
           method: `PUT`,
-          headers: {
-            "Content-Type": `application/json`,
-          },
-          body: JSON.stringify({
-            userInfo: { ...userInfo, onboardingStatus: `Pending` },
-          }),
+          body: formData,
         }
       );
 
@@ -81,6 +86,8 @@ const OnboardingForm = ({ userInfo, setUserInfo }) => {
             <WorkAuth
               userInfo={userInfo}
               setUserInfo={setUserInfo}
+              file={file}
+              setFile={setFile}
               changeHandler={changeHandler}
             />
             <Referral userInfo={userInfo} changeHandler={changeHandler} />
@@ -96,8 +103,10 @@ const OnboardingForm = ({ userInfo, setUserInfo }) => {
                 />
               </>
             ) : null}
+            <div className="line" style={{ display: "flex", justifyContent: "center" }}>
+              <Button type="submit" variant="contained" onClick={submitFormHandler} > Submit</Button>
+            </div>
 
-            <Button type="submit" variant="contained" onClick={submitFormHandler} > Submit Form</Button>
           </form>
         </div >
       ) : null}
