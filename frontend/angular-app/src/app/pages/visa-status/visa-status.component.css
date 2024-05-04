@@ -7,3 +7,27 @@ h1 {
 .visa-page-container {
   padding: 30px;
 }
+
+.toggle-container {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.search-contianer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-button {
+  width: 100px;
+}
+
+#profile-search input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 8px;
+  width: 200px;
+  margin: 10px;
+}

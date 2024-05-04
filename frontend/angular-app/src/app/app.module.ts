@@ -21,6 +21,9 @@ import { ErrorComponent } from './pages/error/error.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { UserCardComponent } from './components/user-card/user-card.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -39,16 +42,19 @@ import { UserCardComponent } from './components/user-card/user-card.component';
     ErrorComponent,
     UserCardComponent,
   ],
-  imports: [BrowserModule,
-            AppRoutingModule,
-            FormsModule,
-            HttpClientModule,
-            BrowserAnimationsModule,
-            MatDialogModule,
-            MatButtonModule,
-            MatCardModule
-
-          ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonToggleModule,
+  ],
 
   providers: [],
   bootstrap: [AppComponent],

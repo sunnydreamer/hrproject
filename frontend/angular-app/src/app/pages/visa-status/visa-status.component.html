@@ -1,5 +1,59 @@
 <div class="visa-page-container">
-  <h1>Pending Employees</h1>
-  <app-user-card></app-user-card>
-  <app-user-card></app-user-card>
+  <h1>Visa-Status Employees</h1>
+  <div class="toggle-container">
+    <mat-button-toggle-group
+      name="fontStyle"
+      aria-label="Font Style"
+      [(ngModel)]="selectedOption"
+    >
+      <mat-button-toggle value="Pending" class="custom-button"
+        >Pending</mat-button-toggle
+      >
+      <mat-button-toggle value="All" class="custom-button"
+        >All</mat-button-toggle
+      >
+    </mat-button-toggle-group>
+  </div>
+
+  <div *ngIf="selectedOption === 'Pending'">
+    <ng-container *ngFor="let user of visaPendingUsers">
+      <app-user-card
+        [name]="user.name"
+        [workAuthorization]="user.workAuthorization"
+        [startDate]="user.workAuthorizationStart"
+        [endDate]="user.workAuthorizationEnd"
+        [daysRemaining]="user.daysRemaining"
+        [nextStep]="user.nextStep"
+        [showAction]="true"
+        [showAllApprovedFiles]="false"
+      ></app-user-card>
+    </ng-container>
+  </div>
+  <div *ngIf="selectedOption === 'All'">
+    <div class="search-contianer">
+      <div id="profile-search">
+        Search: <input [(ngModel)]="search" (input)="onSearchChange($event)" />
+      </div>
+
+      <ng-container *ngIf="allVisaUsers.length === 0; else userCards">
+        <h2>No user found</h2>
+      </ng-container>
+    </div>
+
+    <ng-template #userCards>
+      <ng-container *ngFor="let user of allVisaUsers">
+        <app-user-card
+          [name]="user.name"
+          [workAuthorization]="user.workAuthorization"
+          [startDate]="user.workAuthorizationStart"
+          [endDate]="user.workAuthorizationEnd"
+          [daysRemaining]="user.daysRemaining"
+          [nextStep]="user.nextStep"
+          [showAction]="false"
+          [showAllApprovedFiles]="true"
+          [allApprovedDocuments]="user.allApprovedDocuments"
+        ></app-user-card>
+      </ng-container>
+    </ng-template>
+  </div>
 </div>
