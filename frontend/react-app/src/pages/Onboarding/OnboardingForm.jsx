@@ -59,9 +59,14 @@ const OnboardingForm = ({ userInfo, setUserInfo }) => {
         }
       );
 
-      const result = await response.json();
+      if (response.ok) {
 
-      console.log(result);
+        const result = await response.json();
+        console.log(result);
+        window.location.reload();
+
+      }
+
     } catch (error) {
       console.error(error);
     }
