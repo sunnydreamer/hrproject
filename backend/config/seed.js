@@ -6,7 +6,7 @@ const EmergencyContact = require(`../models/emergencyContactModel`);
 const Housing = require(`../models/housingModel`);
 
 const Document = require("../models/documentModel");
-require(`dotenv`).config({ path: __dirname + `/./../.envBackend` });
+require(`dotenv`).config({ path: __dirname + `/./../.env` });
 
 async function seedHousing() {
   try {
@@ -18,8 +18,8 @@ async function seedHousing() {
           city: "Anytown",
           state: "AnyState",
           zip: "12345",
-        }
-      }
+        },
+      },
     });
 
     // Save the new document to the database
@@ -32,9 +32,6 @@ async function seedHousing() {
     console.error("Error seeding data:", error);
   }
 }
-
-
-const MONGO_URI = "mongodb+srv://hrproject:hrproject@cluster0.sxrauue.mongodb.net/hrproject?retryWrites=true&w=majority&appName=Cluster0";
 
 const seed = async () => {
   try {
@@ -54,7 +51,6 @@ const seed = async () => {
     let id = await seedHousing();
     //give sunny the housing id
 
-
     await documents(id);
     // Save the new document to the database
     console.log("Seed successful!");
@@ -64,6 +60,6 @@ const seed = async () => {
     // Disconnect from MongoDB
     mongoose.disconnect();
   }
-}
+};
 
 seed();

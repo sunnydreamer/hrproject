@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import axios from '../interceptors/axiosInstance';
 import Stepper from '@mui/joy/Stepper';
 import Step, { stepClasses } from '@mui/joy/Step';
@@ -14,6 +15,7 @@ import { fetchData } from "../redux/fetchUserData";
 
 
 const VisaPage = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({})
   const [userDocuments, setUserDocuments] = useState({})
   const [file, setFile] = useState(null);
@@ -72,6 +74,9 @@ const VisaPage = () => {
 
   useEffect(() => {
     if (data) {
+      if (data.onboardingStatus !== "Approved") {
+        navigate("/not-found", { state: { errorTitle: "403 Not Authorized" }, replace: true })
+      }
       setUser(data)
     }
   }, [data]);

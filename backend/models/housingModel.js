@@ -10,9 +10,16 @@ const housingSchema = new Schema({
       zip: { type: String, required: true },
     },
     roommates: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
-    housingReport: [{ type: mongoose.Schema.Types.ObjectId, ref: "HousingReport" }]
-
-
+    housingReport: [{ type: mongoose.Schema.Types.ObjectId, ref: "HousingReport" }],
+    landlord: {
+      fullName: {type: String, default:"Some name"},
+      phone: {type: String, default:"some phone"},
+      email: {type: String, default:"some email"},
+    },
+    tables: {type:Number, required: true, default:1},
+    chairs: {type:Number, required: true, default:1},
+    beds: {type:Number, required: true, default:1},
+    mattresses: {type:Number, required: true, default:1}
 });
 
 const Housing = model("Housing", housingSchema);

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VisaManagementComponent } from './visa-management.component';
+import { HouseModalComponent } from './house-modal.component';
 
-describe('VisaManagementComponent', () => {
-  let component: VisaManagementComponent;
-  let fixture: ComponentFixture<VisaManagementComponent>;
+describe('HouseModalComponent', () => {
+  let component: HouseModalComponent;
+  let fixture: ComponentFixture<HouseModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VisaManagementComponent ]
+      declarations: [ HouseModalComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(VisaManagementComponent);
+    fixture = TestBed.createComponent(HouseModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

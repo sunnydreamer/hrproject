@@ -1,0 +1,26 @@
+
+
+
+
+#main-house{
+    display: flex;
+}
+
+app-housing-view{
+    /* background-color: red; */
+    width: 25%;
+}
+
+
+#box{
+    width: 75%;
+    background-color: rgb(127, 127, 190);
+}
+
+table{
+    width: 100%;
+}
+
+td, tr, th{
+    text-align: center;
+}

@@ -15,6 +15,7 @@ import SummaryPage from "../pages/SummaryPage";
 import VisaPage from "../pages/VisaPage";
 import HousingPage from "../pages/Housing/HousingPage";
 import PersonalInfoPage from "../pages/PersonalInfo/PersonalInfoPage";
+import HRPersonalInfoPage from "../pages/HRPersonalInfo/HRPersonalInfoPage";
 
 import HREmailPage from "../pages/HREmailPage";
 
@@ -28,6 +29,9 @@ const AppRouter = () => (
     <Routes>
       <Route path="/user">
         <Route path="" element={<Page title="Personal Information"><PersonalInfoPage /></Page>} />
+        
+        <Route path="hruser/:id" element={<Page title="Personal Information"><HRPersonalInfoPage /></Page>} />
+
 
         <Route
           path="registration-with-token/:regLinkToken"
@@ -45,7 +49,7 @@ const AppRouter = () => (
           path="onboarding-application"
           element={<Page title="Onboarding Application" navLinks={[]}><OnboardingPage /></Page>}
         />
-
+   
         <Route path="summary" element={<Page title="Summary"><SummaryPage /></Page>} />
         <Route path="visa-status" element={<Page title="Visa Status"><VisaPage /></Page>} />
         <Route path="housing" element={<Page title="Housing"><HousingPage /></Page>} />

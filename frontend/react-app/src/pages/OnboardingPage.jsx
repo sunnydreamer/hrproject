@@ -1,34 +1,54 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useReducer, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../redux/fetchUserData";
 import store from "../redux/redux";
-import { useNavigate } from "react-router-dom";
+import OnboardingForm from "./Onboarding/OnboardingForm";
+import ViewApplication from "./Onboarding/ViewApplication";
 
 const OnboardingPage = () => {
+  const [userInfo, setUserInfo] = useState({});
   const navigate = useNavigate();
 
-  // Code for using redux
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.payload); // Assuming 'data' is the part of the state updated by fetchData
+  const data = useSelector((state) => state.payload);
 
   useEffect(() => {
     dispatch(fetchData());
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("data", data);
     if (data) {
-      const onboardingStatus = data.onboardingStatus;
-      if (onboardingStatus === "Approved") {
-        navigate("/not-found", { state: { errorTitle: "403 Not Authorized" }, replace: true })
-      }
+      setUserInfo(data)
     }
-  }, [data]); // Dependency on 'data' to re-run this effect when 'data' gets loaded
+  }, [data]);
+
+  useEffect(() => {
+    if (userInfo.onboardingStatus === "Approved") {
+      navigate("/user");
+    }
+  }, [navigate, userInfo]);
 
 
- 
+  if (!userInfo.firstName) {
+    return (
+      <>
+        <h1>Loading...</h1>
+      </>
+    );
+  }
 
-  return <div className="full-parent-height">OnboardingPage</div>;
+  return (
+    <>
+      <div className="full-parent-height">
+        {userInfo.onboardingStatus === `Pending` ? (
+          <ViewApplication userInfo={userInfo} />
+        ) : (
+          <OnboardingForm userInfo={userInfo} setUserInfo={setUserInfo} />
+        )}
+      </div>
+    </>
+  );
 };
 
 export default OnboardingPage;

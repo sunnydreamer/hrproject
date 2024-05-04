@@ -1,0 +1,24 @@
+<!-- house-selector.component.html -->
+<div class="scrollable-container">
+    <div *ngFor="let house of allHouses" class="house" (click)="selectHouse(house)">
+
+        <!-- Address OKAY
+ii. Landlord
+1. Legal full name
+2. Phone number
+3. Email 
+iii. Number of employee residents -->
+
+      <!-- address -->
+        <h3>Address: {{house.address.street + " " + house.address.streetLine2 +  ", " + house.address.city + " " + house.address.state + ", " + house.address.zip}}</h3>
+        <h3>Landlord:</h3>
+        <ul>
+            <li>Name: {{house.landlord.fullName}}</li>
+            <li>Phone: {{house.landlord.phone}}</li>
+            <li>Email: {{house.landlord.email}}</li>
+        </ul>
+        <h3>Residents: {{house.roommates.length}}</h3>
+      <!-- <p>{{ house.description }}</p> -->
+      <!-- Display other details of the house -->
+    </div>
+  </div>
