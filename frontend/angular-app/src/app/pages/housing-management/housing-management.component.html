@@ -18,7 +18,7 @@
 
         <h2>Info</h2>
         <h3>Address: <br>
-            {{currHouse.address.street + " " + currHouse.address.streetLine2 +  ", " + currHouse.address.city + " " + currHouse.address.state + ", " + currHouse.address.zip}}</h3>
+            {{currHouse.address?.street + " " + currHouse.address.streetLine2 +  ", " + currHouse.address.city + " " + currHouse.address.state + ", " + currHouse.address.zip}}</h3>
         <h3>Landlord:</h3>
         <ul>
             <li>Name: {{currHouse.landlord.fullName}}</li>
@@ -79,7 +79,41 @@
         <!-- e (title, date, status) -->
 
         <!-- <h3>{{currHouse.housingReport.title + " | " + currHouse.housingReport.status  + " | " +currHouse.housingReport.timestamp}} </h3> -->
-        {{currHouse.housingReport | json}}
+
+
+        <!-- Each report should display the title, description, created by, timestamp, and status (Open, In Progress, Closed) -->
+
+        <table>
+            <thead>
+                <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Time</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr *ngFor="let report of currHouse.housingReport">
+                <td>
+                    {{currHouse.housingReport[0].title}}
+                </td>
+                <td>
+                    {{currHouse.housingReport[0].description}}
+                </td>
+                <td>
+                    {{currHouse.housingReport[0].timestamp}}
+                </td>
+                <td>
+                    {{currHouse.housingReport[0].status}}
+                </td>
+            </tr>
+        </tbody>
+
+
+        </table>
+
+
 
         <!-- {{currHouse.housingReport._id }} -->
 

@@ -2,7 +2,8 @@ const router = require("express").Router();
 const multer = require("multer"); // import multer
 const { check } = require("express-validator");
 
-const GetUserInfo = require("../controllers/GetUserInfo");
+const {GetUserInfo} = require("../controllers/GetUserInfo");
+
 const PostUserInfo = require("../controllers/PostUserInfo");
 const PostUserContact = require("../controllers/PostUserContact");
 const PutHousingReport = require("../controllers/PutHousingReport.js");
@@ -174,7 +175,7 @@ router
   .put("/info", (req, res) => {
     res.send("User info is modified successfully");
   })
-  // .get("/personalinfo", GetUserInfo)
+  .get("/personalinfo", GetUserInfo)
 
   // user visa page
   .put("/visa/:userid", (req, res) => {

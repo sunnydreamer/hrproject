@@ -83,6 +83,7 @@ const PersonalInfoPage = () => {
         // console.log(initData.emergencyContact);
 
         setData(response.data)
+        console.log(response.data)
       })
       .catch(error => {
         console.error('Error fetching data:', error);

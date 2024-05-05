@@ -15,8 +15,9 @@ export class HousingManagementComponent implements OnInit {
 
 
   showHouse($event: any){
-    // console.log($event);
     this.currHouse = $event;
+      console.log(this.currHouse.housingReport)
+
   }
 
   constructor(public dialog: MatDialog, private http: HttpClient) { }
@@ -34,13 +35,14 @@ export class HousingManagementComponent implements OnInit {
     });
 
   }
+  // console.log(this.currHouse.housingReport)
+
 
   ngOnInit(): void {
     this.http.get<any[]>('http://localhost:3000/user/housing/all').subscribe(response => {
       // console.log(response);
       this.houses = response;
       this.currHouse = this.houses[0];
-      // console.log(this.currHouse);
 
     });
   }
