@@ -17,7 +17,7 @@ const GetAllHousingInfo = require("../controllers/GetAllHousingInfo");
 
 const UserController = require("../controllers/UserController");
 
-const { auth, authBlock } = require("../middlewares/authMiddleware");
+const { auth, authBlock, authFrontEnd } = require("../middlewares/authMiddleware");
 
 // multer set for file handling
 const storage = multer.diskStorage({
@@ -33,7 +33,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router
-  .get("/auth", authBlock)
+  .post("/auth", authFrontEnd)
   .get("/documents/:userId", UserController.getDocuments)
   .put(
     "/documents/:userId",

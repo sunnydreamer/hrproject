@@ -38,4 +38,23 @@ const authBlock = (req, res, next) => {
   return next();
 };
 
-module.exports = {auth, authBlock};
+const authFrontEnd = (req, res, next) => {
+  console.log("authFrontEnd");
+  // const token = req.cookies.token;
+  const token = req.body.token;
+  console.log("token", token);
+  if (!token || validator.isEmpty(token)) {
+    console.log("no token provided");
+    return res.status(401).json({ errors: ["Please log in first to view or edit."] });
+  }
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  if (!decoded.userId || !validator.isMongoId(decoded.userId)) {
+    return res.status(401).json({ errors: ["You've been logged out. Please log in again."] });
+  }
+  req.body.userId = decoded.userId;
+  req.body.email = decoded.email;
+  console.log("validated: ", decoded.email);
+  return res.status(200).json({ message: "Authenticated." });
+};
+
+module.exports = {auth, authBlock, authFrontEnd};

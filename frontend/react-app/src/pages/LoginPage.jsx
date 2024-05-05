@@ -49,7 +49,7 @@ const LoginPage = (props) => {
         if (data.errors) {
           setErrors(data.errors);
         } else {
-          navigate(data.navigate);
+          navigate(data.navigate, { state: { token: data.token } });
         }
       })
       .catch((error) => {
