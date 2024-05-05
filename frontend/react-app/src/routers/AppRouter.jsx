@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 import Page from "../pages/Page";
@@ -20,7 +20,10 @@ import HRPersonalInfoPage from "../pages/HRPersonalInfo/HRPersonalInfoPage";
 import HREmailPage from "../pages/HREmailPage";
 
 const PrivateRoute = ({ children }) => {
-  const isAuthenticated = useAuth();
+  const location = useLocation();
+  console.log("in private route component");
+  const isAuthenticated = useAuth(location.state.token);
+  console.log("isAuthenticated", isAuthenticated);
   return isAuthenticated ? children : <Navigate to="/not-found" state={ { errorTitle: "403 Forbidden" } } replace />;
 }
 

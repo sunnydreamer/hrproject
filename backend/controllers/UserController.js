@@ -299,7 +299,7 @@ const login = async (req, res) => {
     if (!isPasswordCorrect) {
       return res.status(401).json({ errors: ["Incorrect Email or Password."] });
     }
-    const token = generateJwt(user._id, email);
+    const token = generateJwt(user._id, email, user.isHR);
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: 1800000, // 30 minutes
@@ -314,9 +314,9 @@ const login = async (req, res) => {
       user.onboardingStatus === "Rejected" ||
       user.onboardingStatus === "Pending"
     ) {
-      return res.status(200).json({ navigate: "/user/onboarding-application" });
+      return res.status(200).json({ navigate: "/user/onboarding-application", token: token});
     } else if (user.onboardingStatus === "Approved") {
-      return res.status(200).json({ navigate: "/user" });
+      return res.status(200).json({ navigate: "/user", token: token});
     } else {
       return res.status(500).json({ errors: ["500 Internal Server Error"] });
     }
@@ -385,6 +385,7 @@ const generateAndStoreTokens = async (req, res) => {
       firstName: firstName,
       lastName: lastName,
       email,
+      username: email,
       isHR: false,
       regLinkToken,
       regToken,
