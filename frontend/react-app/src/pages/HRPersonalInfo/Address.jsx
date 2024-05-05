@@ -39,15 +39,9 @@ function Address({ data, setData }) {
 
     return (
         <div>
-            <div className="buttons">
-                {editMode ? (
-                    <button onClick={handleSave}>Save</button>
-                ) : (
-                    <button onClick={toggleEditMode}>Edit</button>
-                )}
-            </div>
 
-            <div className="Address-Div">
+
+            <div className="Address-Div-Hr">
                 <div className="Address-Div-One">
                     <label htmlFor="StreetName">Street Name:</label>
                     <input

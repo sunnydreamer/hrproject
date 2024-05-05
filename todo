@@ -16,18 +16,11 @@ Housing
     add report 1.5 hours DONE 
     show comments 30min DONE
     add comments 1hours DONE
-    ------------------------
-
-
-
-Housing
-- make 
-    
+    ------------------------    
     
 4 hours for userprofile
     Check validations 1hour
     Change to use cookies for data 1 hour
-    Do edit comments 1 hour
     Do comments filtering 30min
 
 2 hour to finish user profile
@@ -37,3 +30,47 @@ Housing
 Employee profiles 4 hours DONE
 Housing Management page 6 hours
 ----------------------------------
+----------------------------------
+----------------------------------
+----------------------------------
+DO THIS THIRD
+React
+Personal Info Page
+- change to redux 2 hours
+- add in cancel button 1 hour (for cancel... how do i do it with or without redux)
+- make the documents work 30min
+- check DOB
+-------------------------------
+2.5 hours 2-4:30
+
+DO THIS FOURTH
+Housing
+- change to redux 1 hour
+- filter by userID 30 min
+- add make comment 1 hour
+- add edit comment 30 min
+- filter comment 30 min
+---------------------
+3.5 hours 4:30 - 7:30
+
+
+
+DO THIS FIRST
+Angular
+Employee Profile
+- finish entire fullprofile 30min
+---------------------------------------
+7:30-8:00
+
+
+DO THIS SECOND
+Housing Management
+- write adding houses 30 min
+- write viewing reports 30 min
+- write making comments 1 hour
+---------------------------
+8:00 - 10:00
+
+
+FINISH EVERYTHING BY 3:00pm
+ADD IN VERIFICATION

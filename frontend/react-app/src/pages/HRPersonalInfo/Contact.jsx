@@ -42,14 +42,8 @@ function Contact({ data, setData }) {
 
     return (
         <div>
-            <div className="buttons">
-                {editMode ? (
-                    <button onClick={handleSave}>Save</button>
-                ) : (
-                    <button onClick={toggleEditMode}>Edit</button>
-                )}
-            </div>
-            <div className="Contact-Div">
+
+            <div className="Contact-Div-Hr">
                 <div>
                     <label htmlFor="cell">Cell Phone Number:</label>
                     <input type="tel" id="cell" name="cell" value={data.phone.cell} onChange={handleChange} readOnly={!editMode} />

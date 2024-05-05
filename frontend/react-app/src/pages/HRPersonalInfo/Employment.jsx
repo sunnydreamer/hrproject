@@ -40,14 +40,8 @@ function Employment({ data, setData }) {
 
     return (
         <div>
-            <div className="buttons">
-                {editMode ? (
-                    <button onClick={handleSave}>Save</button>
-                ) : (
-                    <button onClick={toggleEditMode}>Edit</button>
-                )}
-            </div>
-            <div className="Employment-Div">
+
+            <div className="Employment-Div-Hr">
                 <label htmlFor="VisaTitle">Visa Title:</label>
                 <input
                     type="text"

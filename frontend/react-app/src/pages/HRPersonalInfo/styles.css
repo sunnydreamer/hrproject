@@ -23,6 +23,9 @@ label{
     margin: 0 0 0 1vw;
 }
 
+.nav-bar{
+    display: hide !important;
+}
 /* .Document-Div{
     background-color: grey;
     margin: 3em;
@@ -34,7 +37,14 @@ label{
     flex-wrap: wrap;
 } */
 
-.Name-Div{
+/* .Name-Div-Hr input, .Name-Div-Hr select{
+    background-color: grey;
+
+} */
+
+
+
+.Name-Div-Hr{
     background-color: grey;
     margin: 0 3em;
     border-radius: 2em;
@@ -43,6 +53,8 @@ label{
     justify-content: space-evenly;
     align-items: stretch;
     flex-wrap: wrap;
+    margin-top: 3em;
+
 }
 
 #Profile-Pic{
@@ -66,7 +78,7 @@ label{
 
 
 /* address */
-.Address-Div{
+.Address-Div-Hr{
     height: 20vh;
     padding: 2em;
 
@@ -77,6 +89,7 @@ label{
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    margin-top: 3em;
 }
 
 .Address-Div-One{
@@ -84,6 +97,7 @@ label{
     display: flex;
     justify-content: space-even;
     align-items: center;
+
 }
 
 #StreetName{
@@ -119,7 +133,7 @@ label{
 
 /* contact */
 
-.Contact-Div, .Employment-Div{
+.Contact-Div-Hr, .Employment-Div-Hr{
     height: 5vw;
     background-color: grey;
     margin: 0 3em;
@@ -128,32 +142,18 @@ label{
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    margin-top: 3em;
 }
 
 
-
-.Emergency-Div-Parent{
+.Emergency-Hr{
     background-color: grey;
     margin: 0 3em;
-    padding: 2em ;
     border-radius: 2em;
-
-
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 3em;
+    padding: 2em;
 }
-.Emergency-Div-Parent input {
-    background-color: white;
-    width: 12vw;
-}
-
-.Emergency-Div-Parent table{
-    margin-bottom: 1em;
-}
-
-
-
-.Create-Emergency-Div{
-    background-color: grey;
-    border: 0;
-    box-shadow: none;
-    display: flex; 
-} 

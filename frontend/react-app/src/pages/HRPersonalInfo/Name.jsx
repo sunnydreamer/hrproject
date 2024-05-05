@@ -9,11 +9,10 @@ function Name({data}){
     return data? 
     (
         <div>
-            <div className="Name-Div">
+            <div className="Name-Div-Hr">
                 <div className="Name-Div-Row">
 
                 {<img id="Profile-Pic" src={data.profilePicture} ></img>}
-                <input id="uploadImage" type="file" name="myPhoto"/>
 
                 </div>
 

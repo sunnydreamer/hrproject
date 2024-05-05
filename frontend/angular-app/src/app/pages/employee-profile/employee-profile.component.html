@@ -12,7 +12,7 @@
         <p>
           Name:
           <!-- <a href="http://localhost:5173/user" id={{person._id}}> -->
-          <a [href]="'http://localhost:5173/user/hruser/' + person._id">
+          <a [href]="'http://localhost:5173/user/hruser/' + person._id" target="_blank" rel="noopener noreferrer">
             {{ person.firstName }} {{ person.lastName }}
             {{ person.preferredName ? "(" + person.preferredName + ")" : "" }}
           </a>

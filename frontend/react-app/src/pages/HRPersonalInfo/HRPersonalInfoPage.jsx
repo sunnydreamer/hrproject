@@ -8,6 +8,9 @@ import EmergencyContact from './EmergencyContact';
 import Employment from './Employment';
 import axios from 'axios';
 
+import NavBar from "../../components/NavBar";
+import Header from "../../components/Header";
+
 
 
 const HRPersonalInfoPage = () => {
@@ -33,16 +36,21 @@ const HRPersonalInfoPage = () => {
 
   return (
 
-    <div id="parent-personal">
+    // <div id="parent-personal">
+      <div>
+
+        <div className="flex-col full-parent-width">
+          <Header title="Personal Info" />
+        </div>
 
       {data? (
         <>
       <Name data={data}></Name>
-      {/* <Address data={data} setData={setData}></Address> */}
-      {/* <Contact data={data} setData={setData}></Contact> */}
-      {/* <Employment data={data} setData={setData}></Employment> */}
-      {/* <EmergencyContact data={data} setData={setData}></EmergencyContact> */}
-      {/* <Documents data={data} setData={setData}></Documents> */}
+      <Address data={data} setData={setData}></Address>
+      <Contact data={data} setData={setData}></Contact>
+      <Employment data={data} setData={setData}></Employment>
+      <EmergencyContact data={data} setData={setData}></EmergencyContact>
+      <Documents data={data} setData={setData}></Documents>
        </>) 
       : null }
     </div>
