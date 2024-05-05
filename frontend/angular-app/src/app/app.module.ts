@@ -16,6 +16,7 @@ import { HousingViewComponent } from './components/housing-view/housing-view.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HouseModalComponent } from './house-modal/house-modal.component';
+import { HouseReportModalComponent } from './house-report-modal/house-report-modal.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,9 +25,11 @@ import { UserCardComponent } from './components/user-card/user-card.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
+    HouseReportModalComponent,
     AppComponent,
     EmployeeProfileComponent,
     NavbarComponent,
@@ -43,6 +46,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     UserCardComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

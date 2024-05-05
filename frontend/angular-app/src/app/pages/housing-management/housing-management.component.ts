@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { HouseModalComponent } from 'src/app/house-modal/house-modal.component';
+// import { HouseReportModalComponent } from 'src/app/house-report-modal/house-report-modal.component';
+import { HouseReportModalComponent } from 'src/app/house-report-modal/house-report-modal.component';
+
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -16,7 +19,7 @@ export class HousingManagementComponent implements OnInit {
 
   showHouse($event: any){
     this.currHouse = $event;
-      // console.log(this.currHouse.housingReport)
+      // console.log(this.currHouse, this.currHouse._id)
 
   }
 
@@ -36,6 +39,22 @@ export class HousingManagementComponent implements OnInit {
 
   }
   // console.log(this.currHouse.housingReport)
+
+  openDialog2(report : any): void {
+    const dialogRef = this.dialog.open(HouseReportModalComponent, {
+      width: '75vw',
+      height: '75vh',
+      // You can pass data to the dialog if needed
+      data: { 
+        houseId: this.currHouse._id,
+        report: report
+       }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 
 
   ngOnInit(): void {

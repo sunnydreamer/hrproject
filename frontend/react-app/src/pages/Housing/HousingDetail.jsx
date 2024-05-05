@@ -22,6 +22,8 @@ function HousingDetail({ houseInfo }){
 // zip
 // : 
 // "12345"
+
+    console.log(houseInfo)
     const address = houseInfo.housing?.address.street + " "
                     + houseInfo.housing?.address.city + ", "
                     + houseInfo.housing?.address.state + ", "

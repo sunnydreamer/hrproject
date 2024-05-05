@@ -51,6 +51,7 @@ const HousingPage = () => {
 function fetchfoo(){
     axios.get("http://localhost:3000/user/housing")
     .then(res => {
+      console.log(res.data, '=====')
 
       console.log(res.data)
       const initData = {

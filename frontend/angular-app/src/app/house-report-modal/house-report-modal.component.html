@@ -1,0 +1,59 @@
+
+<div mat-dialog-content>
+
+  <h2>Report</h2>
+
+  <h3>Title: {{data.report.title}}  </h3>
+  <h3>Description: {{data.report.description}}</h3>
+
+  <h3>Time: {{data.report.timestamp}}  </h3>
+
+  <h3>Status: {{data.report.status}}  </h3>
+
+  <h3>Created By: {{data.report.createdBy.firstName + " " + data.report.createdBy.lastName }}  </h3>
+
+  <h2>Comments</h2>
+
+  <!-- <div *ngFor="let comment of data.report.housingComments; let i = index">
+    <h3>{{data.report.housingComments[i].username}} </h3>
+    <h3>{{data.report.housingComments[i].timestamp}} </h3>
+    <input type="text" [(ngModel)]="data.report.housingComments[i].description">
+  </div> -->
+
+  <table>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Timestamp</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let comment of data.report.housingComments; let i = index">
+        <td>{{ comment.username }}</td>
+        <td>{{ comment.timestamp }}</td>
+        <td><input type="text" [(ngModel)]="comment.description"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- do this  -->
+  <!-- <input type="text">
+  <h3>thing: {{data.report.housingComments[0].description}}</h3>
+
+
+    {{data.houseId}}
+</div> -->
+
+<h2>Add Comment</h2>
+
+  <div class="comment-form">
+    <input type="text" [(ngModel)]="newComment" placeholder="Enter your comment">
+    <button mat-raised-button color="primary" (click)="addComment()">Add</button>
+  </div>
+
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick($event)">Close</button>
+  <!-- <button mat-button (click)="onNoClick($event)">Submit</button> -->
+</div>

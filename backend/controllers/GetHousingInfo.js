@@ -23,7 +23,7 @@ async function GetHousingInfo(req, res){
 
 
 
-        // console.log(JSON.stringify(CurrUser.house[0]));
+        console.log(JSON.stringify(CurrUser.house));
 
         if (!CurrUser) {
             return res.status(404).json({ message: 'User not found' });

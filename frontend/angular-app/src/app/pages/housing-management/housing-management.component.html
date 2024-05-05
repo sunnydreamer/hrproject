@@ -1,6 +1,8 @@
 
 <!-- give the housing info here -->
 <button (click) = "openDialog()">Add House</button>
+<!-- <button (click) = "openDialog2()">Add House</button> -->
+
 <!-- <app-house-modal></app-house-modal> -->
 <div id="main-house">
     <app-housing-view [allHouses]="houses" (newItemEvent)="showHouse($event)">
@@ -83,7 +85,7 @@
 
         <!-- Each report should display the title, description, created by, timestamp, and status (Open, In Progress, Closed) -->
 
-        <table>
+        <table id="report-table">
             <thead>
                 <tr>
                 <th>Title</th>
@@ -94,20 +96,34 @@
             </thead>
 
             <tbody>
-            <tr *ngFor="let report of currHouse.housingReport">
-                <td>
-                    {{currHouse.housingReport[0].title}}
-                </td>
-                <td>
-                    {{currHouse.housingReport[0].description}}
-                </td>
-                <td>
-                    {{currHouse.housingReport[0].timestamp}}
-                </td>
-                <td>
-                    {{currHouse.housingReport[0].status}}
-                </td>
-            </tr>
+
+
+                <tr *ngFor="let report of currHouse.housingReport" (click)="openDialog2(report)">
+                    <td>
+                        <!-- {{currHouse.housingReport[0].title}} -->
+                        {{report.title}}
+
+                        <!-- {{currHouse.housingReport[0]._id}} -->
+
+                    </td>
+                    <td>
+                        <!-- {{currHouse.housingReport[0].description}} -->
+                        {{report.description}}
+
+                    </td>
+                    <td>
+                        <!-- {{currHouse.housingReport[0].timestamp}} -->
+                        {{report.timestamp}}
+
+                    </td>
+                    <td>
+                        <!-- {{currHouse.housingReport[0].status}} -->
+                        {{report.status}}
+
+                    </td>
+                </tr>
+
+
         </tbody>
 
 
