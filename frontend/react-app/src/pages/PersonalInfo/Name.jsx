@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './styles.css'
 import axios from 'axios';
+import formatDate from './util';
 
 // check the dob
 
@@ -148,7 +149,7 @@ function changeImg(event) {
                     <div>
 
                         <label htmlFor="dob">Date of Birth:</label>
-                        <input onChange={handleChange} readOnly={edit} type="date" id="dob" name="dob" value={data.dob}/>
+                        <input onChange={handleChange} readOnly={edit} type="date" id="dob" name="dob" value={formatDate(data.dob)}/>
                     </div>
                     <div>
 

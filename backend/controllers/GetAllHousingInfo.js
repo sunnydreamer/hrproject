@@ -15,7 +15,7 @@ async function GetAllHousingInfo(req, res){
         .populate("roommates")
         .populate("housingReport");
 
-        console.log(JSON.stringify(all));
+        // console.log(JSON.stringify(all));
 
         if (!all) {
             return res.status(404).json({ message: 'User not found' });

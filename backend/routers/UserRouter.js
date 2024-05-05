@@ -5,6 +5,7 @@ const { check } = require("express-validator");
 const {GetUserInfo} = require("../controllers/GetUserInfo");
 
 const PostUserInfo = require("../controllers/PostUserInfo");
+const PutNewHouse = require("../controllers/PutNewHouse")
 const PostUserContact = require("../controllers/PostUserContact");
 const PutHousingReport = require("../controllers/PutHousingReport.js");
 const PutHousingReportComment = require("../controllers/PutHousingReportComment.js");
@@ -191,9 +192,13 @@ router
   .put("/housing/report", PutHousingReport)
   .put("/housing/report/comment", PutHousingReportComment)
 
+
   // get user for HR
   .get("/hr/userprofiles/", GetHRProfile)
   .get("/hr/userprofiles/:id", GetHRProfile)
+  //new house
+  .put("/hr/newHouse/", PutNewHouse)
+
 
 
 // .put("/housing/report/:reportid", (req, res) => {

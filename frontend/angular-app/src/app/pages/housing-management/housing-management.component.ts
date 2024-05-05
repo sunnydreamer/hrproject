@@ -16,7 +16,7 @@ export class HousingManagementComponent implements OnInit {
 
   showHouse($event: any){
     this.currHouse = $event;
-      console.log(this.currHouse.housingReport)
+      // console.log(this.currHouse.housingReport)
 
   }
 

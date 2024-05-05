@@ -35,135 +35,96 @@ function Documents({data}){
     // const pdfUrl = "https://testbuckethrproject.s3.amazonaws.com/73398308.jpg"
 
 
-    const [showPopup, setShowPopup] = useState(false);
+    const [showPopup, setShowPopup] = useState({
+        opt: false,
+        i20:false, 
+        receipt: false,
+        i983: false
+    });
 
-    const togglePopup = () => {
-        setShowPopup(prevState => !prevState);
+    const togglePopup = (event) => {
+        const buttonId = event.currentTarget.name;
+
+        // setShowPopup(prevState => !prevState);
+
+        setShowPopup(prevState => ({ ...prevState, [buttonId]: !prevState[buttonId] }));
+
+
     };
 
     const pdfUrl= "https://testbuckethrproject.s3.amazonaws.com/HR+Project+2024+March.pdf"
 
-
+    console.log(data, "======")
 
     return(
-
-
-
-        <div className="Document-Div">
-
-            <div>
-            {data.driversLicense? 
-                (<img id="Profile-Pic" src={data.profilePicture} ></img>)
-                :
-                undefined
-            }
-            </div>
-
-
-
-            <div>
-            <a href={pdfUrl} target="_blank" rel="noopener noreferrer">SOME PDF NAME </a>
-
-                <button onClick={togglePopup}>Open Preview</button>
-                {showPopup && (
-                    <div className="popup">
-                        <div className="popup-inner">
-                            <button onClick={togglePopup}>Close</button>
-                            <FileThumbnail fileUrl={pdfUrl} />
-                        </div>
+        <div className='Document-Div'>
+    {/* EAD */}
+    {data.opt?.ead?.document && (
+        <div>
+            <a href={data.opt.ead} target="_blank" rel="noopener noreferrer">EAD </a>
+            <button onClick={(e) => togglePopup(e, 'ead')}>Open Preview</button>
+            {showPopup.ead && (
+                <div className="popup">
+                    <div className="popup-inner">
+                        <button onClick={(e) => togglePopup(e, 'ead')}>Close</button>
+                        <FileThumbnail fileUrl={data.opt.ead} />
                     </div>
-                )}
-            </div>
-            <div>
-            <a href={pdfUrl} target="_blank" rel="noopener noreferrer">SOME PDF NAME </a>
-
-                <button onClick={togglePopup}>Open Preview</button>
-                {showPopup && (
-                    <div className="popup">
-                        <div className="popup-inner">
-                            <button onClick={togglePopup}>Close</button>
-                            <FileThumbnail fileUrl={pdfUrl} />
-                        </div>
-                    </div>
-                )}
-            </div>
-            <div>
-            <a href={pdfUrl} target="_blank" rel="noopener noreferrer">SOME PDF NAME </a>
-
-                <button onClick={togglePopup}>Open Preview</button>
-                {showPopup && (
-                    <div className="popup">
-                        <div className="popup-inner">
-                            <button onClick={togglePopup}>Close</button>
-                            <FileThumbnail fileUrl={pdfUrl} />
-                        </div>
-                    </div>
-                )}
-            </div>
-
-
-            {/* {data.opt.map((each, index) => (
-                <div>
-                    
                 </div>
-            ))} */}
-
+            )}
         </div>
+    )}
+    
+    {/* I20 */}
+    {data.opt?.i20?.document && (
+        <div>
+            <a href={data.opt.i20} target="_blank" rel="noopener noreferrer">I20 </a>
+            <button onClick={(e) => togglePopup(e, 'i20')}>Open Preview</button>
+            {showPopup.i20 && (
+                <div className="popup">
+                    <div className="popup-inner">
+                        <button onClick={(e) => togglePopup(e, 'i20')}>Close</button>
+                        <FileThumbnail fileUrl={data.opt.i20} />
+                    </div>
+                </div>
+            )}
+        </div>
+    )}
 
+    {/* I983 */}
+    {data.opt?.i983?.document && (
+        <div>
+            <a href={data.opt.i983} target="_blank" rel="noopener noreferrer">I983 </a>
+            <button onClick={(e) => togglePopup(e, 'i983')}>Open Preview</button>
+            {showPopup.i983 && (
+                <div className="popup">
+                    <div className="popup-inner">
+                        <button onClick={(e) => togglePopup(e, 'i983')}>Close</button>
+                        <FileThumbnail fileUrl={data.opt.i983} />
+                    </div>
+                </div>
+            )}
+        </div>
+    )}
+
+    {/* Receipt */}
+    {data.opt?.receipt?.document && (
+        <div>
+            <a href={data.opt.receipt} target="_blank" rel="noopener noreferrer">Receipt </a>
+            <button onClick={(e) => togglePopup(e, 'receipt')}>Open Preview</button>
+            {showPopup.receipt && (
+                <div className="popup">
+                    <div className="popup-inner">
+                        <button onClick={(e) => togglePopup(e, 'receipt')}>Close</button>
+                        <FileThumbnail fileUrl={data.opt.receipt} />
+                    </div>
+                </div>
+            )}
+        </div>
+    )}
+</div>
     )
-
 }
-
 export default Documents
 
 
 
-
-
-// import React from 'react'
-// import './styles.css'
-
-// function Documents({data}){
-
-//     // console.log(data)
-//     // console.log(data.opt, "===");
-//     //when luolian finsihes pull out the data.opt, which is array
-//         //go trhoug it and pull out the links
-
-//     //also use data.driversLicense.licenseImage
-
-
-//     console.log(data)
-
-//     //for now just use the test ones 
-//     //https://testbuckethrproject.s3.amazonaws.com/73398308.jpg
-//     const fileUrl= "https://testbuckethrproject.s3.amazonaws.com/HR+Project+2024+March.pdf"
-
-
-
-//     return(
-//         <div className="Document-Div">
-//             {data.driversLicense? 
-//                 (<img id="Profile-Pic" src={data.profilePicture} ></img>)
-//                 :
-//                 undefined
-//             }
-
-
-
-
-//                 <a href={fileUrl} target="_blank" rel="noopener noreferrer">Download HR Project 2024 March PDF</a>
-
-
-//             {/* {data.opt.map((each, index) => (
-//                 <div>
-                    
-//                 </div>
-//             ))} */}
-
-//         </div>
-//     )
-
-// }
-
-// export default Documents

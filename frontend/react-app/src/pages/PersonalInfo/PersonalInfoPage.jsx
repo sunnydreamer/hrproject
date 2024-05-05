@@ -107,8 +107,6 @@ const PersonalInfoPage = () => {
           <Documents data={data} setData={setData}></Documents>
         </>)
         : null}
-
-
     </div>
 
   );
