@@ -13,11 +13,12 @@ h1 {
   margin-bottom: 10px;
 }
 
-.search-contianer {
+.content-contianer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .custom-button {

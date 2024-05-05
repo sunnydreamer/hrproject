@@ -44,13 +44,13 @@ export class UserCardComponent implements OnInit {
   }
 
   approveDocument(documentId: string): void {
+    console.log('checking documentId');
+    console.log(documentId);
     this.sendReviewRequest(documentId, 'Approved');
-    window.location.reload();
   }
 
   rejectDocument(documentId: string, comment?: string): void {
     this.sendReviewRequest(documentId, 'Rejected', comment);
-    window.location.reload();
   }
   toggleInput(): void {
     this.showNewInput = !this.showNewInput;
@@ -71,6 +71,7 @@ export class UserCardComponent implements OnInit {
       .subscribe({
         next: (response) => {
           console.log('Review request sent successfully:', response);
+          window.location.reload();
         },
         error: (error) => {
           console.error('Error sending review request:', error);
@@ -90,6 +91,7 @@ export class UserCardComponent implements OnInit {
     emailjs.send('service_rktkncq', 'template_91iuxc9', templateParams).then(
       function (response) {
         console.log('SUCCESS!', response.status, response.text);
+        alert('Email sent successfully!');
       },
       function (err) {
         console.log('FAILED...', err);
