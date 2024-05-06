@@ -16,13 +16,11 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler, file, setFile }) => {
         workAuthorizationStart: null,
         workAuthorizationEnd: null,
       });
-      e.target.value = userInfo.workAuthorization;
     }
     if (e.target.value === `no`) {
       setOtherOption(false);
       setExtraOptions(true);
       setIsF1(false);
-      e.target.value = `no`;
       return;
     }
     if (e.target.value === `other`) {
