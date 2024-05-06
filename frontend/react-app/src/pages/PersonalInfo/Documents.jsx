@@ -42,8 +42,8 @@ function Documents({data}){
 
 {data.driversLicense?.licenseImage && (
         <div className="document-each">
-            <a href={data.driversLicense?.licenseImage} target="_blank" rel="noopener noreferrer">EAD </a>
-            <button onClick={(e) => togglePopup(e, 'ead')}>Open Preview</button>
+            <a href={data.driversLicense?.licenseImage} target="_blank" rel="noopener noreferrer">License </a>
+            <button onClick={(e) => togglePopup(e, 'license')}>Open Preview</button>
             {showPopup.license && (
                 <div className="popup">
                     <div className="popup-inner">

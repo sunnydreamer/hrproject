@@ -70,7 +70,9 @@ function HousingComment({showComment, setShowComment, data}){
                 style={{ width: '25vw' }} 
                 type="text" 
                 value={each.description} 
-                onChange={(e) => handleCommentChange(index, e.target.value)}
+                // onChange={(e) => handleCommentChange(index, e.target.value)}
+                onChange={(e) => alert(showComment.id, data._id)}
+
                 readOnly = {(showComment._id == data._id)}
               />                
               </td>

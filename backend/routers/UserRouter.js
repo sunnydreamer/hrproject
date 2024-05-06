@@ -192,7 +192,7 @@ router
 
   // user housing page
   .get("/housing", auth ,GetHousingInfo)
-  .get("/housing/all", GetAllHousingInfo)
+  .get("/housing/all", auth, GetAllHousingInfo)
 
 
   //////////////////////////////////////////////////
@@ -211,8 +211,8 @@ router
   //////////////////////////////////////////////////
 
   // get user for HR
-  .get("/hr/userprofiles/", GetHRProfile)
-  .get("/hr/userprofiles/:id", GetHRProfile)
+  .get("/hr/userprofiles/", auth, GetHRProfile)
+  .get("/hr/userprofiles/:id", auth, GetHRProfile)
   //new house
   .put("/hr/newHouse/", PutNewHouse)
 
