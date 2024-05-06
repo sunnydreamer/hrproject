@@ -48,7 +48,7 @@ function Address({ data, setData }) {
     }
 
     return (
-        <div className='personal'>
+        <div>
             <div className="buttons">
                 {editMode ? (
                     <Button onClick={handleSave}>Save</Button>
@@ -57,11 +57,11 @@ function Address({ data, setData }) {
                 )}
             </div>
 
-            <div className="Address-Div">
+            <div className="Name-Div">
                 <div className="Address-Div-One">
                     <TextField
                         onChange={handleChange}
-                        readOnly={!editMode}
+                        disabled={!editMode}
                         label="Street Name:"
                         variant="outlined"
                         type="text"
@@ -71,7 +71,7 @@ function Address({ data, setData }) {
                     />
                     <TextField
                         onChange={handleChange}
-                        readOnly={!editMode}
+                        disabled={!editMode}
                         label="Building/Apt #:"
                         variant="outlined"
                         type="text"
@@ -83,7 +83,7 @@ function Address({ data, setData }) {
                 <div className="Address-Div-Two">
                     <TextField
                         onChange={handleChange}
-                        readOnly={!editMode}
+                        disabled={!editMode}
                         label="City:"
                         variant="outlined"
                         type="text"
@@ -93,7 +93,7 @@ function Address({ data, setData }) {
                     />
                     <TextField
                         onChange={handleChange}
-                        readOnly={!editMode}
+                        disabled={!editMode}
                         label="State:"
                         variant="outlined"
                         type="text"
@@ -103,7 +103,7 @@ function Address({ data, setData }) {
                     />
                     <TextField
                         onChange={handleChange}
-                        readOnly={!editMode}
+                        disabled={!editMode}
                         label="Zip:"
                         variant="outlined"
                         type="text"

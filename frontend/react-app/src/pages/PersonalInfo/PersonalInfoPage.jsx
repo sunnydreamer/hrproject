@@ -145,15 +145,21 @@ const PersonalInfoPage = () => {
   }, []);
 
   return (
-    <Container maxWidth="md">
+<Container sx={{ maxWidth: '50vw', margin: '0', padding: '0' }}>
       {data ? (
         <>
+        <h2>Basic Info</h2>
           <Name data={data} setData={setData} />
+          <h2>Address Info</h2>
           <Address data={data} setData={setData} />
+          <h2>Contact Info</h2>
           <Contact data={data} setData={setData} />
+          <h2>Employment Info</h2>
           <Employment data={data} setData={setData} />
+          <h2>Emergency Info</h2>
           <EmergencyContact data={data} setData={setData} />
-          <Documents data={data} setData={setData} />
+          <h2>Documents</h2>
+          <Documents data={data} setData={setData} />/
         </>
       ) : null}
     </Container>

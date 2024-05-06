@@ -1,3 +1,6 @@
+
+
+
 import React, { useState } from 'react'
 import './styles.css'
 import axios from 'axios';
@@ -11,7 +14,7 @@ import { Button, TextField, Grid, Avatar, Typography, MenuItem, Input, Container
 
 function Name({data, setData}){
 
-    const [edit, setEdit]= useState(true );  
+    const [edit, setEdit]= useState(false );  
 
     function handleChange(event){
         setData((prev) => {
@@ -37,7 +40,7 @@ function Name({data, setData}){
     //have some UI indication
     function handleSave() {
         handleSubmit();
-        setEdit(true);
+        setEdit(false);
     }
 
     function toggleEditMode() {
@@ -93,125 +96,124 @@ function changeImg(event) {
 //     }
 
 
-
 return (
     <div className='personal'>
-      <div className="buttons">
-        {edit ? (
-          <Button onClick={toggleEditMode}>Edit</Button>
-        ) : (
-          <Button onClick={handleSave}>Save</Button>
-        )}
-      </div>
+        <div className="buttons">
+            {edit ? (
+                <Button onClick={handleSave}>Save</Button>
 
-      <div className="Name-Div">
-        <div className="Name-Div-Row">
-          {data.profilePicture ? (
-            <img id="Profile-Pic" src={data.profilePicture} alt="" />
-          ) : (
-            <img id="Profile-Pic" src={profilePic} alt="" />
-          )}
-          <Input
-            id="uploadImage"
-            type="file"
-            name="myPhoto"
-            onChange={changeImg}
-            style={{ display: edit ? 'none' : 'block' }}
-          />
-        </div>
+            ) : (
+                <Button onClick={toggleEditMode}>Edit</Button>
 
-        <div className="Name-Div-Row">
-          <TextField
-            onChange={handleChange}
-            readOnly={edit}
-            label="First Name:"
-            variant="outlined"
-            type="text"
-            id="firstName"
-            name="firstName"
-            value={data.firstName}
-          />
-          <TextField
-            onChange={handleChange}
-            readOnly={edit}
-            label="Last Name:"
-            variant="outlined"
-            type="text"
-            id="lastName"
-            name="lastName"
-            value={data.lastName}
-          />
-          <TextField
-            onChange={handleChange}
-            readOnly={edit}
-            label="Middle Name:"
-            variant="outlined"
-            type="text"
-            id="middleName"
-            name="middleName"
-            value={data.middleName}
-          />
-          <TextField
-            onChange={handleChange}
-            readOnly={edit}
-            label="Preferred Name:"
-            variant="outlined"
-            type="text"
-            id="preferredName"
-            name="preferredName"
-            value={data.preferredName}
-          />
+            )}
         </div>
-
-        <div className="Name-Div-Row">
-          <TextField
-            onChange={handleChange}
-            readOnly={edit}
-            label="Email:"
-            variant="outlined"
-            type="email"
-            id="email"
-            name="email"
-            value={data.email}
-          />
-          <TextField
-            onChange={handleChange}
-            readOnly={edit}
-            label="SSN:"
-            variant="outlined"
-            type="text"
-            id="ssn"
-            name="ssn"
-            value={data.ssn}
-          />
-          <TextField
-            onChange={handleChange}
-            readOnly={edit}
-            label="Date of Birth:"
-            variant="outlined"
-            type="date"
-            id="dob"
-            name="dob"
-            value={formatDate(data.dob)}
-          />
-          <TextField
-            select
-            onChange={handleChange}
-            readOnly={edit}
-            label="Gender:"
-            variant="outlined"
-            id="gender"
-            name="gender"
-            value={data.gender}
-          >
-            <MenuItem value="male">Male</MenuItem>
-            <MenuItem value="female">Female</MenuItem>
-            <MenuItem value="other">Other</MenuItem>
-          </TextField>
+        <div className="Name-Div">
+            <div className="Name-Div-Row">
+                {data.profilePicture ? (
+                    <img id="Profile-Pic" src={data.profilePicture} alt="" />
+                ) : (
+                    <img id="Profile-Pic" src={profilePic} alt="" />
+                )}
+                <Input
+                    id="uploadImage"
+                    type="file"
+                    name="myPhoto"
+                    onChange={changeImg}
+                    style={{ display: !edit ? 'none' : 'block' }}
+                />
+            </div>
+            <div className="Name-Div-Row">
+                <TextField
+                    onChange={handleChange}
+                    disabled={!edit}
+                    label="First Name:"
+                    variant="outlined"
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    value={data.firstName}
+                />
+                <TextField
+                    onChange={handleChange}
+                    disabled={!edit}
+                    label="Last Name:"
+                    variant="outlined"
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    value={data.lastName}
+                />
+                <TextField
+                    onChange={handleChange}
+                    disabled={!edit}
+                    label="Middle Name:"
+                    variant="outlined"
+                    type="text"
+                    id="middleName"
+                    name="middleName"
+                    value={data.middleName}
+                />
+                <TextField
+                    onChange={handleChange}
+                    disabled={!edit}
+                    label="Preferred Name:"
+                    variant="outlined"
+                    type="text"
+                    id="preferredName"
+                    name="preferredName"
+                    value={data.preferredName}
+                />
+            </div>
+            <div className="Name-Div-Row">
+                <TextField
+                    onChange={handleChange}
+                    disabled={!edit}
+                    label="Email:"
+                    variant="outlined"
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={data.email}
+                />
+                <TextField
+                    onChange={handleChange}
+                    disabled={!edit}
+                    label="SSN:"
+                    variant="outlined"
+                    type="text"
+                    id="ssn"
+                    name="ssn"
+                    value={data.ssn}
+                />
+                <TextField
+                    onChange={handleChange}
+                    disabled={!edit}
+                    label="Date of Birth:"
+                    variant="outlined"
+                    type="date"
+                    id="dob"
+                    name="dob"
+                    value={formatDate(data.dob)}
+                />
+                <TextField
+                    select
+                    onChange={handleChange}
+                    disabled={!edit}
+                    label="Gender:"
+                    variant="outlined"
+                    id="gender"
+                    name="gender"
+                    value={data.gender}
+                >
+                    <MenuItem value="male">Male</MenuItem>
+                    <MenuItem value="female">Female</MenuItem>
+                    <MenuItem value="other">Other</MenuItem>
+                </TextField>
+            </div>
         </div>
-      </div>
     </div>
-  );
+);
+
 }
 
 

@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
-import './styles.css';
+import React, { useState } from 'react'
+import './styles.css'
 import axios from 'axios';
+import formatDate from './util';
+import { makeStyles } from '@mui/styles';
+import Box from '@mui/material/Box';
+import { Button, TextField, Grid, Avatar, Typography, MenuItem, Input, Container, InputLabel} from '@mui/material';
+
 
 function Contact({ data, setData }) {
     const [editMode, setEditMode] = useState(false);
@@ -46,19 +51,33 @@ function Contact({ data, setData }) {
         <div>
             <div className="buttons">
                 {editMode ? (
-                    <button onClick={handleSave}>Save</button>
+                    <Button onClick={handleSave}  >Save</Button>
                 ) : (
-                    <button onClick={toggleEditMode}>Edit</button>
+                    <Button onClick={toggleEditMode} >Edit</Button>
                 )}
             </div>
-            <div className="Contact-Div">
+            <div className="Name-Div">
                 <div>
-                    <label htmlFor="cell">Cell Phone Number:</label>
-                    <input type="tel" id="cell" name="cell" value={data.phone.cell} onChange={handleChange} readOnly={!editMode} />
+                    <TextField
+                        id="cell"
+                        name="cell"
+                        label="Cell Phone Number"
+                        type="tel"
+                        value={data.phone.cell}
+                        onChange={handleChange}
+                        disabled={!editMode}
+                    />
                 </div>
                 <div>
-                    <label htmlFor="work">Work Phone Number:</label>
-                    <input type="tel" id="work" name="work" value={data.phone.work} onChange={handleChange} readOnly={!editMode}/>
+                    <TextField
+                        id="work"
+                        name="work"
+                        label="Work Phone Number"
+                        type="tel"
+                        value={data.phone.work}
+                        onChange={handleChange}
+                        disabled={!editMode}
+                    />
                 </div>
             </div>
         </div>

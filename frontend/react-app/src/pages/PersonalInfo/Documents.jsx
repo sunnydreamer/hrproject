@@ -20,21 +20,6 @@ function FileThumbnail({fileUrl}) {
 
 
 function Documents({data}){
-
-    // console.log(data)
-    // console.log(data.opt, "===");
-    //when luolian finsihes pull out the data.opt, which is array
-        //go trhoug it and pull out the links
-
-    //also use data.driversLicense.licenseImage
-
-
-
-
-    //for now just use the test ones 
-    // const pdfUrl = "https://testbuckethrproject.s3.amazonaws.com/73398308.jpg"
-
-
     const [showPopup, setShowPopup] = useState({
         opt: false,
         i20:false, 
@@ -44,12 +29,7 @@ function Documents({data}){
 
     const togglePopup = (event) => {
         const buttonId = event.currentTarget.name;
-
-        // setShowPopup(prevState => !prevState);
-
         setShowPopup(prevState => ({ ...prevState, [buttonId]: !prevState[buttonId] }));
-
-
     };
 
     const pdfUrl= "https://testbuckethrproject.s3.amazonaws.com/HR+Project+2024+March.pdf"

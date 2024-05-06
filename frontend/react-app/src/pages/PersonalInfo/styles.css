@@ -1,7 +1,8 @@
 
 
 .personal{
-    width: 88vw;
+    width: 75vw;
+    margin: auto;
 }
 
 .buttons{
@@ -13,7 +14,7 @@
 
 .Name-Div{
     background-color: white;
-    margin: 0 3em;
+    margin: 0 0;
     border-radius: 2em;
     display: flex;
     flex-direction: row;
@@ -39,47 +40,42 @@
 }
 
 
-/* 
+
 .Address-Div{
-    height: 20vh;
-    padding: 2em;
-
     background-color: white;
-
-    margin: 0 3em;
     border-radius: 2em;
     display: flex; 
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-} */
+}
 
 /* .Address-Div-One{
-    width: 80vw;
+    width: 50vw;
     display: flex;
     justify-content: space-even;
     align-items: center;
-}
+} */
 
-#StreetName{
-    width: 40vw;
+/* #StreetName{
+    width: 20vw;
     margin: 0 5vw 0 0;
 }
 
 
 #BuildingApt{
     width: 20vw;
-}
+} */
 
 
-.Address-Div-Two{
+/* .Address-Div-Two{
     width: 80vw;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-}
+} */
 
-#City{
+/* #City{
     width: 20vw;
 }
 
@@ -132,3 +128,18 @@
     box-shadow: none;
     display: flex; 
 }  */
+
+
+
+.Create-Emergency-Div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3em; 
+    margin-top: 20px; 
+
+}
+
+.Create-Emergency-Div input {
+    flex: 1;
+    margin-bottom: 10px; /* Adjust as needed */
+}

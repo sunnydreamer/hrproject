@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
-import './styles.css';
+
+import React, { useState } from 'react'
+import './styles.css'
 import axios from 'axios';
 import formatDate from './util';
+import { makeStyles } from '@mui/styles';
+import Box from '@mui/material/Box';
+import { Button, TextField, Grid, Avatar, Typography, MenuItem, Input, Container, InputLabel} from '@mui/material';
+
+
+
 
 
 function Employment({ data, setData }) {
@@ -9,8 +16,6 @@ function Employment({ data, setData }) {
 
     function handleChange(event) {
         const { name, value } = event.target;
-
-        // console.log(name, value)
         setData(prevData => ({
             ...prevData,
             [name]: value
@@ -41,44 +46,44 @@ function Employment({ data, setData }) {
     }
 
     return (
-        <div>
+        <Container>
             <div className="buttons">
                 {editMode ? (
-                    <button onClick={handleSave}>Save</button>
+                    <Button onClick={handleSave} >Save</Button>
                 ) : (
-                    <button onClick={toggleEditMode}>Edit</button>
+                    <Button onClick={toggleEditMode} >Edit</Button>
                 )}
             </div>
-            <div className="Employment-Div">
-                <label htmlFor="VisaTitle">Visa Title:</label>
-                <input
-                    type="text"
+            <div className="Name-Div">
+                <TextField
                     id="workAuthorization"
                     name="workAuthorization"
+                    label="Visa Title"
+                    type="text"
                     value={data.workAuthorization}
                     onChange={handleChange}
-                    readOnly={!editMode}
+                    disabled={!editMode}
                 />
-                <label htmlFor="VisaStartDate">Start Date:</label>
-                <input
-                    type="date"
+                <TextField
                     id="workAuthorizationStart"
                     name="workAuthorizationStart"
+                    label="Start Date"
+                    type="date"
                     value={formatDate(data.workAuthorizationStart)}
                     onChange={handleChange}
-                    readOnly={!editMode}
+                    disabled={!editMode}
                 />
-                <label htmlFor="VisaEndDate">End Date:</label>
-                <input
-                    type="date"
+                <TextField
                     id="workAuthorizationEnd"
                     name="workAuthorizationEnd"
+                    label="End Date"
+                    type="date"
                     value={formatDate(data.workAuthorizationEnd)}
                     onChange={handleChange}
-                    readOnly={!editMode}
+                    disabled={!editMode}
                 />
             </div>
-        </div>
+        </Container>
     );
 }
 
