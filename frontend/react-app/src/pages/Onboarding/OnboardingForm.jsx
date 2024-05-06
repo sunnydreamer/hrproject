@@ -4,12 +4,12 @@ import PersonalInfo from "./PersonalInfo";
 import WorkAuth from "./WorkAuth";
 import EmergencyContacts from "./EmergencyContacts";
 import Referral from "./Referral";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 
 const OnboardingForm = ({ userInfo, setUserInfo }) => {
   const [showInfo, setShowInfo] = useState(true);
   const [showContact, setShowContact] = useState(false);
-  const [file, setFile] = useState(null)
+  const [file, setFile] = useState(null);
 
   const changeHandler = (e) => {
     if (e.target.id.includes(`.`)) {
@@ -41,15 +41,16 @@ const OnboardingForm = ({ userInfo, setUserInfo }) => {
   };
 
   const submitFormHandler = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-
       const formData = new FormData();
-      formData.append('file', file);
-      formData.append('userId', userInfo._id)
+      formData.append("file", file);
+      formData.append("userId", userInfo._id);
       // Append JSON data to FormData
-      formData.append('userInfo', JSON.stringify({ ...userInfo, onboardingStatus: 'Pending' }));
-
+      formData.append(
+        "userInfo",
+        JSON.stringify({ ...userInfo, onboardingStatus: "Pending" })
+      );
 
       const response = await fetch(
         `http://localhost:3000/user/onboarding/updateUser`,
@@ -60,13 +61,10 @@ const OnboardingForm = ({ userInfo, setUserInfo }) => {
       );
 
       if (response.ok) {
-
         const result = await response.json();
         console.log(result);
         window.location.reload();
-
       }
-
     } catch (error) {
       console.error(error);
     }
@@ -74,9 +72,21 @@ const OnboardingForm = ({ userInfo, setUserInfo }) => {
 
   return (
     <>
-      <h2 style={{ textAlign: "center" }} onClick={() => setShowInfo(!showInfo)}>Personal Information</h2>
+      <h2
+        style={{ textAlign: "center" }}
+        onClick={() => setShowInfo(!showInfo)}
+      >
+        Personal Information
+      </h2>
       {showInfo ? (
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <form>
             <PersonalInfo
               userInfo={userInfo}
@@ -96,24 +106,32 @@ const OnboardingForm = ({ userInfo, setUserInfo }) => {
               changeHandler={changeHandler}
             />
             <Referral userInfo={userInfo} changeHandler={changeHandler} />
-
-            <h2 onClick={() => setShowContact(!showContact)}>
-              Emergency Contacts:{" "}
-            </h2>
-            {showContact ? (
-              <>
-                <EmergencyContacts
-                  userInfo={userInfo}
-                  setUserInfo={setUserInfo}
-                />
-              </>
-            ) : null}
-            <div className="line" style={{ display: "flex", justifyContent: "center" }}>
-              <Button type="submit" variant="contained" onClick={submitFormHandler} > Submit</Button>
-            </div>
-
           </form>
-        </div >
+          <h2 onClick={() => setShowContact(!showContact)}>
+            Emergency Contacts:{" "}
+          </h2>
+          {showContact ? (
+            <>
+              <EmergencyContacts
+                userInfo={userInfo}
+                setUserInfo={setUserInfo}
+              />
+            </>
+          ) : null}
+          <div
+            className="line"
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            <Button
+              type="submit"
+              variant="contained"
+              onClick={submitFormHandler}
+            >
+              {" "}
+              Submit
+            </Button>
+          </div>
+        </div>
       ) : null}
     </>
   );

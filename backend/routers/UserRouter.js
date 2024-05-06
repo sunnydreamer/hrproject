@@ -2,16 +2,18 @@ const router = require("express").Router();
 const multer = require("multer"); // import multer
 const { check } = require("express-validator");
 
-const GetUserInfo = require("../controllers/GetUserInfo");
+const {GetUserInfo} = require("../controllers/GetUserInfo");
+
 const PostUserInfo = require("../controllers/PostUserInfo");
+const PutNewHouse = require("../controllers/PutNewHouse")
 const PostUserContact = require("../controllers/PostUserContact");
 const PutHousingReport = require("../controllers/PutHousingReport.js");
 const PutHousingReportComment = require("../controllers/PutHousingReportComment.js");
 
 const GetHRProfile = require("../controllers/GetHRProfile");
 const OnboardingController = require("../controllers/OnboardingControllers.js");
-
-
+const PutChangeReportComment = require("../controllers/PutChangeReportComment.js")
+const PutNewReportComment = require("../controllers/PutNewReportComment.js");
 const GetHousingInfo = require("../controllers/GetHousingInfo");
 const GetAllHousingInfo = require("../controllers/GetAllHousingInfo");
 
@@ -67,8 +69,6 @@ router
     ],
     UserController.generateAndStoreTokens
   )
-  .post("/info", PostUserInfo)
-  .post("/info/contact", PostUserContact)
   .put("/visa/:userid", (req, res) => {
     res.send("visa status changed successfully");
   })
@@ -171,32 +171,51 @@ router
   .post(`/onboarding/fetchContacts`, OnboardingController.fetchEmergencyContacts)
 
   // user info page
-  .put("/info", (req, res) => {
-    res.send("User info is modified successfully");
-  })
-  // .get("/personalinfo", GetUserInfo)
+  // .put("/info", (req, res) => {
+  //   res.send("User info is modified successfully");
+  // })
 
   // user visa page
   .put("/visa/:userid", (req, res) => {
     res.send("visa status changed successfully");
   })
 
+
+    //////////////////////////////////////////////////
+  //mine
+  //////////////////////////////////////////////////
+
+  .get("/personalinfo", auth, GetUserInfo)
+  .post("/info", auth, PostUserInfo)
+  .post("/info/contact", auth, PostUserContact)
+
+
   // user housing page
-  .get("/housing", GetHousingInfo)
+  .get("/housing", auth ,GetHousingInfo)
   .get("/housing/all", GetAllHousingInfo)
 
 
+  //////////////////////////////////////////////////
+  //mine
+  //////////////////////////////////////////////////
   //create housing report
   .put("/housing/report", PutHousingReport)
-  .put("/housing/report/comment", PutHousingReportComment)
+  .put("/housing/report/comment", auth, PutHousingReportComment)
+  .put("/housing/comment/new", auth, PutNewReportComment)
+  .put("/housing/comment/change", auth, PutChangeReportComment  )
+
+  // PutChangeReportComment
+
+  //////////////////////////////////////////////////
+  //mine
+  //////////////////////////////////////////////////
 
   // get user for HR
   .get("/hr/userprofiles/", GetHRProfile)
-  .get("/hr/userprofiles/:id", GetHRProfile)
+  .get("/hr/userprofiles/:id",  GetHRProfile)
+  //new house
+  .put("/hr/newHouse/", PutNewHouse)
 
 
-// .put("/housing/report/:reportid", (req, res) => {
-//   res.send("Replied facility report successfully");
-// });
 
 module.exports = router;

@@ -33,7 +33,8 @@ const AppRouter = () => (
       <Route path="/user">
         <Route path="" element={<Page title="Personal Information"><PersonalInfoPage /></Page>} />
         
-        <Route path="hruser/:id" element={<Page title="Personal Information"><HRPersonalInfoPage /></Page>} />
+        <Route path="hruser/:id" element= {<HRPersonalInfoPage />} />
+
 
 
         <Route

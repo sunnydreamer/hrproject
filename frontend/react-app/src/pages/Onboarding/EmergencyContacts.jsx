@@ -83,7 +83,7 @@ const EmergencyContacts = ({ userInfo, setUserInfo }) => {
           <input type="text" id="e.lastName" required />
           <br />
           <label htmlFor="e.middleName">Middle Name: </label>
-          <input type="text" id="e.middleName" required />
+          <input type="text" id="e.middleName" />
           <br />
           <label htmlFor="e.phone.cell">Phone (cell): </label>
           <input type="text" id="e.phone.cell" required />

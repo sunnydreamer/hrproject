@@ -7,24 +7,32 @@ const EmergencyContact = require("../models/emergencyContactModel");
 async function GetUserInfo(req, res) {
   // let userid = //get this from the token middlwear... don't worry for now
 
+  const {userId, email} = req.body;
+
+
+  // console.log(userId, email, req.body)
   try {
-    let CurrUser = await User.findOne({ firstName: "Sunny" }).populate(
+    let CurrUser = await User.findOne({ _id: userId }).populate(
       "emergencyContact"
-    ) . populate("opt");
-    // .populate('EmergencyContact')
-    // .exec((err, user) => {
-    //     if (err) {
-    //         console.error('Error:', err);
-    //         return;
-    // }})
-    console.log("User with populated address:", CurrUser);
+    ) . populate("opt")
+    .populate({
+      path: 'opt',
+      populate: [
+          { path: 'receipt'},
+          { path: 'ead' },
+          { path: 'i983' }, 
+          { path: 'i20' } 
+
+
+      ]
+  });
+
 
     if (!CurrUser) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // console.log(CurrUser)
-    // console.log(CurrUser);
+
     res.status(200).json(CurrUser);
   } catch (error) {
     console.error("Error:", error);

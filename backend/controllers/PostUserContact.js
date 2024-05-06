@@ -7,24 +7,23 @@ const EmergencyContact = require("../models/emergencyContactModel");
 async function PostUserContact(req, res){
     // let userid = //get this from the token middlwear... don't worry for now
 
+        const {userId, email} = req.body;
+
+        console.log(userId, email)
 
         //grab the req payload
         let payload = req.body;
-        // console.log(payload.newContact)
+        // console.log(payload)
 
-        //grab the curruser
-        let CurrUser = await User.findOne({ firstName: req.body.username });
-    console.log(CurrUser, req.body)
-
+        // //grab the curruser
+        let CurrUser = await User.findOne({ _id: userId });
         let newEmergency = new EmergencyContact({
             ... payload.newContact
             });
         
         let newj = await newEmergency.save();
-
         CurrUser.emergencyContact.push(newj._id)
         await CurrUser.save();
-
 }
 
 module.exports = PostUserContact

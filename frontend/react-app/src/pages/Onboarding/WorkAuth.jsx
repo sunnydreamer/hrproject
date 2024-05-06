@@ -5,24 +5,25 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler, file, setFile }) => {
   const [extraOptions, setExtraOptions] = useState(false);
   const [otherOption, setOtherOption] = useState(false);
   const [isF1, setIsF1] = useState(false);
+  const [workAuthValue, setWorkAuthValue] = useState(``);
 
   const workAuthChange = (e) => {
     if (e.target.value === `citizen` || e.target.value === `green card`) {
       setExtraOptions(false);
       setOtherOption(false);
       setIsF1(false);
+      setWorkAuthValue(e.target.value);
       setUserInfo({
         ...userInfo,
         workAuthorizationStart: null,
         workAuthorizationEnd: null,
       });
-      e.target.value = userInfo.workAuthorization;
     }
     if (e.target.value === `no`) {
       setOtherOption(false);
       setExtraOptions(true);
       setIsF1(false);
-      e.target.value = `no`;
+      setWorkAuthValue(e.target.value);
       return;
     }
     if (e.target.value === `other`) {
@@ -76,7 +77,7 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler, file, setFile }) => {
         </label>
         <select
           id="workAuthorization"
-          value={userInfo.workAuthorization}
+          value={workAuthValue}
           onChange={workAuthChange}
         >
           <option></option>

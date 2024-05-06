@@ -15,6 +15,8 @@ const HREmailPage = (props) => {
     const lastName = event.target.elements.lastName.value.trim();
     const email = event.target.elements.email.value.trim();
 
+    console.log(email);
+
     fetch("http://localhost:3000/user/send-email", {
       method: "POST",
       headers: {

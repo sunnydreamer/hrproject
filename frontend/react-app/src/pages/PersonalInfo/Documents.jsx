@@ -2,7 +2,7 @@
 
 
 import React, {useState} from 'react'
-// import './styles.css'
+import './styles.css'
 import { PDFViewer, Document, Page, Text } from '@react-pdf/renderer';
 
 
@@ -20,150 +20,109 @@ function FileThumbnail({fileUrl}) {
 
 
 function Documents({data}){
+    const [showPopup, setShowPopup] = useState({
+        opt: false,
+        i20:false, 
+        receipt: false,
+        i983: false,
+        license: false
+    });
 
-    // console.log(data)
-    // console.log(data.opt, "===");
-    //when luolian finsihes pull out the data.opt, which is array
-        //go trhoug it and pull out the links
-
-    //also use data.driversLicense.licenseImage
-
-
-
-
-    //for now just use the test ones 
-    // const pdfUrl = "https://testbuckethrproject.s3.amazonaws.com/73398308.jpg"
-
-
-    const [showPopup, setShowPopup] = useState(false);
-
-    const togglePopup = () => {
-        setShowPopup(prevState => !prevState);
+    const togglePopup = (event, which) => {
+        const buttonId = which;
+        setShowPopup(prevState => ({ ...prevState, [buttonId]: !prevState[buttonId] }));
+        console.log(data)
     };
 
-    const pdfUrl= "https://testbuckethrproject.s3.amazonaws.com/HR+Project+2024+March.pdf"
-
-
+    // const pdfUrl= "https://testbuckethrproject.s3.amazonaws.com/HR+Project+2024+March.pdf"
 
     return(
 
+        <div className='Document-Div'>
 
-
-        <div className="Document-Div">
-
-            <div>
-            {data.driversLicense? 
-                (<img id="Profile-Pic" src={data.profilePicture} ></img>)
-                :
-                undefined
-            }
-            </div>
-
-
-
-            <div>
-            <a href={pdfUrl} target="_blank" rel="noopener noreferrer">SOME PDF NAME </a>
-
-                <button onClick={togglePopup}>Open Preview</button>
-                {showPopup && (
-                    <div className="popup">
-                        <div className="popup-inner">
-                            <button onClick={togglePopup}>Close</button>
-                            <FileThumbnail fileUrl={pdfUrl} />
-                        </div>
+{data.driversLicense?.licenseImage && (
+        <div className="document-each">
+            <a href={data.driversLicense?.licenseImage} target="_blank" rel="noopener noreferrer">License </a>
+            <button onClick={(e) => togglePopup(e, 'license')}>Open Preview</button>
+            {showPopup.license && (
+                <div className="popup">
+                    <div className="popup-inner">
+                        <button onClick={(e) => togglePopup(e, 'license')}>Close</button>
+                        <FileThumbnail fileUrl={data.driversLicense?.licenseImage} />
                     </div>
-                )}
-            </div>
-            <div>
-            <a href={pdfUrl} target="_blank" rel="noopener noreferrer">SOME PDF NAME </a>
-
-                <button onClick={togglePopup}>Open Preview</button>
-                {showPopup && (
-                    <div className="popup">
-                        <div className="popup-inner">
-                            <button onClick={togglePopup}>Close</button>
-                            <FileThumbnail fileUrl={pdfUrl} />
-                        </div>
-                    </div>
-                )}
-            </div>
-            <div>
-            <a href={pdfUrl} target="_blank" rel="noopener noreferrer">SOME PDF NAME </a>
-
-                <button onClick={togglePopup}>Open Preview</button>
-                {showPopup && (
-                    <div className="popup">
-                        <div className="popup-inner">
-                            <button onClick={togglePopup}>Close</button>
-                            <FileThumbnail fileUrl={pdfUrl} />
-                        </div>
-                    </div>
-                )}
-            </div>
-
-
-            {/* {data.opt.map((each, index) => (
-                <div>
-                    
                 </div>
-            ))} */}
-
+            )}
         </div>
+    )}
+
+    {/* EAD */}
+    {data.opt?.ead?.document && (
+        <div className="document-each">
+            <a href={data.opt.ead.document} target="_blank" rel="noopener noreferrer">EAD </a>
+            <button onClick={(e) => togglePopup(e, 'ead')}>Open Preview</button>
+            {showPopup.ead && (
+                <div className="popup">
+                    <div className="popup-inner">
+                        <button onClick={(e) => togglePopup(e, 'ead')}>Close</button>
+                        <FileThumbnail fileUrl={data.opt.ead.document} />
+                    </div>
+                </div>
+            )}
+        </div>
+    )}
+    
+    {/* I20 */}
+    {data.opt?.i20?.document && (
+        <div className="document-each">
+            <a href={data.opt.i20.document} target="_blank" rel="noopener noreferrer">I20 </a>
+            <button onClick={(e) => togglePopup(e, 'i20')}>Open Preview</button>
+            {showPopup.i20 && (
+                <div className="popup">
+                    <div className="popup-inner">
+                        <button onClick={(e) => togglePopup(e, 'i20')}>Close</button>
+                        <FileThumbnail fileUrl={data.opt.i20.document} />
+                    </div>
+                </div>
+            )}
+        </div>
+    )}
+
+    {/* I983 */}
+    {data.opt?.i983?.document && (
+        <div className="document-each">
+            <a href={data.opt.i983.document} target="_blank" rel="noopener noreferrer">I983 </a>
+            <button onClick={(e) => togglePopup(e, 'i983')}>Open Preview</button>
+            {showPopup.i983 && (
+                <div className="popup">
+                    <div className="popup-inner">
+                        <button onClick={(e) => togglePopup(e, 'i983')}>Close</button>
+                        <FileThumbnail fileUrl={data.opt.i983.document} />
+                    </div>
+                </div>
+            )}
+        </div>
+    )}
+
+    {/* Receipt */}
+    {data.opt?.receipt?.document && (
+        <div className="document-each">
+            <a href={data.opt.receipt.document} target="_blank" rel="noopener noreferrer">Receipt </a>
+            <button onClick={(e) => togglePopup(e, 'receipt')}>Open Preview</button>
+            {showPopup.receipt && (
+                <div className="popup">
+                    <div className="popup-inner">
+                        <button onClick={(e) => togglePopup(e, 'receipt')}>Close</button>
+                        <FileThumbnail fileUrl={data.opt.receipt.document} />
+                    </div>
+                </div>
+            )}
+        </div>
+    )}
+</div>
 
     )
-
 }
-
 export default Documents
 
 
 
-
-
-// import React from 'react'
-// import './styles.css'
-
-// function Documents({data}){
-
-//     // console.log(data)
-//     // console.log(data.opt, "===");
-//     //when luolian finsihes pull out the data.opt, which is array
-//         //go trhoug it and pull out the links
-
-//     //also use data.driversLicense.licenseImage
-
-
-//     console.log(data)
-
-//     //for now just use the test ones 
-//     //https://testbuckethrproject.s3.amazonaws.com/73398308.jpg
-//     const fileUrl= "https://testbuckethrproject.s3.amazonaws.com/HR+Project+2024+March.pdf"
-
-
-
-//     return(
-//         <div className="Document-Div">
-//             {data.driversLicense? 
-//                 (<img id="Profile-Pic" src={data.profilePicture} ></img>)
-//                 :
-//                 undefined
-//             }
-
-
-
-
-//                 <a href={fileUrl} target="_blank" rel="noopener noreferrer">Download HR Project 2024 March PDF</a>
-
-
-//             {/* {data.opt.map((each, index) => (
-//                 <div>
-                    
-//                 </div>
-//             ))} */}
-
-//         </div>
-//     )
-
-// }
-
-// export default Documents

@@ -19,6 +19,7 @@
     "installAll": "npm i && npm run reactNpmI && npm run angularNpmI && npm run backendNpmI"
   },
   "dependencies": {
-    "@angular/core": "14.3.0"
+    "@angular/core": "14.3.0",
+    "@mui/styles": "^5.15.16"
   }
 }

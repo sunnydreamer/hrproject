@@ -1,42 +1,13 @@
 
 
-/* button{
-    padding: 0;
-
-    width: 5em;
-    height: 2em;
-    border-radius: 10px;
-} */
-
-.buttons{
-    display: flex;
-    justify-content:right;
-    margin: 1em 3em 0 1em;
-
+.personal{
+    width: 100vw;
+    margin: auto;
 }
-
-input{
-    border-radius: 3px;
-    border: 0;
-}
-label{
-    margin: 0 0 0 1vw;
-}
-
-/* .Document-Div{
-    background-color: grey;
-    margin: 3em;
-    border-radius: 2em;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: stretch;
-    flex-wrap: wrap;
-} */
 
 .Name-Div{
-    background-color: grey;
-    margin: 0 3em;
+    background-color: white;
+    margin: 0 0;
     border-radius: 2em;
     display: flex;
     flex-direction: row;
@@ -46,32 +17,24 @@ label{
 }
 
 #Profile-Pic{
-    /* padding: 20px; */
     border-radius: 2em;
-    width: 25vh;
     height: 25vh;
     background-color: white;
     margin: 3vh;
 }
 
 .Name-Div-Row {
-
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly; /* or space-evenly */
+    justify-content: space-evenly; 
     align-items: center;
-
     flex-grow: 1;
 }
 
 
-/* address */
-.Address-Div{
-    height: 20vh;
-    padding: 2em;
 
-    background-color: grey;
-    margin: 0 3em;
+.Address-Div{
+    background-color: white;
     border-radius: 2em;
     display: flex; 
     flex-direction: column;
@@ -79,32 +42,40 @@ label{
     align-items: center;
 }
 
-.Address-Div-One{
-    width: 80vw;
+
+
+.Create-Emergency-Div {
     display: flex;
-    justify-content: space-even;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 3em; 
+    margin-top: 20px; 
+
+}
+
+.Create-Emergency-Div input {
+    flex: 1;
+    margin-bottom: 10px; 
 }
 
 #StreetName{
-    width: 40vw;
+    width: 20vw;
     margin: 0 5vw 0 0;
 }
 
 
 #BuildingApt{
     width: 20vw;
-}
+} */
 
 
-.Address-Div-Two{
+ .Address-Div-Two{
     width: 80vw;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-}
+} 
 
-#City{
+ #City{
     width: 20vw;
 }
 
@@ -117,43 +88,3 @@ label{
     width: 10vw;
 }
 
-/* contact */
-
-.Contact-Div, .Employment-Div{
-    height: 5vw;
-    background-color: grey;
-    margin: 0 3em;
-    border-radius: 2em;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-
-
-.Emergency-Div-Parent{
-    background-color: grey;
-    margin: 0 3em;
-    padding: 2em ;
-    border-radius: 2em;
-
-
-}
-.Emergency-Div-Parent input {
-    background-color: white;
-    width: 12vw;
-}
-
-.Emergency-Div-Parent table{
-    margin-bottom: 1em;
-}
-
-
-
-.Create-Emergency-Div{
-    background-color: grey;
-    border: 0;
-    box-shadow: none;
-    display: flex; 
-} 

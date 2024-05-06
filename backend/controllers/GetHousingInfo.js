@@ -10,20 +10,26 @@ const EmergencyContact = require("../models/emergencyContactModel");
 async function GetHousingInfo(req, res){
     // let userid = //get this from the token middlwear... don't worry for now
 
+    const {userId} = req.body;
+    console.log(userId, "-009090090")
     try {
-        let CurrUser = await User.findOne({ firstName: 'Sunny' })
+        let CurrUser = await User.findOne({ _id: userId })
+        .populate({
+            path: 'house',
+            populate: [
+                { path: 'roommates'},
+                { 
+                    path: 'housingReport',
+                    populate: {
+                        path: 'createdBy' // Populate the createdBy field in the housingReport
+                    }
+                }
+            ]
+        });
 
-                            .populate({
-                                path: 'house',
-                                populate: [
-                                    { path: 'roommates'},
-                                    { path: 'housingReport' } // Populate housingReport for the house
-                                ]
-                            });
 
 
-
-        // console.log(JSON.stringify(CurrUser.house[0]));
+        console.log(JSON.stringify(CurrUser.house));
 
         if (!CurrUser) {
             return res.status(404).json({ message: 'User not found' });
