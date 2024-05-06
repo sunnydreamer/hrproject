@@ -85,7 +85,6 @@ function handleComment(event){
   }
 
   console.log(payload);
-  console.log()
 
   // axios.put("http://localhost:3000/user/housing/report/comment", payload)
   // .then(response =>

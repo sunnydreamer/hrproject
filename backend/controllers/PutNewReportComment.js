@@ -12,7 +12,7 @@ async function PutNewReportComment(req, res){
     const {userId, payload} = req.body;
     const { reportId, comment, username } = req.body;
 
-    // console.log(reportId, userId, userId, username, comment, "88888888")
+    console.log(reportId, userId, userId, username, comment, "88888888")
     const report = await HousingReport.findById(reportId);
 
     // console.log(userId, req.body);

@@ -31,15 +31,74 @@ export class HouseReportModalComponent implements OnInit {
     private http: HttpClient
     
   ) {
-
-    // console.log(data.report)
+    // console.log(data)
     //use this for submit 
     // console.log(data.houseId)
   }
 
-  addComment(){
-    console.log("pressed")
+  changeComment(){
+
+    const payload = {
+      reportId: this.data.report._id,
+      comment: this.data.report.housingComments,
+      username: "yinengzhang",
+      userId: "6638203ebf036323b23a3262"
+    };
+
+
+
+    this.http.put("http://localhost:3000/user/housing/comment/change", payload, { 
+      headers: {
+        authenticate: "true"
+      }
+    })
+    .subscribe(
+      (response: any) => {
+        console.log(response);
+        this.dialogRef.close();
+
+        // setIsOpen(false);
+      },
+      (error: any) => {
+        console.error(error);
+        // setIsOpen(true);
+      }
+    );
+
+  
+
   }
+
+  addComment(){
+
+    const payload = {
+      reportId: this.data.report._id,
+      comment: this.newComment,
+      username: "yinengzhang",
+      userId: "6638203ebf036323b23a3262"
+    };
+
+    // console.log(payload)
+
+
+    // Make HTTP PUT request
+    this.http.put<any>('http://localhost:3000/user/housing/comment/new', payload, { headers: { authenticate: 'true' } })
+      .subscribe(
+        response => {
+          console.log(response);
+
+        },
+        error => {
+          console.error(error);
+        }
+      );
+      this.dialogRef.close();
+      window.location.reload();
+
+
+  }
+
+
 
   async onNoClick($event: any): Promise<void> {
     // Close the dialog

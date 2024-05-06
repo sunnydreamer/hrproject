@@ -38,3 +38,7 @@
   input{
     width: 50vw
   }
+
+  #submitcomment{
+    margin-left: 65vw;
+  }
