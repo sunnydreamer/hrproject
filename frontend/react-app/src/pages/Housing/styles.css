@@ -1,3 +1,9 @@
+
+
+
+.grey-background {
+  background-color: rgb(182, 179, 179);
+}
 .modal-overlay {
     position: fixed;
     top: 0;

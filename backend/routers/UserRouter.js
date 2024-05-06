@@ -185,14 +185,14 @@ router
   //mine
   //////////////////////////////////////////////////
 
-  .get("/personalinfo", auth,GetUserInfo)
+  .get("/personalinfo", auth, GetUserInfo)
   .post("/info", auth, PostUserInfo)
   .post("/info/contact", auth, PostUserContact)
 
 
   // user housing page
   .get("/housing", auth ,GetHousingInfo)
-  .get("/housing/all", auth, GetAllHousingInfo)
+  .get("/housing/all", GetAllHousingInfo)
 
 
   //////////////////////////////////////////////////
@@ -200,9 +200,9 @@ router
   //////////////////////////////////////////////////
   //create housing report
   .put("/housing/report", PutHousingReport)
-  .put("/housing/report/comment", PutHousingReportComment)
-  .put("/housing/comment/new", PutNewReportComment)
-  .put("/housing/comment/change", PutChangeReportComment  )
+  .put("/housing/report/comment", auth, PutHousingReportComment)
+  .put("/housing/comment/new", auth, PutNewReportComment)
+  .put("/housing/comment/change", auth, PutChangeReportComment  )
 
   // PutChangeReportComment
 
@@ -211,8 +211,8 @@ router
   //////////////////////////////////////////////////
 
   // get user for HR
-  .get("/hr/userprofiles/", auth, GetHRProfile)
-  .get("/hr/userprofiles/:id", auth, GetHRProfile)
+  .get("/hr/userprofiles/", GetHRProfile)
+  .get("/hr/userprofiles/:id",  GetHRProfile)
   //new house
   .put("/hr/newHouse/", PutNewHouse)
 

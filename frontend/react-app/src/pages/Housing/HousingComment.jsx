@@ -23,7 +23,13 @@ function HousingComment({showComment, setShowComment, data}){
       comment : showComment.comments,
       username: data.username,
       userId: data._id
+
+
   }
+
+  // showComment._id == data._id
+  // console.log(showComment._id, data._id)
+  console.log(showComment.comments[0].createdBy, "99099999")
 
   axios.put("http://localhost:3000/user/housing/comment/change", payload, {
     authenticate: true
@@ -70,16 +76,20 @@ function HousingComment({showComment, setShowComment, data}){
                 style={{ width: '25vw' }} 
                 type="text" 
                 value={each.description} 
-                // onChange={(e) => handleCommentChange(index, e.target.value)}
-                onChange={(e) => alert(showComment.id, data._id)}
+                onChange={(e) => handleCommentChange(index, e.target.value)}
+                // onChange={(e) => alert(showComment.id, data._id)}
 
-                readOnly = {(showComment._id == data._id)}
+                readOnly = {(each.createdBy != data._id)}
+
+                className={each.createdBy !== data._id ? "grey-background" : ""}
+
               />                
               </td>
-              <Button  variant="contained"  color="primary" onClick={handleCommentEdit}>Save</Button>
               </tr>
             ))}
           </tbody>
+          <Button  variant="contained"  color="primary" onClick={handleCommentEdit}>Save</Button>
+
         </table>
       </div>
     );
