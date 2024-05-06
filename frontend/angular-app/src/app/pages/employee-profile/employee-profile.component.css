@@ -1,27 +1,50 @@
+/* Container styles */
 #profile-container {
     display: flex;
     flex-direction: column;
-}
+    align-items: center;
+  }
+  
+  /* Search bar styles */
+  #profile-search {
+    margin-bottom: 20px;
+  }
+  
+  /* Profile list styles */
+  #profile-list {
+    width: 100%;
+    display: flex; /* Display profile boxes horizontally */
+    flex-wrap: wrap; /* Allow wrapping of profile boxes */
+    justify-content: center; /* Align profile boxes to the left */
+  }
+  
+  /* Profile box styles */
+  .profile-box {
+    width: 24vw; /* Set width for each profile box */
+    margin: 10px; /* Add margin between profile boxes */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .profile-box img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .profile-box p {
+    margin: 5px 0;
 
-#profile-main{
-    display: flex;
-    flex-direction: row;
-}
-
-/* Style for the search bar */
-#profile-search {
-    background-color: grey;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-}
-
-/* Style for the profile list */
-/* #profile-list {
-    padding: 10px;
-    width: 100vw;
-} */
-
-.profile-box{
-    background-color: grey;
-    width: 100vw;
-}
+  }
+  
+  .profile-box a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .profile-box a:hover {
+    text-decoration: underline;
+  }

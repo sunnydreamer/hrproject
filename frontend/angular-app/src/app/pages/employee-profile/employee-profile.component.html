@@ -1,17 +1,18 @@
 <div id="profile-container">
-  <div id="profile-search">
-    <input [(ngModel)]="search" (input)="onSearchChange($event)" />
-    <!-- (change)="onInputChange($event)" -->
+  <div id="profile-search" class="mat-elevation-z2">
+    <mat-form-field appearance="fill">
+      <mat-label>Search</mat-label>
+      <input matInput [(ngModel)]="search" (input)="onSearchChange($event)" />
+    </mat-form-field>
   </div>
+  <h2>Profiles</h2>
+
   <div id="profile-main">
     <div id="profile-list">
-      <h1>Profiles</h1>
-      <!-- {{people | json}} -->
-      <div *ngFor="let person of people" class="profile-box">
-        <img src="{{ person.profilePicture }}" alt="ProfilePic" />
+      <div *ngFor="let person of people" class="profile-box mat-elevation-z2">
+        <img [src]="person.profilePicture" alt="ProfilePic" />
         <p>
           Name:
-          <!-- <a href="http://localhost:5173/user" id={{person._id}}> -->
           <a [href]="'http://localhost:5173/user/hruser/' + person._id" target="_blank" rel="noopener noreferrer">
             {{ person.firstName }} {{ person.lastName }}
             {{ person.preferredName ? "(" + person.preferredName + ")" : "" }}
