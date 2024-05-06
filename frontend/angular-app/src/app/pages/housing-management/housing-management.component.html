@@ -1,6 +1,8 @@
 
 <!-- give the housing info here -->
 <button (click) = "openDialog()">Add House</button>
+<!-- <button (click) = "openDialog2()">Add House</button> -->
+
 <!-- <app-house-modal></app-house-modal> -->
 <div id="main-house">
     <app-housing-view [allHouses]="houses" (newItemEvent)="showHouse($event)">
@@ -18,7 +20,7 @@
 
         <h2>Info</h2>
         <h3>Address: <br>
-            {{currHouse.address.street + " " + currHouse.address.streetLine2 +  ", " + currHouse.address.city + " " + currHouse.address.state + ", " + currHouse.address.zip}}</h3>
+            {{currHouse.address?.street + " " + currHouse.address?.streetLine2 +  ", " + currHouse.address.city + " " + currHouse.address.state + ", " + currHouse.address.zip}}</h3>
         <h3>Landlord:</h3>
         <ul>
             <li>Name: {{currHouse.landlord.fullName}}</li>
@@ -79,7 +81,55 @@
         <!-- e (title, date, status) -->
 
         <!-- <h3>{{currHouse.housingReport.title + " | " + currHouse.housingReport.status  + " | " +currHouse.housingReport.timestamp}} </h3> -->
-        {{currHouse.housingReport | json}}
+
+
+        <!-- Each report should display the title, description, created by, timestamp, and status (Open, In Progress, Closed) -->
+
+        <table id="report-table">
+            <thead>
+                <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Time</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+
+                <tr *ngFor="let report of currHouse.housingReport" (click)="openDialog2(report)">
+                    <td>
+                        <!-- {{currHouse.housingReport[0].title}} -->
+                        {{report.title}}
+
+                        <!-- {{currHouse.housingReport[0]._id}} -->
+
+                    </td>
+                    <td>
+                        <!-- {{currHouse.housingReport[0].description}} -->
+                        {{report.description}}
+
+                    </td>
+                    <td>
+                        <!-- {{currHouse.housingReport[0].timestamp}} -->
+                        {{report.timestamp}}
+
+                    </td>
+                    <td>
+                        <!-- {{currHouse.housingReport[0].status}} -->
+                        {{report.status}}
+
+                    </td>
+                </tr>
+
+
+        </tbody>
+
+
+        </table>
+
+
 
         <!-- {{currHouse.housingReport._id }} -->
 

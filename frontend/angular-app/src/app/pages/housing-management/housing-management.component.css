@@ -1,6 +1,9 @@
 
 
+#report-table > tbody tr:hover{
+    background-color: blue;
 
+}
 
 #main-house{
     display: flex;

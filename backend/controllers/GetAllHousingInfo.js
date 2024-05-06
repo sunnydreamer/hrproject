@@ -13,7 +13,11 @@ async function GetAllHousingInfo(req, res){
     try {
         let all = await Housing.find()
         .populate("roommates")
-        .populate("housingReport");
+        .populate("housingReport")
+        .populate({
+            path: 'housingReport',
+            populate: { path: 'createdBy' }
+        });
 
         console.log(JSON.stringify(all));
 

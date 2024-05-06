@@ -3,11 +3,11 @@ const { Schema, model } = mongoose;
 
 const housingSchema = new Schema({
     address: {
-      street: { type: String, required: true },
+      street: { type: String, default: "", required: true  },
       streetLine2: { type: String, default: ""  },
-      city: { type: String, required: true },
-      state: { type: String, required: true },
-      zip: { type: String, required: true },
+      city: { type: String, default: ""  },
+      state: { type: String, default: ""  },
+      zip: { type: String, default: ""  },
     },
     roommates: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     housingReport: [{ type: mongoose.Schema.Types.ObjectId, ref: "HousingReport" }],
@@ -16,10 +16,10 @@ const housingSchema = new Schema({
       phone: {type: String, default:"some phone"},
       email: {type: String, default:"some email"},
     },
-    tables: {type:Number, required: true, default:1},
-    chairs: {type:Number, required: true, default:1},
-    beds: {type:Number, required: true, default:1},
-    mattresses: {type:Number, required: true, default:1}
+    tables: {type:Number, default:1},
+    chairs: {type:Number, default:1},
+    beds: {type:Number, default:1},
+    mattresses: {type:Number, default:1}
 });
 
 const Housing = model("Housing", housingSchema);

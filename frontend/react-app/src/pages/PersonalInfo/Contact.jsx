@@ -1,9 +1,39 @@
-import React, { useState } from 'react';
-import './styles.css';
+import React, { useState, useEffect } from 'react'
+import './styles.css'
 import axios from 'axios';
+import formatDate from './util';
+import { makeStyles } from '@mui/styles';
+import Box from '@mui/material/Box';
+import { Button, TextField, Grid, Avatar, Typography, MenuItem, Input, Container, InputLabel} from '@mui/material';
+
 
 function Contact({ data, setData }) {
     const [editMode, setEditMode] = useState(false);
+    const [originalData, setOriginalData] = useState(null);
+
+    useEffect(() => {
+        // Save the original data when the component mounts
+        setOriginalData(data);
+    }, []);
+
+    function handleCancel(){
+        setData(originalData);
+        setEditMode(false);
+    }
+
+
+
+    function handleChange(event) {
+        const { name, value } = event.target;
+        setData(prevData => ({
+            ...prevData,
+            address: {
+                ...prevData.address,
+                [name]: value
+            }
+        }));
+    }
+
 
     function handleChange(event) {
 
@@ -20,7 +50,9 @@ function Contact({ data, setData }) {
     }
 
     function handleSubmit() {
-        axios.post('http://localhost:3000/user/info', data)
+        axios.post('http://localhost:3000/user/info', data, {
+            withCredentials: true
+          })
             .then(response => {
                 // Handle successful response
                 console.log('Response:', response.data);
@@ -41,22 +73,39 @@ function Contact({ data, setData }) {
     }
 
     return (
-        <div>
+        <div className='personal'>
             <div className="buttons">
                 {editMode ? (
-                    <button onClick={handleSave}>Save</button>
+                    <div>
+                    <Button onClick={handleSave}>Save</Button>
+                    <Button onClick={handleCancel}>Cancel</Button>
+                    </div>
                 ) : (
-                    <button onClick={toggleEditMode}>Edit</button>
+                    <Button onClick={toggleEditMode} >Edit</Button>
                 )}
             </div>
-            <div className="Contact-Div">
+            <div className="Name-Div">
                 <div>
-                    <label htmlFor="cell">Cell Phone Number:</label>
-                    <input type="tel" id="cell" name="cell" value={data.phone.cell} onChange={handleChange} readOnly={!editMode} />
+                    <TextField
+                        id="cell"
+                        name="cell"
+                        label="Cell Phone Number"
+                        type="tel"
+                        value={data.phone.cell}
+                        onChange={handleChange}
+                        disabled={!editMode}
+                    />
                 </div>
                 <div>
-                    <label htmlFor="work">Work Phone Number:</label>
-                    <input type="tel" id="work" name="work" value={data.phone.work} onChange={handleChange} readOnly={!editMode}/>
+                    <TextField
+                        id="work"
+                        name="work"
+                        label="Work Phone Number"
+                        type="tel"
+                        value={data.phone.work}
+                        onChange={handleChange}
+                        disabled={!editMode}
+                    />
                 </div>
             </div>
         </div>

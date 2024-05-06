@@ -1,6 +1,14 @@
-import React, { useState } from 'react';
-import './styles.css';
+
+
+import React, { useState } from 'react'
+import './styles.css'
 import axios from 'axios';
+import formatDate from './util';
+import { makeStyles } from '@mui/styles';
+import Box from '@mui/material/Box';
+import { Button, TextField, Grid, Avatar, Typography, MenuItem, Input, Container, InputLabel} from '@mui/material';
+
+
 
 function Address({ data, setData }) {
     const [editMode, setEditMode] = useState(false);
@@ -17,7 +25,9 @@ function Address({ data, setData }) {
     }
 
     function handleSubmit() {
-        axios.post('http://localhost:3000/user/info', data)
+        axios.post('http://localhost:3000/user/info', data, {
+            withCredentials: true
+          })
             .then(response => {
                 // Handle successful response
                 console.log('Response:', response.data);
@@ -38,63 +48,60 @@ function Address({ data, setData }) {
     }
 
     return (
-        <div>
-            <div className="buttons">
-                {editMode ? (
-                    <button onClick={handleSave}>Save</button>
-                ) : (
-                    <button onClick={toggleEditMode}>Edit</button>
-                )}
-            </div>
-
-            <div className="Address-Div">
+        <div className='personal'>
+            <div className="Name-Div">
                 <div className="Address-Div-One">
-                    <label htmlFor="StreetName">Street Name:</label>
-                    <input
+                    <TextField
+                        onChange={handleChange}
+                        disabled={!editMode}
+                        label="Street Name:"
+                        variant="outlined"
                         type="text"
                         id="StreetName"
                         name="street"
                         value={data.address.street || ''}
-                        onChange={handleChange}
-                        readOnly={!editMode}
                     />
-                    <label htmlFor="BuildingApt">Building/Apt #:</label>
-                    <input
+                    <TextField
+                        onChange={handleChange}
+                        disabled={!editMode}
+                        label="Building/Apt #:"
+                        variant="outlined"
                         type="text"
                         id="BuildingApt"
                         name="streetLine2"
                         value={data.address.streetLine2 || ''}
-                        onChange={handleChange}
-                        readOnly={!editMode}
                     />
                 </div>
                 <div className="Address-Div-Two">
-                    <label htmlFor="City">City:</label>
-                    <input
+                    <TextField
+                        onChange={handleChange}
+                        disabled={!editMode}
+                        label="City:"
+                        variant="outlined"
                         type="text"
                         id="City"
                         name="city"
                         value={data.address.city || ''}
-                        onChange={handleChange}
-                        readOnly={!editMode}
                     />
-                    <label htmlFor="State">State:</label>
-                    <input
+                    <TextField
+                        onChange={handleChange}
+                        disabled={!editMode}
+                        label="State:"
+                        variant="outlined"
                         type="text"
                         id="State"
                         name="state"
                         value={data.address.state || ''}
-                        onChange={handleChange}
-                        readOnly={!editMode}
                     />
-                    <label htmlFor="Zip">Zip:</label>
-                    <input
+                    <TextField
+                        onChange={handleChange}
+                        disabled={!editMode}
+                        label="Zip:"
+                        variant="outlined"
                         type="text"
                         id="Zip"
                         name="zip"
                         value={data.address.zip || ''}
-                        onChange={handleChange}
-                        readOnly={!editMode}
                     />
                 </div>
             </div>

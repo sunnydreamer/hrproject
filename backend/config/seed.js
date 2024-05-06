@@ -6,7 +6,10 @@ const EmergencyContact = require(`../models/emergencyContactModel`);
 const Housing = require(`../models/housingModel`);
 
 const Document = require("../models/documentModel");
-require(`dotenv`).config({ path: __dirname + `/./../.env` });
+// require(`dotenv`).config({ path: __dirname + `/./../.env` });
+
+const MONGO_URI="mongodb+srv://hrproject:hrproject@cluster0.sxrauue.mongodb.net/hrproject?retryWrites=true&w=majority&appName=Cluster0"
+
 
 async function seedHousing() {
   try {
@@ -23,7 +26,6 @@ async function seedHousing() {
     });
 
     // Save the new document to the database
-    let abc = await newHousing.save();
 
     return abc._id;
 
@@ -48,10 +50,10 @@ const seed = async () => {
 
     console.log(`seeding database`);
     //seed housing
-    let id = await seedHousing();
+    // let id = await seedHousing();
     //give sunny the housing id
 
-    await documents(id);
+    await documents();
     // Save the new document to the database
     console.log("Seed successful!");
   } catch (error) {
