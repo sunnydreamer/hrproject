@@ -26,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SendEmailComponent } from './pages/send-email/send-email.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     ErrorComponent,
     UserCardComponent,
+    SendEmailComponent,
   ],
   imports: [
     ReactiveFormsModule,

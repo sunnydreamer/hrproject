@@ -48,7 +48,7 @@ const ViewApplication = ({ userInfo }) => {
       </p>
       <p>Phone(cell): {userInfo.phone.cell}</p>
       {userInfo.phone.work ? <p>Phone(work): {userInfo.phone.work}</p> : null}
-      <p>Date of Birth: {userInfo.dob.split(`T`)[0]}</p>
+      <p>Date of Birth: {userInfo.dob && userInfo.dob.split(`T`)[0]}</p>
       <p>Gender: {userInfo.gender}</p>
       <p>Work Authorization: {userInfo.workAuthorization}</p>
       {userInfo.workAuthorizationStart ? (
@@ -83,7 +83,7 @@ const ViewApplication = ({ userInfo }) => {
         </>
       ) : null}
       <p>Emergency Contacts: </p>
-      {emergencyContacts.map((contact) => (
+      { emergencyContacts.length > 0 && emergencyContacts.map((contact) => (
         <div key={contact._id}>
           <p>{emergencyContacts.indexOf(contact) + 1}</p>
           <p>

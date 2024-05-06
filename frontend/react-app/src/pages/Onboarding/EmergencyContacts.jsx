@@ -126,7 +126,7 @@ const EmergencyContacts = ({ userInfo, setUserInfo }) => {
         </form>
       )}
 
-      {eContactList.map((contact) => (
+      {eContactLis.length > 0 && eContactList.map((contact) => (
         <div key={contact._id}>
           <p>{emergencyContacts.indexOf(contact) + 1}</p>
           <p>
