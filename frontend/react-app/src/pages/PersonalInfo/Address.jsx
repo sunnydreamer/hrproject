@@ -1,6 +1,14 @@
-import React, { useState } from 'react';
-import './styles.css';
+
+
+import React, { useState } from 'react'
+import './styles.css'
 import axios from 'axios';
+import formatDate from './util';
+import { makeStyles } from '@mui/styles';
+import Box from '@mui/material/Box';
+import { Button, TextField, Grid, Avatar, Typography, MenuItem, Input, Container, InputLabel} from '@mui/material';
+
+
 
 function Address({ data, setData }) {
     const [editMode, setEditMode] = useState(false);
@@ -17,7 +25,9 @@ function Address({ data, setData }) {
     }
 
     function handleSubmit() {
-        axios.post('http://localhost:3000/user/info', data)
+        axios.post('http://localhost:3000/user/info', data, {
+            withCredentials: true
+          })
             .then(response => {
                 // Handle successful response
                 console.log('Response:', response.data);
@@ -38,63 +48,68 @@ function Address({ data, setData }) {
     }
 
     return (
-        <div>
+        <div className='personal'>
             <div className="buttons">
                 {editMode ? (
-                    <button onClick={handleSave}>Save</button>
+                    <Button onClick={handleSave}>Save</Button>
                 ) : (
-                    <button onClick={toggleEditMode}>Edit</button>
+                    <Button onClick={toggleEditMode}>Edit</Button>
                 )}
             </div>
 
             <div className="Address-Div">
                 <div className="Address-Div-One">
-                    <label htmlFor="StreetName">Street Name:</label>
-                    <input
+                    <TextField
+                        onChange={handleChange}
+                        readOnly={!editMode}
+                        label="Street Name:"
+                        variant="outlined"
                         type="text"
                         id="StreetName"
                         name="street"
                         value={data.address.street || ''}
+                    />
+                    <TextField
                         onChange={handleChange}
                         readOnly={!editMode}
-                    />
-                    <label htmlFor="BuildingApt">Building/Apt #:</label>
-                    <input
+                        label="Building/Apt #:"
+                        variant="outlined"
                         type="text"
                         id="BuildingApt"
                         name="streetLine2"
                         value={data.address.streetLine2 || ''}
-                        onChange={handleChange}
-                        readOnly={!editMode}
                     />
                 </div>
                 <div className="Address-Div-Two">
-                    <label htmlFor="City">City:</label>
-                    <input
+                    <TextField
+                        onChange={handleChange}
+                        readOnly={!editMode}
+                        label="City:"
+                        variant="outlined"
                         type="text"
                         id="City"
                         name="city"
                         value={data.address.city || ''}
+                    />
+                    <TextField
                         onChange={handleChange}
                         readOnly={!editMode}
-                    />
-                    <label htmlFor="State">State:</label>
-                    <input
+                        label="State:"
+                        variant="outlined"
                         type="text"
                         id="State"
                         name="state"
                         value={data.address.state || ''}
+                    />
+                    <TextField
                         onChange={handleChange}
                         readOnly={!editMode}
-                    />
-                    <label htmlFor="Zip">Zip:</label>
-                    <input
+                        label="Zip:"
+                        variant="outlined"
                         type="text"
                         id="Zip"
                         name="zip"
                         value={data.address.zip || ''}
-                        onChange={handleChange}
-                        readOnly={!editMode}
                     />
                 </div>
             </div>

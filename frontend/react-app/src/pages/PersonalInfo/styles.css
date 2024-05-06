@@ -1,12 +1,8 @@
 
 
-/* button{
-    padding: 0;
-
-    width: 5em;
-    height: 2em;
-    border-radius: 10px;
-} */
+.personal{
+    width: 88vw;
+}
 
 .buttons{
     display: flex;
@@ -15,27 +11,8 @@
 
 }
 
-input{
-    border-radius: 3px;
-    border: 0;
-}
-label{
-    margin: 0 0 0 1vw;
-}
-
-/* .Document-Div{
-    background-color: grey;
-    margin: 3em;
-    border-radius: 2em;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: stretch;
-    flex-wrap: wrap;
-} */
-
 .Name-Div{
-    background-color: grey;
+    background-color: white;
     margin: 0 3em;
     border-radius: 2em;
     display: flex;
@@ -46,9 +23,7 @@ label{
 }
 
 #Profile-Pic{
-    /* padding: 20px; */
     border-radius: 2em;
-    width: 25vh;
     height: 25vh;
     background-color: white;
     margin: 3vh;
@@ -58,28 +33,28 @@ label{
 
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly; /* or space-evenly */
+    justify-content: space-evenly; 
     align-items: center;
-
     flex-grow: 1;
 }
 
 
-/* address */
+/* 
 .Address-Div{
     height: 20vh;
     padding: 2em;
 
-    background-color: grey;
+    background-color: white;
+
     margin: 0 3em;
     border-radius: 2em;
     display: flex; 
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-}
+} */
 
-.Address-Div-One{
+/* .Address-Div-One{
     width: 80vw;
     display: flex;
     justify-content: space-even;
@@ -115,13 +90,13 @@ label{
 
 #Zip{
     width: 10vw;
-}
+} */
 
 /* contact */
 
-.Contact-Div, .Employment-Div{
+/* .Contact-Div, .Employment-Div{
     height: 5vw;
-    background-color: grey;
+    background-color: white;
     margin: 0 3em;
     border-radius: 2em;
     display: flex;
@@ -133,7 +108,7 @@ label{
 
 
 .Emergency-Div-Parent{
-    background-color: grey;
+    background-color: white;
     margin: 0 3em;
     padding: 2em ;
     border-radius: 2em;
@@ -152,8 +127,8 @@ label{
 
 
 .Create-Emergency-Div{
-    background-color: grey;
+    background-color: white;
     border: 0;
     box-shadow: none;
     display: flex; 
-} 
+}  */

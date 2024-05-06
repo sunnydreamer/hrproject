@@ -69,7 +69,6 @@ router
     ],
     UserController.generateAndStoreTokens
   )
-  .post("/info", PostUserInfo)
   .post("/info/contact", PostUserContact)
   .put("/visa/:userid", (req, res) => {
     res.send("visa status changed successfully");
@@ -187,7 +186,10 @@ router
   //mine
   //////////////////////////////////////////////////
 
-  .get("/personalinfo", auth ,GetUserInfo)
+  .get("/personalinfo", auth,GetUserInfo)
+  .post("/info", auth, PostUserInfo)
+
+  
 
   // user housing page
   .get("/housing", GetHousingInfo)

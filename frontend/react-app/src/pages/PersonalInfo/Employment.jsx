@@ -18,7 +18,9 @@ function Employment({ data, setData }) {
     }
 
     function handleSubmit() {
-        axios.post('http://localhost:3000/user/info', data)
+        axios.post('http://localhost:3000/user/info', data, {
+            withCredentials: true
+          })
             .then(response => {
                 // Handle successful response
                 console.log('Response:', response.data);

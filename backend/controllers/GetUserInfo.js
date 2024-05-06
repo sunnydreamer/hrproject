@@ -27,8 +27,7 @@ async function GetUserInfo(req, res) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    console.log(CurrUser)
-    // console.log(CurrUser);
+
     res.status(200).json(CurrUser);
   } catch (error) {
     console.error("Error:", error);

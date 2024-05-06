@@ -2,11 +2,16 @@ import React, { useState } from 'react'
 import './styles.css'
 import axios from 'axios';
 import formatDate from './util';
+import { makeStyles } from '@mui/styles';
+import Box from '@mui/material/Box';
+import { Button, TextField, Grid, Avatar, Typography, MenuItem, Input, Container, InputLabel} from '@mui/material';
+
 
 // check the dob
 
 function Name({data, setData}){
-    const [edit, setEdit]= useState(true );
+
+    const [edit, setEdit]= useState(true );  
 
     function handleChange(event){
         setData((prev) => {
@@ -16,11 +21,9 @@ function Name({data, setData}){
 
     //push it to the server
     function handleSubmit(){
-        // console.log(JSON.stringify(data))
-        // alert(data.profilePicture);
-
-
-        axios.post('http://localhost:3000/user/info', data)
+        axios.post('http://localhost:3000/user/info', data, {
+            withCredentials: true
+          })
         .then(response => {
             // Handle successful response
             console.log('Response:', response.data);
@@ -89,82 +92,127 @@ function changeImg(event) {
 //         reader.readAsDataURL(file);
 //     }
 
-    return(
-        <div>
-            <div className="buttons">
-                {edit ? (
-                    <button onClick={toggleEditMode}>Edit</button>
-                ) : (
-                    <button onClick={handleSave}>Save</button>
-                )}
-            </div>
 
-            
-            <div className="Name-Div">
-                <div className="Name-Div-Row">
 
-                {data.profilePicture ? (<img id="Profile-Pic" src={data.profilePicture} ></img>)
-                            : 
-                            (<img id="Profile-Pic" src={profilePic} alt=""></img>)
-                            }
+return (
+    <div className='personal'>
+      <div className="buttons">
+        {edit ? (
+          <Button onClick={toggleEditMode}>Edit</Button>
+        ) : (
+          <Button onClick={handleSave}>Save</Button>
+        )}
+      </div>
 
-                {/* <input type="file" accept="image/*" onChange="" /> */}
-                <input id="uploadImage" type="file" name="myPhoto" onChange={changeImg} style={{ display: edit ? 'none' : 'block' }}/>
-
-                </div>
-
-                <div className="Name-Div-Row">
-                    <div>
-                        <label htmlFor="firstName">First Name:</label>
-                        <input onChange={handleChange} readOnly={edit} type="text" id="firstName" name="firstName" value={data.firstName}></input>
-                    </div>
-                    <div>
-
-                        <label htmlFor="lastName">Last Name:</label>
-                        <input onChange={handleChange} readOnly={edit} type="text" id="lastName" name="lastName" value={data.lastName}></input>
-                    </div>
-                    <div>
-                        <label htmlFor="middleName">Middle Name:</label>
-                        <input onChange={handleChange} readOnly={edit} type="text" id="middleName" name="middleName" value={data.middleName}></input>
-                    </div>
-                    <div>
-                        <label htmlFor="preferredName">Preferred Name:</label>
-                        <input onChange={handleChange} readOnly={edit} type="text" id="preferredName" name="preferredName" value={data.preferredName}></input>
-                    </div>
-                </div>
-
-                <div className="Name-Div-Row">
-                    {/* email, ssn, dob, gender */}
-                    <div>
-
-                        <label htmlFor="email">Email:</label>
-                        <input onChange={handleChange} readOnly={edit} type="email" id="email" name="email" value={data.email}/>
-
-                    </div>
-                    <div>
-                        <label htmlFor="ssn">SSN:</label>
-                        <input onChange={handleChange} readOnly={edit} type="text" id="ssn" name="ssn" value={data.ssn}/>
-                    </div>
-                    
-                    <div>
-
-                        <label htmlFor="dob">Date of Birth:</label>
-                        <input onChange={handleChange} readOnly={edit} type="date" id="dob" name="dob" value={formatDate(data.dob)}/>
-                    </div>
-                    <div>
-
-                            <label htmlFor="gender">Gender:</label>
-                            <select onChange={handleChange} readOnly={edit} id="gender" name="gender" value={data.gender}>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
-                            </select>
-                    </div>    
-                </div>
-            </div>
+      <div className="Name-Div">
+        <div className="Name-Div-Row">
+          {data.profilePicture ? (
+            <img id="Profile-Pic" src={data.profilePicture} alt="" />
+          ) : (
+            <img id="Profile-Pic" src={profilePic} alt="" />
+          )}
+          <Input
+            id="uploadImage"
+            type="file"
+            name="myPhoto"
+            onChange={changeImg}
+            style={{ display: edit ? 'none' : 'block' }}
+          />
         </div>
-    )
 
+        <div className="Name-Div-Row">
+          <TextField
+            onChange={handleChange}
+            readOnly={edit}
+            label="First Name:"
+            variant="outlined"
+            type="text"
+            id="firstName"
+            name="firstName"
+            value={data.firstName}
+          />
+          <TextField
+            onChange={handleChange}
+            readOnly={edit}
+            label="Last Name:"
+            variant="outlined"
+            type="text"
+            id="lastName"
+            name="lastName"
+            value={data.lastName}
+          />
+          <TextField
+            onChange={handleChange}
+            readOnly={edit}
+            label="Middle Name:"
+            variant="outlined"
+            type="text"
+            id="middleName"
+            name="middleName"
+            value={data.middleName}
+          />
+          <TextField
+            onChange={handleChange}
+            readOnly={edit}
+            label="Preferred Name:"
+            variant="outlined"
+            type="text"
+            id="preferredName"
+            name="preferredName"
+            value={data.preferredName}
+          />
+        </div>
+
+        <div className="Name-Div-Row">
+          <TextField
+            onChange={handleChange}
+            readOnly={edit}
+            label="Email:"
+            variant="outlined"
+            type="email"
+            id="email"
+            name="email"
+            value={data.email}
+          />
+          <TextField
+            onChange={handleChange}
+            readOnly={edit}
+            label="SSN:"
+            variant="outlined"
+            type="text"
+            id="ssn"
+            name="ssn"
+            value={data.ssn}
+          />
+          <TextField
+            onChange={handleChange}
+            readOnly={edit}
+            label="Date of Birth:"
+            variant="outlined"
+            type="date"
+            id="dob"
+            name="dob"
+            value={formatDate(data.dob)}
+          />
+          <TextField
+            select
+            onChange={handleChange}
+            readOnly={edit}
+            label="Gender:"
+            variant="outlined"
+            id="gender"
+            name="gender"
+            value={data.gender}
+          >
+            <MenuItem value="male">Male</MenuItem>
+            <MenuItem value="female">Female</MenuItem>
+            <MenuItem value="other">Other</MenuItem>
+          </TextField>
+        </div>
+      </div>
+    </div>
+  );
 }
+
 
 export default Name

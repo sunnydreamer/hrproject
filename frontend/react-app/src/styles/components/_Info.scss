@@ -1,170 +1,170 @@
-#parent-personal{
-    width: 88vw;
-}
+// #parent-personal{
+//     width: 88vw;
+// }
 
 
-.buttons{
-    display: flex;
-    justify-content:right;
-    margin: 1em 3em 0 1em;
+// .buttons{
+//     display: flex;
+//     justify-content:right;
+//     margin: 1em 3em 0 1em;
 
-}
+// }
 
-input{
-    border-radius: 3px;
-    border: 0;
-}
-label{
-    margin: 0 0 0 1vw;
-}
+// input{
+//     border-radius: 3px;
+//     border: 0;
+// }
+// label{
+//     margin: 0 0 0 1vw;
+// }
 
-.Document-Div{
-    background-color: grey;
-    margin: 3em;
-    border-radius: 2em;
-    display: flex;
-    flex-direction: column;
-    // justify-content: space-evenly;
-    align-items:center;
-    // flex-wrap: wrap;
-}
+// .Document-Div{
+//     background-color: grey;
+//     margin: 3em;
+//     border-radius: 2em;
+//     display: flex;
+//     flex-direction: column;
+//     // justify-content: space-evenly;
+//     align-items:center;
+//     // flex-wrap: wrap;
+// }
 
-.Document-Div > div{
-    // background-color: red;
-    font-size: 2em;
-    width: 100vw;
-    text-align: center;
-}
+// .Document-Div > div{
+//     // background-color: red;
+//     font-size: 2em;
+//     width: 100vw;
+//     text-align: center;
+// }
 
-.Document-Div a{
-    margin-right: 10em;
-}
+// .Document-Div a{
+//     margin-right: 10em;
+// }
 
-.Name-Div{
-    background-color: grey;
-    margin: 0 3em;
-    border-radius: 2em;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    // align-items: center;
-    // flex-wrap: wrap;
-}
+// .Name-Div{
+//     background-color: grey;
+//     margin: 0 3em;
+//     border-radius: 2em;
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-evenly;
+//     // align-items: center;
+//     // flex-wrap: wrap;
+// }
 
-#Profile-Pic{
-    padding: 20px;
-    border-radius: 2em;
-    width: 25vh;
-    height: 25vh;
-    background-color: white;
-    margin: 3vh;
-}
+// #Profile-Pic{
+//     padding: 20px;
+//     border-radius: 2em;
+//     width: 25vh;
+//     height: 25vh;
+//     background-color: white;
+//     margin: 3vh;
+// }
 
-.Name-Div-Row {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly; /* or space-evenly */
-    align-items: center;
+// .Name-Div-Row {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-evenly; /* or space-evenly */
+//     align-items: center;
 
-    flex-grow: 1;
-}
-
-
-
-
-/* address */
-.Address-Div{
-    height: 20vh;
-    padding: 2em;
-
-    background-color: grey;
-    margin: 0 3em;
-    border-radius: 2em;
-    display: flex; 
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.Address-Div-One{
-    width: 80vw;
-    display: flex;
-    justify-content: space-even;
-    align-items: center;
-}
-
-#StreetName{
-    width: 40vw;
-    margin: 0 5vw 0 0;
-}
-
-
-#BuildingApt{
-    width: 20vw;
-}
-
-
-.Address-Div-Two{
-    width: 80vw;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-#City{
-    width: 20vw;
-}
-
-#State{
-    width: 20vw;
-
-}
-
-#Zip{
-    width: 10vw;
-}
-
-/* contact */
-
-.Contact-Div, .Employment-Div{
-    height: 5vw;
-    background-color: grey;
-    margin: 0 3em;
-    border-radius: 2em;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-}
+//     flex-grow: 1;
+// }
 
 
 
-.Emergency-Div-Parent{
-    background-color: grey;
-    margin: 0 3em;
-    padding: 2em ;
-    border-radius: 2em;
+
+// /* address */
+// .Address-Div{
+//     height: 20vh;
+//     padding: 2em;
+
+//     background-color: grey;
+//     margin: 0 3em;
+//     border-radius: 2em;
+//     display: flex; 
+//     flex-direction: column;
+//     justify-content: space-evenly;
+//     align-items: center;
+// }
+
+// .Address-Div-One{
+//     width: 80vw;
+//     display: flex;
+//     justify-content: space-even;
+//     align-items: center;
+// }
+
+// #StreetName{
+//     width: 40vw;
+//     margin: 0 5vw 0 0;
+// }
 
 
-}
-.Emergency-Div-Parent input {
-    background-color: white;
-    width: 12vw;
-}
-
-.Emergency-Div-Parent table{
-    margin-bottom: 1em;
-}
+// #BuildingApt{
+//     width: 20vw;
+// }
 
 
+// .Address-Div-Two{
+//     width: 80vw;
+//     display: flex;
+//     justify-content: space-evenly;
+//     align-items: center;
+// }
 
-.Create-Emergency-Div{
-    background-color: grey;
-    border: 0;
-    box-shadow: none;
-    display: flex; 
-}
+// #City{
+//     width: 20vw;
+// }
 
-#uploadImage{
-    box-shadow: none;
-}
+// #State{
+//     width: 20vw;
+
+// }
+
+// #Zip{
+//     width: 10vw;
+// }
+
+// /* contact */
+
+// .Contact-Div, .Employment-Div{
+//     height: 5vw;
+//     background-color: grey;
+//     margin: 0 3em;
+//     border-radius: 2em;
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-evenly;
+//     align-items: center;
+// }
+
+
+
+// .Emergency-Div-Parent{
+//     background-color: grey;
+//     margin: 0 3em;
+//     padding: 2em ;
+//     border-radius: 2em;
+
+
+// }
+// .Emergency-Div-Parent input {
+//     background-color: white;
+//     width: 12vw;
+// }
+
+// .Emergency-Div-Parent table{
+//     margin-bottom: 1em;
+// }
+
+
+
+// .Create-Emergency-Div{
+//     background-color: grey;
+//     border: 0;
+//     box-shadow: none;
+//     display: flex; 
+// }
+
+// #uploadImage{
+//     box-shadow: none;
+// }

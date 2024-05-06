@@ -6,17 +6,21 @@ const EmergencyContact = require("../models/emergencyContactModel");
 // wait for the token, add it to the middlewear
 async function PostUserInfo(req, res){
     // let userid = //get this from the token middlwear... don't worry for now
+    const {userId, email} = req.body;
+
+    console.log(userId, "0000")
+
 
     try {
         //grab the req payload
         let payload = req.body;
-        console.log(payload, "************")
+
 
         //grab the curruser
-        let CurrUser = await User.findOne({ firstName: 'Sunny' });
+        // let CurrUser = await User.findOne({ _id: userId});
 
         let updatedUser = await User.findOneAndUpdate(
-            { firstName: 'Sunny' }, // Condition to find the user UPDATE THIS WHEN THERE IS AUTHENTICATION
+            { _id: userId }, // Condition to find the user UPDATE THIS WHEN THERE IS AUTHENTICATION
             payload,
             { new: true } // To return the updated document
         );
