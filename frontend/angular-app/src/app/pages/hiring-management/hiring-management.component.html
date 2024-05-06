@@ -1,1 +1,123 @@
-<p>hiring-management works!</p>
+<section id="viewStatusSection" *ngIf="(viewUser | json) === '{}'">
+  <mat-button-toggle-group>
+    <mat-button-toggle (click)="setViewSection('Pending')"
+      >Pending</mat-button-toggle
+    >
+    <mat-button-toggle (click)="setViewSection('Rejected')"
+      >Rejected</mat-button-toggle
+    >
+    <mat-button-toggle (click)="setViewSection('Approved')"
+      >Approved</mat-button-toggle
+    >
+  </mat-button-toggle-group>
+</section>
+
+<section
+  id="pendingSection"
+  class="displaySec"
+  *ngIf="(viewUser | json) == '{}' && viewWindow === 'Pending'"
+>
+  <h2>Pending</h2>
+  <div id="userInfo">
+    <div *ngFor="let user of pendingUsers" class="user">
+      <p>{{ user.firstName }} {{ user.lastName }}</p>
+      <p>{{ user.email }}</p>
+      <button (click)="clickHandler(user)">View Application</button>
+    </div>
+  </div>
+</section>
+
+<section
+  id="rejectedSection"
+  class="displaySec"
+  *ngIf="(viewUser | json) == '{}' && viewWindow === 'Rejected'"
+>
+  <h2>Rejected</h2>
+  <div id="userInfo">
+    <div *ngFor="let user of rejectedUsers" class="user">
+      <p>{{ user.firstName }} {{ user.lastName }}</p>
+      <p>{{ user.email }}</p>
+      <button (click)="clickHandler(user)">View Application</button>
+    </div>
+  </div>
+</section>
+
+<section
+  id="approvedSection"
+  class="displaySec"
+  *ngIf="(viewUser | json) == '{}' && viewWindow === 'Approved'"
+>
+  <h2>Approved</h2>
+  <div id="userInfo">
+    <div *ngFor="let user of approvedUsers" class="user">
+      <p>{{ user.firstName }} {{ user.lastName }}</p>
+      <p>{{ user.email }}</p>
+      <button (click)="clickHandler(user)">View Application</button>
+    </div>
+  </div>
+</section>
+
+<div id="viewUser" *ngIf="(viewUser | json) != '{}'">
+  <button id="returnButton" (click)="clickHandler({})">Return</button>
+  <p>Status: {{ viewUser.onboardingStatus }}</p>
+  <!-- <img src={{viewUser.profilePicture}} /> -->
+  <p>Name: {{ viewUser.firstName }} {{ viewUser.lastName }}</p>
+  <p *ngIf="viewUser.preferredName != ''">
+    Preferred Name: {{ viewUser.preferredName }}
+  </p>
+  <section id="address">
+    <p>Current Address:</p>
+    <p>{{ viewUser.address.street }} {{ viewUser.address.streetLine2 }}</p>
+    <p>
+      {{ viewUser.address.city }}, {{ viewUser.address.state }}
+      {{ viewUser.address.zip }}
+    </p>
+  </section>
+  <section id="phones">
+    <p>Phone(cell): {{ viewUser.phone.cell }}</p>
+    <p *ngIf="viewUser.phone.work != ''">
+      Phone(work): {{ viewUser.phone.work }}
+    </p>
+  </section>
+  <p>Date of Birth: {{ viewUser.dob }}</p>
+  <p>Gender: {{ viewUser.gender }}</p>
+  <section id="workAuth">
+    <p>Work Authorization: {{ viewUser.workAuthorization }}</p>
+    <p *ngIf="viewUser.workAuthorizationStart != null">
+      Start Date: {{ viewUser.workAuthorizationStart }}
+    </p>
+    <p *ngIf="viewUser.workAuthorizationStart != null">
+      End Date: {{ viewUser.workAuthorizationEnd }}
+    </p>
+  </section>
+  <section id="driversLicense" *ngIf="viewUser.hasDriversLicense">
+    <p>Driver's License:</p>
+    <p>Number: {{ viewUser.driversLicense.licenseNumber }}</p>
+    <p>Expiration Date: {{ viewUser.driversLicense.expirationDate }}</p>
+  </section>
+  <section id="reference" *ngIf="viewUser.reference.firstName != ''">
+    <p>Reference:</p>
+    <p>
+      Name: {{ viewUser.reference.firstName }} {{ viewUser.reference.lastName }}
+    </p>
+    <p *ngIf="viewUser.reference.preferredName != ''">
+      Preferred Name: {{ viewUser.reference.preferredName }}
+    </p>
+    <p>Phone: {{ viewUser.reference.phone }}</p>
+    <p>Email: {{ viewUser.reference.email }}</p>
+    <p>Relationship: {{ viewUser.reference.relationship }}</p>
+  </section>
+  <form *ngIf="viewUser.onboardingStatus === 'Pending'" (ngSubmit)="onSubmit()">
+    <label for="status">Change Status:</label>
+    <select id="status" (change)="changeStatus($event)">
+      <option></option>
+      <option
+        *ngFor="let statusOption of statusOptions"
+        [ngValue]="statusOption"
+      >
+        {{ statusOption }}
+      </option>
+    </select>
+    <button type="submit">Submit</button>
+  </form>
+</div>

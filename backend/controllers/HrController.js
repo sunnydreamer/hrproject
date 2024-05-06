@@ -65,28 +65,45 @@ const getVisaPendingUsers = async (req, res) => {
         };
 
         const usersWithF1Visa = await User.find(query)
-        const usersWithNextSteps = await Promise.all(usersWithF1Visa.map(async (user) => {
+
+        const usersWithNextSteps = [];
+
+        // Iterate over each user
+        for (const user of usersWithF1Visa) {
             const userId = user._id;
+
+            // Check if the last document i20 is approved 
+            if (user.opt && user.opt["i20"]) {
+                // Use Mongoose to check the status of the related document
+                const optI20Document = await Document.findById(user.opt["i20"]);
+
+                if (optI20Document && optI20Document.status === 'Approved') {
+                    // If OPT I20 document exists and its status is Approved, skip this user
+                    continue;
+                }
+            }
+
             // get next step
-            const nextStep = await getUserNextStep(userId)
+            const nextStep = await getUserNextStep(userId);
+
             // format the return data
-            const name = `${user.firstName} ${user.lastName}`
-            const workAuthorization = user.workAuthorization
-            const workAuthorizationStart = user.workAuthorizationStart
-            const workAuthorizationEnd = user.workAuthorizationEnd
+            const name = `${user.firstName} ${user.lastName}`;
+            const workAuthorization = user.workAuthorization;
+            const workAuthorizationStart = user.workAuthorizationStart;
+            const workAuthorizationEnd = user.workAuthorizationEnd;
             const now = new Date();
             const differenceInMilliseconds = workAuthorizationEnd - now;
             let daysRemaining = null;
             if (workAuthorizationEnd === null) {
-                daysRemaining = "End date is invalid"
-            }
-            else if (differenceInMilliseconds < 0) {
-                daysRemaining = "Expired"
+                daysRemaining = "End date is invalid";
+            } else if (differenceInMilliseconds < 0) {
+                daysRemaining = "Expired";
             } else {
-                daysRemaining = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24))
+                daysRemaining = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
             }
 
-            return {
+            // Add the user to the array
+            usersWithNextSteps.push({
                 name: name,
                 workAuthorization: workAuthorization,
                 nextStep: nextStep,
@@ -94,8 +111,8 @@ const getVisaPendingUsers = async (req, res) => {
                 workAuthorizationEnd: workAuthorizationEnd,
                 daysRemaining: daysRemaining,
                 nextStep: nextStep
-            };
-        }));
+            });
+        }
 
         res.status(200).json({
             message: "Retrieve F1 Users successfully",
@@ -116,7 +133,32 @@ const reviewDocument = async (req, res) => {
             return res.status(400).json({ error: "Invalid input data" });
         }
 
+        // Find the document by its ID
+        const document = await Document.findById(documentId);
+
+        if (!document) {
+            return res.status(404).json({ error: "Document not found" });
+        }
+
+        // update the document
         await Document.findByIdAndUpdate(documentId, { status: status, comment: comment });
+
+        //if approve, change the user onboarding Status
+
+        if (status === 'Approved') {
+            // Find the user by their ID
+            const user = await User.findById(document.userId);
+
+            // Check if the user exists
+            if (!user) {
+                return res.status(404).json({ error: "User not found" });
+            }
+
+            // Update user's onboarding status
+            user.onboardingStatus = 'Approved';
+            await user.save();
+        }
+
 
         res.status(200).json({ message: "Document updated successfully" });
     } catch (error) {

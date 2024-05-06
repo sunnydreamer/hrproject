@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 
 const WorkAuth = ({ userInfo, setUserInfo, changeHandler, file, setFile }) => {
   const [extraOptions, setExtraOptions] = useState(false);
   const [otherOption, setOtherOption] = useState(false);
   const [isF1, setIsF1] = useState(false);
+  const [workAuthValue, setWorkAuthValue] = useState(``);
 
-  const citiGreenChange = (e) => {
+  const workAuthChange = (e) => {
     if (e.target.value === `citizen` || e.target.value === `green card`) {
       setExtraOptions(false);
       setOtherOption(false);
       setIsF1(false);
+      setWorkAuthValue(e.target.value);
       setUserInfo({
         ...userInfo,
         workAuthorizationStart: null,
@@ -21,10 +23,13 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler, file, setFile }) => {
       setOtherOption(false);
       setExtraOptions(true);
       setIsF1(false);
+      setWorkAuthValue(e.target.value);
+      return;
     }
     if (e.target.value === `other`) {
       setOtherOption(true);
       setIsF1(false);
+      e.target.value = `other`;
     }
 
     if (e.target.value === `F1`) {
@@ -35,7 +40,7 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler, file, setFile }) => {
   };
 
   const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0]
+    const selectedFile = event.target.files[0];
     if (selectedFile) {
       setFile(selectedFile);
     }
@@ -72,8 +77,8 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler, file, setFile }) => {
         </label>
         <select
           id="workAuthorization"
-          value={userInfo.workAuthorization}
-          onChange={citiGreenChange}
+          value={workAuthValue}
+          onChange={workAuthChange}
         >
           <option></option>
           <option value={"citizen"}>Citizen</option>
@@ -90,7 +95,7 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler, file, setFile }) => {
             <select
               id="workAuthorization"
               value={userInfo.workAuthorization}
-              onChange={citiGreenChange}
+              onChange={workAuthChange}
               required
             >
               <option></option>
@@ -140,10 +145,12 @@ const WorkAuth = ({ userInfo, setUserInfo, changeHandler, file, setFile }) => {
             id="file-input"
             accept=".pdf,.doc,.docx"
             onChange={handleFileChange}
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
           />
           <label htmlFor="file-input">
-            <Button variant="contained" component="span">Upload OPT receipt</Button>
+            <Button variant="contained" component="span">
+              Upload OPT receipt
+            </Button>
             {file && <div>Selected file: {file.name}</div>}
           </label>
         </>
