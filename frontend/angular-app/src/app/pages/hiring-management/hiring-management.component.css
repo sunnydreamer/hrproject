@@ -1,0 +1,44 @@
+.user {
+  margin: 10px;
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  width: 400px;
+  border: solid 2px #2abed0;
+  text-align: center;
+}
+
+.displaySec {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+h2 {
+  margin-top: 20px;
+}
+
+#userInfo {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#viewStatusSection {
+  margin-top: 20px;
+  text-align: center;
+}
+
+mat-button-toggle {
+  width: 200px;
+}
+
+#viewUser {
+  background-color: white;
+  width: 800px;
+  padding: 20px;
+  margin: 20px;
+}
+
+#returnButton {
+  margin-bottom: 20px;
+}
