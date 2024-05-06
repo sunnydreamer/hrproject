@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
       { title: 'Visa Status', path: '/visa-status' },
       { title: 'Hiring Management', path: '/hiring-management' },
       { title: 'Housing Management', path: '/housing-management' },
+      { title: 'Send Registration Email', path: '/send-email' },
       { title: 'Log out', path: '/login' },
     ];
   }
