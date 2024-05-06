@@ -14,14 +14,19 @@ async function GetUserInfo(req, res) {
   try {
     let CurrUser = await User.findOne({ _id: userId }).populate(
       "emergencyContact"
-    ) . populate("opt");
-    // .populate('EmergencyContact')
-    // .exec((err, user) => {
-    //     if (err) {
-    //         console.error('Error:', err);
-    //         return;
-    // }})
-    // console.log("User with populated address:", CurrUser);
+    ) . populate("opt")
+    .populate({
+      path: 'opt',
+      populate: [
+          { path: 'receipt'},
+          { path: 'ead' },
+          { path: 'i983' }, 
+          { path: 'i20' } 
+
+
+      ]
+  });
+
 
     if (!CurrUser) {
       return res.status(404).json({ message: "User not found" });

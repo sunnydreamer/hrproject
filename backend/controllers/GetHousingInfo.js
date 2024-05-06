@@ -11,8 +11,7 @@ async function GetHousingInfo(req, res){
     // let userid = //get this from the token middlwear... don't worry for now
 
     try {
-        let CurrUser = await User.findOne({ firstName: 'Sunny' })
-
+        let CurrUser = await User.findOne({ firstName: 'Loulian' })
                             .populate({
                                 path: 'house',
                                 populate: [

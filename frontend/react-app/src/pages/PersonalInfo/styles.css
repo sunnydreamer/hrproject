@@ -1,10 +1,5 @@
 
 
-.personal{
-    width: 75vw;
-    margin: auto;
-}
-
 .buttons{
     display: flex;
     justify-content:right;
@@ -142,4 +137,65 @@
 .Create-Emergency-Div input {
     flex: 1;
     margin-bottom: 10px; /* Adjust as needed */
+}
+
+
+.personal{
+    width: 80vw !important;
+} 
+
+
+.Document-Div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup-inner {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.popup button {
+    margin-bottom: 10px;
+}
+
+.popup button:last-child {
+    margin-bottom: 0;
+}
+
+.popup iframe {
+    width: 100%;
+    height: 80vh;
+    border: none;
+}
+
+
+.document-each{
+
+    width: 100%;
+    text-align: center;
+}
+
+.document-each a{
+    font-size: 3em;
+}
+
+.document-each button{
+    font-size: 3em;
 }

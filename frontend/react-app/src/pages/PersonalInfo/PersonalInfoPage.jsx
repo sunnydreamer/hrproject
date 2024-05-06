@@ -159,7 +159,7 @@ const PersonalInfoPage = () => {
           <h2>Emergency Info</h2>
           <EmergencyContact data={data} setData={setData} />
           <h2>Documents</h2>
-          <Documents data={data} setData={setData} />/
+          <Documents data={data} setData={setData} />
         </>
       ) : null}
     </Container>

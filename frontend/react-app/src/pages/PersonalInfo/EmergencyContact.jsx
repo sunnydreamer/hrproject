@@ -93,7 +93,7 @@ function EmergencyContact({data, setData}){
 
     }
     return (
-        <Container>
+        <div className='personal'>
             <div className="buttons">
                 {edit ? (
                     <Button onClick={handleSave} >Save</Button>
@@ -220,7 +220,7 @@ function EmergencyContact({data, setData}){
                     <Button type="submit" variant="contained" color="primary">Submit</Button>
                 </form>
             </div>
-        </Container>
+        </div>
     );
 
     // return(

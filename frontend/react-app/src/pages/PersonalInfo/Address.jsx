@@ -48,7 +48,7 @@ function Address({ data, setData }) {
     }
 
     return (
-        <div>
+        <div className='personal'>
             <div className="buttons">
                 {editMode ? (
                     <Button onClick={handleSave}>Save</Button>

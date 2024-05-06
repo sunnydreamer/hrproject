@@ -46,7 +46,7 @@ function Employment({ data, setData }) {
     }
 
     return (
-        <Container>
+        <Container >
             <div className="buttons">
                 {editMode ? (
                     <Button onClick={handleSave} >Save</Button>
