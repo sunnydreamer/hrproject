@@ -35,9 +35,7 @@ const HRPersonalInfoPage = () => {
 
 
   return (
-
-    // <div id="parent-personal">
-      <div>
+      <div className='personal'>
 
         <div className="flex-col full-parent-width">
           <Header title="Personal Info" />
@@ -45,12 +43,21 @@ const HRPersonalInfoPage = () => {
 
       {data? (
         <>
+        <h2>Basic Info</h2>
       <Name data={data}></Name>
+      <h2>Address Info</h2>
+
       <Address data={data} setData={setData}></Address>
+      <h2>Contact Info</h2>
+
       <Contact data={data} setData={setData}></Contact>
+      <h2>Employment Info</h2>
+
       <Employment data={data} setData={setData}></Employment>
+      <h2>Emergency Contact</h2>
+
       <EmergencyContact data={data} setData={setData}></EmergencyContact>
-      <Documents data={data} setData={setData}></Documents>
+      {/* <Documents data={data} setData={setData}></Documents> */}
        </>) 
       : null }
     </div>

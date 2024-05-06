@@ -9,7 +9,10 @@ async function GetHRProfile(req, res){
     const id = req.params.id;
 
     try {
-        let CurrUser = id? await User.find({_id: id })
+        let CurrUser = id? await User.find({_id: id }).populate(
+            "emergencyContact"
+          ) . populate("opt")
+        
                         :
                         await User.find();
 
