@@ -160,6 +160,7 @@ const VisaPage = () => {
             const currentDocumentKey = step.documentKey
             const currentDocument = userDocuments[currentDocumentKey]
             const isDocumentApproved = currentDocument && currentDocument.status === 'Approved'
+            const isDocumentPending = currentDocument && currentDocument.status === 'Pending'
             return (<Step
               completed={isStepCompleted(index)}
               active={isCurrentStep(index)}
@@ -189,8 +190,8 @@ const VisaPage = () => {
                 <div>
                   <p>Status: {currentDocument.status}</p>
                   {currentDocument.comment && <p> Comment:{currentDocument.comment}</p>}
-                  {isDocumentApproved &&
-                    // If document is not approved, show button to resubmit
+                  {isDocumentPending ? <></> :
+                    // If document is pending, not display the button
                     <>
                       <div>
                         {file && <div>Selected file: {file.name}</div>}

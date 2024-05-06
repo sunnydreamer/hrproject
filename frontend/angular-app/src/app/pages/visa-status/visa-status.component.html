@@ -35,7 +35,10 @@
         Search: <input [(ngModel)]="search" (input)="onSearchChange($event)" />
       </div>
 
-      <ng-container *ngIf="allVisaUsers.length === 0; else userCards">
+      <ng-container
+        *ngIf="allVisaUsers.length === 0; else userCards"
+        class="content-contianer"
+      >
         <h2>No user found</h2>
       </ng-container>
     </div>
