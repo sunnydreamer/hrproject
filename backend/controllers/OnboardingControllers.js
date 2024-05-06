@@ -1,6 +1,6 @@
 const User = require("../models/userModel");
 const EmergencyContact = require("../models/emergencyContactModel");
-const { awsS3Upload } = require("./UserController")
+const { awsS3Upload } = require("./UserController");
 const Document = require("../models/documentModel");
 const mongoose = require("mongoose");
 
@@ -19,7 +19,7 @@ const fetchUserById = async (req, res) => {
 
 const updateUserInfo = async (req, res) => {
   try {
-    const { userId, userInfo } = req.body
+    const { userId, userInfo } = req.body;
 
     // change userInfo into json object
     const userInfoObject = JSON.parse(userInfo);
@@ -41,7 +41,7 @@ const updateUserInfo = async (req, res) => {
     if (!uploadedFile) {
       //when no document, just return the function
       res.status(200).json({ message: "Successfully updated the user" });
-      return
+      return;
     }
 
     // send to aws and get the aws file location
@@ -101,9 +101,38 @@ const fetchEmergencyContacts = async (req, res) => {
   }
 };
 
+const fetchAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+
+    res.send(users);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+const updateUserStatus = async (req, res) => {
+  try {
+    const { userId, userInfo } = req.body;
+
+    const updateUser = await User.findByIdAndUpdate(userId, userInfo);
+    if (!updateUser) {
+      return res.status(400).send({ message: `failed to update user` });
+    }
+
+    res.status(200).send({ message: "Successfully updated the user" });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 module.exports = {
   fetchUserById,
   updateUserInfo,
   addEmergencyContact,
   fetchEmergencyContacts,
+  fetchAllUsers,
+  updateUserStatus,
 };

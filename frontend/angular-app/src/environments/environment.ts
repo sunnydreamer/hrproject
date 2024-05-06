@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  EMAILJS_USER_ID: 'd98x5e6DmhcsyaIki',
 };
 
 /*
