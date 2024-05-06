@@ -26,7 +26,6 @@ async function seedHousing() {
     });
 
     // Save the new document to the database
-    let abc = await newHousing.save();
 
     return abc._id;
 
@@ -51,10 +50,10 @@ const seed = async () => {
 
     console.log(`seeding database`);
     //seed housing
-    let id = await seedHousing();
+    // let id = await seedHousing();
     //give sunny the housing id
 
-    await documents(id);
+    await documents();
     // Save the new document to the database
     console.log("Seed successful!");
   } catch (error) {

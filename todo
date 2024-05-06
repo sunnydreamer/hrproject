@@ -1,107 +1,25 @@
-Todo:
-Personal Info
-    fix date 30min DONE
-    make sure fields are editable 1hour DONE
-    fix the sizing 1hour DONE
-    fileupload for profiles 2 hour DONE
-    file download 1 hour DONE
-
-Housing
-    fix schema 3 hour DONE
-    fix reseeding 1hour DONE
-    do reseed 30 min DONE
-    
-    setupendpoints + test 1.5hours DONE
-    details + roomates 30min DONE
-    add report 1.5 hours DONE 
-    show comments 30min DONE
-    add comments 1hours DONE
-    ------------------------    
-    
-4 hours for userprofile
-    Check validations 1hour
-    Change to use cookies for data 1 hour
-    Do comments filtering 30min
-
-2 hour to finish user profile
-    check DOB DONE
---------------------------
-
-Employee profiles 4 hours DONE
-Housing Management page 6 hours
-----------------------------------
-----------------------------------
-----------------------------------
-----------------------------------
-
-DO THIS THIRD
-React
-Personal Info Page
-- make the documents work 30min DONE
-- check DOB 15min DONE
--------------------------------
-2.5 hours 2-4:30
-
-DO THIS FOURTH
-Housing
-- change to redux 1 hour
-- filter by userID 30 min
-- add make comment 1 hour
-- add edit comment 30 min
-- filter comment 30 min
----------------------
-3.5 hours 4:30 - 7:30
 
 
 
-DO THIS FIRST DONE
-Angular
-Employee Profile
-- finish entire fullprofile 30min took 45min DONE 
----------------------------------------
+To do:
 
-DO THIS SECOND
-Housing Management
-- reseed db 10min DONE
-- write adding houses 1 hour DONE
-- write viewing reports 30 min DONE
-- make popup 30min  
-- write making comments 1 hour
----------------------------
-
-
-EMPLOYEE PERSONAL INFO DONE
-HR PERSONAL INFO DONE
-
-finish hr housing 70% done
-    make popup 20min DONE
-    make form 30min
-    make backend 30mind
-
-    45 min max
-
-finish housing managment 1/2 done
+let's do the profiles first for angular and react
+react profile
 
 
 
-REDUX 2 hours
-ADD IN VERIFICATION 1hour
-ADD IN VALIDATION 1 hour
-------------------------
-4 hours
+then let's do the housing
+react
+angular
 
 
 
 
 
+sunnyli@gmail.com
+    sunnyPW
 
 
-REACT
-profile 100%
-housing 50% come back to this
 
-ANGULAR
-profile 100%
-housing 70%
-    //show comment
-    //add comment
+    mauricechiu@gmail.com
+    mauricePW

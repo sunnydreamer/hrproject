@@ -173,25 +173,38 @@ router
   .post(`/onboarding/fetchContacts`, OnboardingController.fetchEmergencyContacts)
 
   // user info page
-  .put("/info", (req, res) => {
-    res.send("User info is modified successfully");
-  })
-  .get("/personalinfo", GetUserInfo)
+  // .put("/info", (req, res) => {
+  //   res.send("User info is modified successfully");
+  // })
 
   // user visa page
   .put("/visa/:userid", (req, res) => {
     res.send("visa status changed successfully");
   })
 
+
+    //////////////////////////////////////////////////
+  //mine
+  //////////////////////////////////////////////////
+
+  .get("/personalinfo", auth ,GetUserInfo)
+
   // user housing page
   .get("/housing", GetHousingInfo)
   .get("/housing/all", GetAllHousingInfo)
 
 
+  //////////////////////////////////////////////////
+  //mine
+  //////////////////////////////////////////////////
   //create housing report
   .put("/housing/report", PutHousingReport)
   .put("/housing/report/comment", PutHousingReportComment)
 
+
+  //////////////////////////////////////////////////
+  //mine
+  //////////////////////////////////////////////////
 
   // get user for HR
   .get("/hr/userprofiles/", GetHRProfile)
@@ -200,9 +213,5 @@ router
   .put("/hr/newHouse/", PutNewHouse)
 
 
-
-// .put("/housing/report/:reportid", (req, res) => {
-//   res.send("Replied facility report successfully");
-// });
 
 module.exports = router;

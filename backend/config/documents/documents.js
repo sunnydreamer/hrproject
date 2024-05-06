@@ -5,12 +5,12 @@ const Comment = require(`../../models/commentModel`);
 const EmergencyContact = require(`../../models/emergencyContactModel`);
 const Housing = require(`../../models/housingModel`);
 const Document = require(`../../models/documentModel`);
+const HousingReport = require(`../../models/housingReportModel`);
 
 
 // add a house here for sunny
-const documents = async (housingId,) => {
+const documents = async () => {
   const hr1 = await User.create({
-    house: housingId,
     firstName: `Sunny`,
     lastName: `Li`,
     email: `sunnyli@gmail.com`,
@@ -50,6 +50,7 @@ const documents = async (housingId,) => {
       status: "In Progress",
       address: {
         street: "123 Main St",
+        streetLine2: "123",
         city: "Anytown",
         state: "AnyState",
         zip: "12345",
@@ -66,6 +67,8 @@ const documents = async (housingId,) => {
     gender: `male`,
     address: {
       street: `44 Bumblebee St`,
+      streetLine2: "123",
+
       city: `New York`,
       state: `New York`,
       zip: `11344`,
@@ -107,6 +110,8 @@ const documents = async (housingId,) => {
     gender: `male`,
     address: {
       street: `44 Bumblebee St`,
+      streetLine2: "123",
+
       city: `New York`,
       state: `New York`,
       zip: `11344`,
@@ -197,42 +202,154 @@ const documents = async (housingId,) => {
   await e3.save();
 
 
-  //this one is sunny's
-  //add in new data
+  // this one is sunny's
+  // add in new data
+  const users = await User.find({}, '_id');
 
-  const h1 = await Housing.create({
+const housingData = [
+  {
     address: {
-      street: `123 Shinchan Ave`,
-      city: `Oklahoma City`,
-      state: `Oklahoma`,
-      zip: `12345`,
+      street: '123 Shinchan Ave',
+      city: 'Oklahoma City',
+      state: 'Oklahoma',
+      zip: '12345',
     },
-    roommates: [hr1, e2, e1],
+    roommates: [users[0]._id, users[1]._id, users[2]._id], // Adjust with actual user IDs
+    housingReport: [],
+    landlord: {
+      fullName: 'Some name',
+      phone: 'some phone',
+      email: 'some email',
+    },
+    tables: 1,
+    chairs: 1,
+    beds: 1,
+    mattresses: 1
+  },
+  {
+    address: {
+      street: '44 Bumblebee St',
+      city: 'New York',
+      state: 'New York',
+      zip: '11344',
+    },
+    roommates: [users[0]._id, users[1]._id], // Adjust with actual user IDs
+    housingReport: [],
+    landlord: {
+      fullName: 'Some name',
+      phone: 'some phone',
+      email: 'some email',
+    },
+    tables: 1,
+    chairs: 1,
+    beds: 1,
+    mattresses: 1
+  },
+  {
+    address: {
+      street: '444 Taeyang Blvd',
+      streetLine2: 'Apt 3R',
+      city: 'Soul',
+      state: 'New York',
+      zip: '11344',
+    },
+    roommates: [users[2]._id], // Adjust with actual user IDs
+    housingReport: [],
+    landlord: {
+      fullName: 'Some name',
+      phone: 'some phone',
+      email: 'some email',
+    },
+    tables: 1,
+    chairs: 1,
+    beds: 1,
+    mattresses: 1
+  }
+];
+
+const h2 = await Housing.create({
+  address: {
+    street: `44 Bumblebee St`,
+    city: `New York`,
+    state: `New York`,
+    zip: `11344`,
+  },
+  roommates: [e1._id, e2._id], // Adjust with actual user IDs
+});
+
+const h3 = await Housing.create({
+  address: {
+    street: `444 Taeyang Blvd`,
+    streetLine2: `Apt 3R`,
+    city: `Soul`,
+    state: `New York`,
+    zip: `11344`,
+  },
+  roommates: [e3._id], // Adjust with actual user IDs
+});
+  
+  
+  
+  
+  
+  
+  
+  
+    //create house here
+    const h1 = await Housing.create({
+      address: {
+        street: `123 Shinchan Ave`,
+        city: `Oklahoma City`,
+        state: `Oklahoma`,
+        zip: `12345`,
+      },
+      roommates: [e2, e1],
+      //add housing reports later
+      // housingReport: [  houseReport1    ]
+    });
+
+// console.log(housingData[0].address.street, "=====")
+
+// Insert fake housing data into the database
+await Housing.insertMany(housingData);
+
+
+
+
+
+///////cime back here 
+
+  //report is created
+  const housereport1 = await HousingReport.create(
+    {
+      title: "Leaky Faucet",
+      description: "There's a leaky faucet in the kitchen.",
+      createdBy: hr1, // User ObjectId
+      status: "Open",
+      timestamp: new Date(),
+      housingComments: [
+        {
+          createdBy: hr1,
+          username: "sunnyli",
+          description: "I'll take a look at it tomorrow.",
+          timestamp: new Date(),
+        },
+        {
+          createdBy: hr1,
+          username: "sunnli",
+          description: "We should call a plumber.",
+          timestamp: new Date(),
+        },
+      ]
   });
 
-  const h2 = await Housing.create({
-    address: {
-      street: `44 Bumblebee St`,
-      city: `New York`,
-      state: `New York`,
-      zip: `11344`,
-    },
-    roommates: [e1, e2],
+  //now add the housing report to the house
+  h1.housingReport.push(housereport1);
+  await h1.save();
+  h1.roommates.push(hr1)
+  await h1.save()
 
-
-    
-  });
-
-  const h3 = await Housing.create({
-    address: {
-      street: `444 Taeyang Blvd`,
-      streetLine2: `Apt 3R`,
-      city: `Soul`,
-      state: `New York`,
-      zip: `11344`,
-    },
-    roommates: [e3],
-  });
+ 
 };
 
 module.exports = documents;

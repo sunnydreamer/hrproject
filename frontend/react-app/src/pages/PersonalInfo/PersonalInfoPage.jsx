@@ -53,7 +53,9 @@ const PersonalInfoPage = () => {
 
   //maybe pass in the userid... or maybe not... it should be in cookie
   useEffect(() => {
-    axios.get("http://localhost:3000/user/personalinfo")
+    axios.get("http://localhost:3000/user/personalinfo",{
+      withCredentials: true
+    })
       .then(response => {
 
 
