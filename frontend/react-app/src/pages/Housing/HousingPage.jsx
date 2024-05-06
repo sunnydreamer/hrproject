@@ -5,6 +5,9 @@ import HousingReport from './HousingReport';
 import HousingComment from './HousingComment';
 import Modal from './Modal';
 import axios from 'axios';
+import Button from '@mui/material/Button';
+
+
 
 
 
@@ -12,14 +15,14 @@ import axios from 'axios';
 const HousingPage = () => {
   const [data, setData] = useState();
   const [houseInfo, setHouseInfo] = useState(null);
-  const [comment, setComment] = useState("");
+  // const [comment, setComment] = useState("");
   // console.log(houseInfo, data)
 
-  const [showComment, setShowComment] = useState({
-    showBool : false,
-    comments : [],
-    housingId: ""
-  });
+  // const [showComment, setShowComment] = useState({
+  //   showBool : false,
+  //   comments : [],
+  //   housingId: ""
+  // });
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -35,6 +38,8 @@ const HousingPage = () => {
                           houseId: houseInfo.housing._id,
                           userId: data._id
                         };
+
+    console.log(payload)
     axios.put("http://localhost:3000/user/housing/report", payload)
       .then(response =>
         {
@@ -44,15 +49,18 @@ const HousingPage = () => {
       )
       .catch(error => 
           console.error("error")
+            // setIsOpen(true);
       )
   };
 
 
 function fetchfoo(){
-    axios.get("http://localhost:3000/user/housing")
+    axios.get("http://localhost:3000/user/housing", {
+  
+       withCredentials: true
+     }
+    )
     .then(res => {
-      console.log(res.data, '=====')
-
       console.log(res.data)
       const initData = {
         housing : res.data.house
@@ -76,16 +84,19 @@ function handleComment(event){
     comment: comment
   }
 
-  axios.put("http://localhost:3000/user/housing/report/comment", payload)
-  .then(response =>
-    {
-      setComment("")
-      setIsOpen(false);
-    }
-  )
-  .catch(error => 
-      console.error("error")
-  )
+  console.log(payload);
+  console.log()
+
+  // axios.put("http://localhost:3000/user/housing/report/comment", payload)
+  // .then(response =>
+  //   {
+  //     setComment("")
+  //     setIsOpen(false);
+  //   }
+  // )
+  // .catch(error => 
+  //     console.error("error")
+  // )
 
 }
 
@@ -104,29 +115,14 @@ function handleComment(event){
         <>
           <HousingDetail houseInfo={houseInfo}></HousingDetail>
           <h2 className='Housing'>Facility Report</h2>
-          <button onClick={openModal}>New Report</button>
-          <Modal isOpen={isOpen} onClose={closeModal} />
-          {/* <HousingReport data={data} setShowComment={setShowComment}></HousingReport> */}
-
-          {showComment.showBool? 
-          <div>
-            <h2 className='Housing'>Report Comments</h2>
-            {/*comeback to the comments, and filter out only the ones for that user*/}
-            <HousingComment showComment={showComment}></HousingComment>
-            <br></br>
-            <h2>New Comment</h2>
-            <input 
-                type="text" 
-                name="Comment" 
-                id="Comment" 
-                value={comment} 
-                onChange={(event) => {
-                  setComment(event.target.value)}}
-            />
-            <button onClick={handleComment}>Submit</button>
+          {/* <Button id="open-new-report" onClick={openModal}>New Report</Button> */}
+          <div style={{ textAlign: 'right' }}>
+            <Button id="open-new-report" variant="contained" onClick={openModal}>New Report</Button>
           </div>
-          :
-          <div></div>}
+          <Modal isOpen={isOpen} onClose={closeModal} />
+          <HousingReport data={data}></HousingReport>
+
+
         </>
       ) : (
         <h2>Please come back later... you have not been assigned</h2>

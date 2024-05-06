@@ -12,8 +12,8 @@ const PutHousingReportComment = require("../controllers/PutHousingReportComment.
 
 const GetHRProfile = require("../controllers/GetHRProfile");
 const OnboardingController = require("../controllers/OnboardingControllers.js");
-
-
+const PutChangeReportComment = require("../controllers/PutChangeReportComment.js")
+const PutNewReportComment = require("../controllers/PutNewReportComment.js");
 const GetHousingInfo = require("../controllers/GetHousingInfo");
 const GetAllHousingInfo = require("../controllers/GetAllHousingInfo");
 
@@ -191,7 +191,7 @@ router
 
 
   // user housing page
-  .get("/housing", GetHousingInfo)
+  .get("/housing", auth ,GetHousingInfo)
   .get("/housing/all", GetAllHousingInfo)
 
 
@@ -200,8 +200,11 @@ router
   //////////////////////////////////////////////////
   //create housing report
   .put("/housing/report", PutHousingReport)
-  .put("/housing/report/comment", PutHousingReportComment)
+  .put("/housing/report/comment", auth, PutHousingReportComment)
+  .put("/housing/comment/new", auth, PutNewReportComment)
+  .put("/housing/comment/change", auth, PutChangeReportComment  )
 
+  // PutChangeReportComment
 
   //////////////////////////////////////////////////
   //mine
