@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './styles.css'
 import axios from 'axios';
 import formatDate from './util';
@@ -13,6 +13,19 @@ import { Button, TextField, Grid, Avatar, Typography, MenuItem, Input, Container
 
 function Employment({ data, setData }) {
     const [editMode, setEditMode] = useState(false);
+    const [originalData, setOriginalData] = useState(null);
+
+    useEffect(() => {
+        // Save the original data when the component mounts
+        setOriginalData(data);
+    }, []);
+
+    function handleCancel(){
+        setData(originalData);
+        // setEditMode(false);
+        setEditMode(false);
+    }
+
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -49,7 +62,10 @@ function Employment({ data, setData }) {
         <Container >
             <div className="buttons">
                 {editMode ? (
-                    <Button onClick={handleSave} >Save</Button>
+                   <div>
+                   <Button onClick={handleSave}>Save</Button>
+                   <Button onClick={handleCancel}>Cancel</Button>
+                   </div>
                 ) : (
                     <Button onClick={toggleEditMode} >Edit</Button>
                 )}

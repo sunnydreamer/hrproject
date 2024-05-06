@@ -422,7 +422,18 @@ const fetchUserData = async (req, res) => {
           { path: "roommates" },
           { path: "housingReport" }, // Populate housingReport for the house
         ],
-      });
+        
+      })
+      .populate({
+        path: 'opt',
+        populate: [
+            { path: 'receipt'},
+            { path: 'ead' },
+            { path: 'i983' }, 
+            { path: 'i20' } 
+  
+  
+        ]});
     if (!user) {
       return res.status(404).json({ errors: ["User not found."] });
     }

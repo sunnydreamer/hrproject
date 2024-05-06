@@ -94,6 +94,9 @@ import EmergencyContact from './EmergencyContact';
 import Employment from './Employment';
 import axios from 'axios';
 import './styles.css';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchData } from "../../redux/fetchUserData";
+
 
 
 const PersonalInfoPage = () => {
@@ -131,18 +134,30 @@ const PersonalInfoPage = () => {
     opt: []
   });
 
+  const dispatch = useDispatch();
+  const dataRedux = useSelector((state) => state.payload);
+
+
   useEffect(() => {
-    axios.get("http://localhost:3000/user/personalinfo", {
-      withCredentials: true
-    })
-      .then(response => {
-        setData(response.data);
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
+    dispatch(fetchData());
+  }, [dispatch]);
+
+  useEffect(() => {
+        setData(dataRedux);
+  }, [dataRedux]); 
+
+  // useEffect(() => {
+  //   axios.get("http://localhost:3000/user/personalinfo", {
+  //     withCredentials: true
+  //   })
+  //     .then(response => {
+  //       setData(response.data);
+  //       console.log(response.data);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching data:', error);
+  //     });
+  // }, []);
 
   return (
 <Container sx={{ maxWidth: '50vw', margin: '0', padding: '0' }}>

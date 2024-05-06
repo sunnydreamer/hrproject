@@ -1,7 +1,7 @@
 
 
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './styles.css'
 import axios from 'axios';
 import formatDate from './util';
@@ -15,6 +15,18 @@ import { Button, TextField, Grid, Avatar, Typography, MenuItem, Input, Container
 function Name({data, setData}){
 
     const [edit, setEdit]= useState(false );  
+    const [originalData, setOriginalData] = useState(null);
+
+    useEffect(() => {
+        // Save the original data when the component mounts
+        setOriginalData(data);
+    }, []);
+
+    function handleCancel(){
+        setData(originalData);
+        setEdit(false);
+    }
+
 
     function handleChange(event){
         setData((prev) => {
@@ -100,7 +112,10 @@ return (
     <div className='personal'>
         <div className="buttons">
             {edit ? (
-                <Button onClick={handleSave}>Save</Button>
+                <div>
+                    <Button onClick={handleSave}>Save</Button>
+                    <Button onClick={handleCancel}>Cancel</Button>
+                    </div>
 
             ) : (
                 <Button onClick={toggleEditMode}>Edit</Button>

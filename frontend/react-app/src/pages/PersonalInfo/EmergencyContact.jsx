@@ -1,6 +1,6 @@
 
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './styles.css'
 import axios from 'axios';
 import formatDate from './util';
@@ -23,6 +23,31 @@ function EmergencyContact({data, setData}){
         email:"",
         relationship:""
     });
+
+    const [originalData, setOriginalData] = useState(null);
+
+    useEffect(() => {
+        // Save the original data when the component mounts
+        setOriginalData(data);
+    }, []);
+
+    function handleCancel(){
+        setData(originalData);
+        setEdit(false);
+    }
+
+
+
+    function handleChange(event) {
+        const { name, value } = event.target;
+        setData(prevData => ({
+            ...prevData,
+            address: {
+                ...prevData.address,
+                [name]: value
+            }
+        }));
+    }
 
     //the data is in 
     //it is an array
@@ -96,7 +121,10 @@ function EmergencyContact({data, setData}){
         <div className='personal'>
             <div className="buttons">
                 {edit ? (
-                    <Button onClick={handleSave} >Save</Button>
+                    <div>
+                    <Button onClick={handleSave}>Save</Button>
+                    <Button onClick={handleCancel}>Cancel</Button>
+                    </div>
 
                 ) : (
                     <Button onClick={toggleEditMode} >Edit</Button>

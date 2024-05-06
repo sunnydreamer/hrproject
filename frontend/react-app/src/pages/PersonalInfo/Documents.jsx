@@ -41,7 +41,7 @@ function Documents({data}){
         <div className='Document-Div'>
 
 {data.driversLicense?.licenseImage && (
-        <div >
+        <div className="document-each">
             <a href={data.driversLicense?.licenseImage} target="_blank" rel="noopener noreferrer">EAD </a>
             <button onClick={(e) => togglePopup(e, 'ead')}>Open Preview</button>
             {showPopup.license && (
@@ -57,7 +57,7 @@ function Documents({data}){
 
     {/* EAD */}
     {data.opt?.ead?.document && (
-        <div>
+        <div className="document-each">
             <a href={data.opt.ead.document} target="_blank" rel="noopener noreferrer">EAD </a>
             <button onClick={(e) => togglePopup(e, 'ead')}>Open Preview</button>
             {showPopup.ead && (
@@ -73,7 +73,7 @@ function Documents({data}){
     
     {/* I20 */}
     {data.opt?.i20?.document && (
-        <div>
+        <div className="document-each">
             <a href={data.opt.i20.document} target="_blank" rel="noopener noreferrer">I20 </a>
             <button onClick={(e) => togglePopup(e, 'i20')}>Open Preview</button>
             {showPopup.i20 && (
@@ -89,7 +89,7 @@ function Documents({data}){
 
     {/* I983 */}
     {data.opt?.i983?.document && (
-        <div>
+        <div className="document-each">
             <a href={data.opt.i983.document} target="_blank" rel="noopener noreferrer">I983 </a>
             <button onClick={(e) => togglePopup(e, 'i983')}>Open Preview</button>
             {showPopup.i983 && (
@@ -105,7 +105,7 @@ function Documents({data}){
 
     {/* Receipt */}
     {data.opt?.receipt?.document && (
-        <div class="document-each">
+        <div className="document-each">
             <a href={data.opt.receipt.document} target="_blank" rel="noopener noreferrer">Receipt </a>
             <button onClick={(e) => togglePopup(e, 'receipt')}>Open Preview</button>
             {showPopup.receipt && (
