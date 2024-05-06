@@ -1,14 +1,23 @@
-<section id="viewStatusSection">
-  <button (click)="setViewSection('Pending')">Pending</button>
-  <button (click)="setViewSection('Rejected')">Rejected</button>
-  <button (click)="setViewSection('Approved')">Approved</button>
+<section id="viewStatusSection" *ngIf="(viewUser | json) === '{}'">
+  <mat-button-toggle-group>
+    <mat-button-toggle (click)="setViewSection('Pending')"
+      >Pending</mat-button-toggle
+    >
+    <mat-button-toggle (click)="setViewSection('Rejected')"
+      >Rejected</mat-button-toggle
+    >
+    <mat-button-toggle (click)="setViewSection('Approved')"
+      >Approved</mat-button-toggle
+    >
+  </mat-button-toggle-group>
 </section>
 
 <section
   id="pendingSection"
+  class="displaySec"
   *ngIf="(viewUser | json) == '{}' && viewWindow === 'Pending'"
 >
-  <p>Pending</p>
+  <h2>Pending</h2>
   <div id="userInfo">
     <div *ngFor="let user of pendingUsers" class="user">
       <p>{{ user.firstName }} {{ user.lastName }}</p>
@@ -20,9 +29,10 @@
 
 <section
   id="rejectedSection"
+  class="displaySec"
   *ngIf="(viewUser | json) == '{}' && viewWindow === 'Rejected'"
 >
-  <p>Rejected</p>
+  <h2>Rejected</h2>
   <div id="userInfo">
     <div *ngFor="let user of rejectedUsers" class="user">
       <p>{{ user.firstName }} {{ user.lastName }}</p>
@@ -34,9 +44,10 @@
 
 <section
   id="approvedSection"
+  class="displaySec"
   *ngIf="(viewUser | json) == '{}' && viewWindow === 'Approved'"
 >
-  <p>Approved</p>
+  <h2>Approved</h2>
   <div id="userInfo">
     <div *ngFor="let user of approvedUsers" class="user">
       <p>{{ user.firstName }} {{ user.lastName }}</p>
@@ -46,8 +57,8 @@
   </div>
 </section>
 
-<div *ngIf="(viewUser | json) != '{}'">
-  <button (click)="clickHandler({})">Return</button>
+<div id="viewUser" *ngIf="(viewUser | json) != '{}'">
+  <button id="returnButton" (click)="clickHandler({})">Return</button>
   <p>Status: {{ viewUser.onboardingStatus }}</p>
   <!-- <img src={{viewUser.profilePicture}} /> -->
   <p>Name: {{ viewUser.firstName }} {{ viewUser.lastName }}</p>
