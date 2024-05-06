@@ -200,9 +200,9 @@ router
   //////////////////////////////////////////////////
   //create housing report
   .put("/housing/report", PutHousingReport)
-  .put("/housing/report/comment", auth, PutHousingReportComment)
-  .put("/housing/comment/new", auth, PutNewReportComment)
-  .put("/housing/comment/change", auth, PutChangeReportComment  )
+  .put("/housing/report/comment", PutHousingReportComment)
+  .put("/housing/comment/new", PutNewReportComment)
+  .put("/housing/comment/change", PutChangeReportComment  )
 
   // PutChangeReportComment
 
