@@ -10,6 +10,7 @@ export class LoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    window.location.href = 'http://localhost:5173/user/login';
   }
 
 }

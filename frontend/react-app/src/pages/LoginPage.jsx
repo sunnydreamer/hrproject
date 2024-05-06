@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 
 // User click on registration link in email
 // User go to registration-with-token page
@@ -24,13 +24,14 @@ import { useNavigate } from "react-router-dom";
 const LoginPage = (props) => {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
+  // const history = useHistory();
 
   const loginSubmitHandler = (event) => {
     event.preventDefault();
     // console.log(event.target.elements);
     const email = event.target.elements.email.value;
     const password = event.target.elements.password.value;
-
+    // console.log("in loginSubmitHandler");
     fetch(`http://localhost:3000/user/login`, {
       method: "POST",
       headers: {
@@ -46,10 +47,15 @@ const LoginPage = (props) => {
         return res.json();
       })
       .then((data) => {
+        // console.log(data);
         if (data.errors) {
           setErrors(data.errors);
         } else {
-          navigate(data.navigate, { state: { token: data.token } });
+          if (data.isHR === true) {
+            window.location.href = "http://localhost:4200/employee-profile";
+          } else {
+            navigate(data.navigate, { state: { token: data.token } });
+          }
         }
       })
       .catch((error) => {

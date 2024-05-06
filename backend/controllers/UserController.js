@@ -282,13 +282,14 @@ const login = async (req, res) => {
   }
   try {
     const user = await User.findOne({ email })
-      .select("password onboardingStatus")
+      .select("password onboardingStatus isHR")
       .lean()
       .exec();
 
     if (!user) {
       return res.status(401).json({ errors: ["Incorrect Email or Password."] });
     }
+    console.log("user", user);
     // console.log("user.password", user.password);
     if (user.password === null || user.password === undefined) {
       return res
@@ -314,9 +315,11 @@ const login = async (req, res) => {
       user.onboardingStatus === "Rejected" ||
       user.onboardingStatus === "Pending"
     ) {
-      return res.status(200).json({ navigate: "/user/onboarding-application", token: token});
+      console.log("user.isHR", user.isHR);
+      return res.status(200).json({ navigate: "/user/onboarding-application", isHR: user.isHR, token: token});
     } else if (user.onboardingStatus === "Approved") {
-      return res.status(200).json({ navigate: "/user", token: token});
+      console.log("user.isHR", user.isHR);
+      return res.status(200).json({ navigate: "/user", isHR: user.isHR, token: token});
     } else {
       return res.status(500).json({ errors: ["500 Internal Server Error"] });
     }

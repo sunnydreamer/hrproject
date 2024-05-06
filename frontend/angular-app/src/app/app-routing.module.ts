@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {
   EmployeeProfileComponent,
   LoginComponent,
+  SendEmailComponent,
   VisaStatusComponent,
   HiringManagementComponent,
   HousingManagementComponent,
@@ -12,6 +13,8 @@ import { ErrorComponent } from './pages/error/error.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, data: { title: 'Login' } },
+  { path: 'send-email', component: SendEmailComponent, data: { title: 'Login' } },
+  // { path: 'login', redirectTo: "http://localhost:5173/user/login" },
   {
     path: 'employee-profile',
     component: EmployeeProfileComponent,

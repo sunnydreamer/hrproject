@@ -24,6 +24,7 @@ import { UserCardComponent } from './components/user-card/user-card.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { SendEmailComponent } from './pages/send-email/send-email.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     HeaderComponent,
     ErrorComponent,
     UserCardComponent,
+    SendEmailComponent,
   ],
   imports: [
     BrowserModule,
